@@ -1,5 +1,5 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import VinylSearch from './VinylSearch';
+import VinylSearch from '../VinylSearch';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
