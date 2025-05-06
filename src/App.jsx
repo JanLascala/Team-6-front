@@ -5,7 +5,7 @@ import DefaultLayout from "./Layouts/DefaultLayout";
 import HomePage from './Pages/HomePage';
 import About from './Pages/About';
 import Login from './Pages/Login';
-import Vinyls from './Pages/Vinyls';
+import SingleVinyl from './Pages/SingleVinyl';
 import Cart from './Pages/Cart';
 
 export default function App() {
@@ -19,6 +19,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/vinyls" element={<Vinyls />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/products/:slug" element={<SingleVinyl />} />
           </Route>
         </Routes>
       </BrowserRouter>
