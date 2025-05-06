@@ -1,5 +1,7 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import Carousel from "../Components/dumb/carousel";
+import LoadingUi from "../Components/dumb/LoadingUi"
+import ServerErrorPage from "../Components/dumb/ServerErrorUi";
 export default function HomePage() {
     const { vinyls, isLoading } = useGlobalContext();
 
@@ -7,23 +9,16 @@ export default function HomePage() {
         switch (isLoading) {
 
             case 'loading':
-                return <p>Loading...</p>
+                return <LoadingUi />
 
             case 'success':
-                // return (
-                //     <ul>
-                //         {vinyls.map(vinyl => (
-                //             <li key={vinyl.id}>{vinyl.authorName}</li>
-                //         ))}
-                //     </ul>
-                // )
 
                 return (
                     <Carousel array={vinyls} />
                 )
 
             case 'error':
-                return <p>Fetching error</p>
+                return <ServerErrorPage error={"error"} />
 
             default:
                 return <p>Unknown status</p>
