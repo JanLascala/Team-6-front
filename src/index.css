@@ -1,2 +1,7 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
+
+footer a:hover {
+    text-decoration: underline;
+
+}
