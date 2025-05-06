@@ -1,37 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useGlobalContext } from "../Contexts/GlobalContext";
 
 export default function VinylSearch() {
+    const { vinyls } = useGlobalContext();
     const [query, setQuery] = useState("");
-    const [vinyls, setVinyls] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [showResults, setShowResults] = useState(false);
 
-    useEffect(() => {
-        if (query.trim() === "") {
-            setShowResults(false);
-            return;
-        }
+    const filteredVinyls = vinyls.state === 'success'
+        ? vinyls.vinyl_data.filter(v =>
+            v.title?.toLowerCase().includes(query.toLowerCase()) ||
+            v.genre?.toLowerCase().includes(query.toLowerCase()) ||
+            v.artist?.toLowerCase().includes(query.toLowerCase())
+        )
+        : [];
 
-        setIsLoading(true);
-        fetch("http://localhost:3000/api/vinyls")
-            .then(res => res.json())
-            .then(data => {
-                const queryLower = query.toLowerCase();
-                const filtered = data.filter(v =>
-                    v.title?.toLowerCase().startsWith(queryLower) ||
-                    v.genre?.toLowerCase().startsWith(queryLower) ||
-                    v.artist?.toLowerCase().startsWith(queryLower)
-                );
-                setVinyls(filtered);
-                setShowResults(true);
-                setIsLoading(false);
-            })
-            .catch(err => {
-                console.error("Errore nel fetch:", err);
-                setIsLoading(false);
-            });
-    }, [query]);
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setQuery(value);
+        setShowResults(value.trim() !== "");
+    };
 
     return (
         <div className="position-relative">
@@ -40,18 +28,23 @@ export default function VinylSearch() {
                 className="form-control form-control-sm"
                 placeholder="Search vinyls..."
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleSearchChange}
                 style={{ minWidth: "200px" }}
             />
 
             {showResults && (
-                <div className="position-absolute bg-white p-3 shadow rounded mt-1" style={{ width: '400px', zIndex: 1000, maxHeight: '500px', overflowY: 'auto' }}>
+                <div
+                    className="position-absolute bg-white p-3 shadow rounded mt-1"
+                    style={{ width: '400px', zIndex: 1000, maxHeight: '500px', overflowY: 'auto' }}
+                >
                     <h5 className="mb-2">Search Results:</h5>
-                    {isLoading ? (
+                    {vinyls.state === 'loading' ? (
                         <p>Loading...</p>
-                    ) : vinyls.length > 0 ? (
+                    ) : vinyls.state === 'error' ? (
+                        <p className="text-danger">Error fetching vinyls.</p>
+                    ) : filteredVinyls.length > 0 ? (
                         <div className="list-group">
-                            {vinyls.map(v => (
+                            {filteredVinyls.map(v => (
                                 <Link
                                     key={v.id}
                                     to={`/vinyls/${v.id}`}
@@ -84,6 +77,3 @@ export default function VinylSearch() {
         </div>
     );
 }
-
-
-
