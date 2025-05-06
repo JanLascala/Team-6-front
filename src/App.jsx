@@ -5,6 +5,7 @@ import DefaultLayout from "./Layouts/DefaultLayout";
 import HomePage from './Pages/HomePage';
 import About from './Pages/About';
 import Login from './Pages/Login';
+import Vinyls from './Pages/Vinyls';
 import SingleVinyl from './Pages/SingleVinyl';
 import Cart from './Pages/Cart';
 
