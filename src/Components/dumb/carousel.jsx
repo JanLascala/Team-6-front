@@ -1,103 +1,55 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function Carousel({ array }) {
-    const [index, setIndex] = useState(0);
-    const carouselRef = useRef(null);
-    const isDragging = useRef(false);
-    const startX = useRef(0);
-    const scrollLeft = useRef(0);
+function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
+    const [page, setPage] = useState(0);
+    const totalPages = Math.ceil(array.length / itemsPerPage);
 
     const handlePrev = () => {
-        if (index > 0) setIndex(index - 1);
+        if (page > 0) setPage(page - 1);
     };
 
     const handleNext = () => {
-        if (carouselRef.current) {
-            const maxIndex = Math.ceil(
-                array.length - carouselRef.current.offsetWidth / 300
-            );
-            if (index < maxIndex) setIndex(index + 1);
-        }
+        if (page < totalPages - 1) setPage(page + 1);
     };
 
-    useEffect(() => {
-        const container = carouselRef.current;
-        if (container) {
-            const scrollAmount = container.offsetWidth * index;
-            container.scrollTo({
-                left: scrollAmount,
-                behavior: 'smooth',
-            });
-        }
-    }, [index]);
-
-    const handleMouseDown = (e) => {
-        isDragging.current = true;
-        startX.current = e.pageX || e.touches[0].pageX;
-        scrollLeft.current = carouselRef.current.scrollLeft;
-    };
-
-    const handleMouseMove = (e) => {
-        if (!isDragging.current) return;
-        const x = e.pageX || e.touches[0].pageX;
-        const walk = (x - startX.current) * 1.2; // scroll speed
-        carouselRef.current.scrollLeft = scrollLeft.current - walk;
-    };
-
-    const handleMouseUp = () => {
-        isDragging.current = false;
-    };
+    const startIndex = page * itemsPerPage;
+    const visibleItems = array.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <div className="container py-3">
-            <div className="d-flex justify-content-between align-items-center mb-2">
-                <button onClick={handlePrev} className="btn btn-outline-secondary">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+                <button className="btn btn-outline-secondary" onClick={handlePrev} disabled={page === 0}>
                     ‹
                 </button>
-                <button onClick={handleNext} className="btn btn-outline-secondary">
+                <button className="btn btn-outline-secondary" onClick={handleNext} disabled={page === totalPages - 1}>
                     ›
                 </button>
             </div>
 
-            <div
-                ref={carouselRef}
-                className="overflow-hidden"
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onTouchStart={handleMouseDown}
-                onTouchMove={handleMouseMove}
-                onTouchEnd={handleMouseUp}
-                style={{
-                    scrollBehavior: 'smooth',
-                    cursor: isDragging.current ? 'grabbing' : 'grab',
-                }}
-            >
-                <div className="d-flex flex-nowrap">
-                    {array.map((vinyl, i) => (
-                        <div
-                            key={i}
-                            className="card mx-2"
-                            style={{
-                                minWidth: '250px',
-                                flex: '0 0 auto',
-                            }}
-                        >
+            <div className="row">
+                {visibleItems.map((item, i) => (
+                    <div className="col-md-4 mb-3" key={i}>
+                        <div className="card h-100 text-center">
                             <img
-                                src={vinyl.image}
+                                src={item.vinylImg}
+                                alt={item.title}
                                 className="card-img-top"
-                                alt={vinyl.title}
+                                style={{ objectFit: 'cover', height: '200px' }}
                             />
-                            <div className="card-body text-center">
-                                <p className="card-text">{vinyl.title}</p>
+                            <div className="card-body">
+                                <h5 className="card-title">{item.title}</h5>
+                                <p className="card-text">{item.price} €</p>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="text-center text-muted">
+                Page {page + 1} of {totalPages}
             </div>
         </div>
     );
 }
 
-export default Carousel;
+export default PagedCarouselSimple;
