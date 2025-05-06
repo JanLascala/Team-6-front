@@ -29,7 +29,7 @@ export default function Vinyls() {
 
     return (
         <>
-            <h1 className="mb-4">Home page</h1>
+            <h1 className="mb-4">Vinyls</h1>
             {renderList()}
         </>
     )
