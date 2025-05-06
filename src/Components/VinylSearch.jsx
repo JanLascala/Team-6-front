@@ -1,70 +1,89 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function VinylSearch() {
     const [query, setQuery] = useState("");
-    const [showSearch, setShowSearch] = useState(false);
+    const [vinyls, setVinyls] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [showResults, setShowResults] = useState(false);
 
-    const vinyls = [
-        { id: 1, title: "Abbey Road", artist: "The Beatles" },
-        { id: 2, title: "The Dark Side of the Moon", artist: "Pink Floyd" },
-        { id: 3, title: "Back to Black", artist: "Amy Winehouse" },
-        { id: 4, title: "Thriller", artist: "Michael Jackson" },
-        { id: 5, title: "Rumours", artist: "Fleetwood Mac" }
-    ];
+    useEffect(() => {
+        if (query.trim() === "") {
+            setShowResults(false);
+            return;
+        }
 
-    const filtered = vinyls.filter(v =>
-        v.title.toLowerCase().includes(query.toLowerCase()) ||
-        v.artist.toLowerCase().includes(query.toLowerCase())
-    );
+        setIsLoading(true);
+        fetch("http://localhost:3000/api/vinyls")
+            .then(res => res.json())
+            .then(data => {
+                const queryLower = query.toLowerCase();
+                const filtered = data.filter(v =>
+                    v.title?.toLowerCase().startsWith(queryLower) ||
+                    v.genre?.toLowerCase().startsWith(queryLower) ||
+                    v.artist?.toLowerCase().startsWith(queryLower)
+                );
+                setVinyls(filtered);
+                setShowResults(true);
+                setIsLoading(false);
+            })
+            .catch(err => {
+                console.error("Errore nel fetch:", err);
+                setIsLoading(false);
+            });
+    }, [query]);
 
     return (
         <div className="position-relative">
-            <button
-                className="btn btn-outline-secondary"
-                onClick={() => setShowSearch(!showSearch)}
-                title="Cerca vinili"
-            >
-                <i className="bi bi-search"></i>
-            </button>
+            <input
+                type="search"
+                className="form-control form-control-sm"
+                placeholder="Search vinyls..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                style={{ minWidth: "200px" }}
+            />
 
-            {showSearch && (
-                <div
-                    className="position-absolute bg-white p-3 border shadow rounded"
-                    style={{ top: '100%', right: 0, zIndex: 999, minWidth: '250px' }}
-                >
-                    <form
-                        className="d-flex mb-2"
-                        role="search"
-                        onSubmit={(e) => e.preventDefault()}
-                    >
-                        <input
-                            className="form-control form-control-sm me-2"
-                            type="search"
-                            placeholder="Search title or artist..."
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            autoFocus
-                        />
-                    </form>
-
-                    {query.trim() !== "" && (
-                        <ul className="list-group list-group-flush">
-                            {filtered.length > 0 ? (
-                                filtered.map((v) => (
-                                    <li key={v.id} className="list-group-item py-1 px-2">
-                                        <strong>{v.title}</strong> – {v.artist}
-                                    </li>
-                                ))
-                            ) : (
-                                <li className="list-group-item text-muted py-1 px-2">
-                                    No results found.
-                                </li>
-                            )}
-                        </ul>
+            {showResults && (
+                <div className="position-absolute bg-white p-3 shadow rounded mt-1" style={{ width: '400px', zIndex: 1000, maxHeight: '500px', overflowY: 'auto' }}>
+                    <h5 className="mb-2">Search Results:</h5>
+                    {isLoading ? (
+                        <p>Loading...</p>
+                    ) : vinyls.length > 0 ? (
+                        <div className="list-group">
+                            {vinyls.map(v => (
+                                <Link
+                                    key={v.id}
+                                    to={`/vinyls/${v.id}`}
+                                    className="list-group-item list-group-item-action"
+                                    onClick={() => setShowResults(false)}
+                                >
+                                    <div className="d-flex align-items-center">
+                                        {v.img_url && (
+                                            <img
+                                                src={v.img_url}
+                                                alt={v.title}
+                                                className="me-3"
+                                                style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                                            />
+                                        )}
+                                        <div>
+                                            <h6 className="mb-0">{v.title}</h6>
+                                            <small className="text-muted">{v.artist} • {v.genre}</small>
+                                            <div className="text-primary">€{v.price}</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-muted mb-0">No results found.</p>
                     )}
                 </div>
             )}
         </div>
     );
 }
+
+
 
