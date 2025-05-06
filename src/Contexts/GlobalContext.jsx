@@ -6,6 +6,7 @@ function GlobalProvider({ children }) {
 
     const url = `http://localhost:3000/api/vinyls`
     const [vinyls, setVinyls] = useState([])
+    const [isLoading, setIsLoading] = useState('loading')
 
     useEffect(() => {
 
@@ -19,16 +20,19 @@ function GlobalProvider({ children }) {
             .then(data => {
                 console.log(data)
                 setVinyls(data)
+                setIsLoading('success')
             })
             .catch(err => {
                 console.error(err)
+                setIsLoading('error')
             })
     }, [])
 
     return (
         <GlobalContext.Provider
             value={{
-                vinyls
+                vinyls,
+                isLoading
             }}
         >
             {children}

@@ -1,18 +1,36 @@
-import { useGlobalContext } from "../Contexts/GlobalContext"
+import { useGlobalContext } from "../Contexts/GlobalContext";
 
 export default function HomePage() {
-    const { vinyls } = useGlobalContext()
+    const { vinyls, isLoading } = useGlobalContext();
+
+    const renderList = () => {
+        switch (isLoading) {
+
+            case 'loading':
+                return <p>Loading...</p>
+
+            case 'success':
+                return (
+                    <ul>
+                        {vinyls.map(vinyl => (
+                            <li key={vinyl.id}>{vinyl.authorName}</li>
+                        ))}
+                    </ul>
+                )
+
+            case 'error':
+                return <p>Fetching error</p>
+
+            default:
+                return <p>Unknown status</p>
+
+        }
+    }
 
     return (
         <>
-            <h1 className="mb-4">This is home page</h1>
-            <ul>
-                {
-                    vinyls.map(vinyl => (
-                        <li key={vinyl.id}>{vinyl.title} {vinyl.publisherName}</li>
-                    ))
-                }
-            </ul>
+            <h1 className="mb-4">Home page</h1>
+            {renderList()}
         </>
     )
 }
