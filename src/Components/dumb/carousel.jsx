@@ -29,7 +29,7 @@ function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
 
             <div className="row">
                 {visibleItems.map((item, i) => (
-                    <Link to={`/product/${item.slug}`} key={item.slug} className="text-decoration-none text-dark">
+                    <Link to={`/products/${item.slug}`} key={item.slug} className="text-decoration-none text-dark">
                         <div className="col-md-4 mb-3" >
                             <div className="card h-100 text-center">
                                 <img

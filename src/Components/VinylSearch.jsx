@@ -8,10 +8,10 @@ export default function VinylSearch() {
     const [showResults, setShowResults] = useState(false);
 
     const filteredVinyls = vinyls.state === 'success'
-        ? vinyls.vinyl_data.filter(v =>
-            v.title?.toLowerCase().includes(query.toLowerCase()) ||
-            v.genre?.toLowerCase().includes(query.toLowerCase()) ||
-            v.artist?.toLowerCase().includes(query.toLowerCase())
+        ? vinyls.vinyl_data.filter(vinyl =>
+            vinyl.title?.toLowerCase().includes(query.toLowerCase()) ||
+            vinyl.authorName?.toLowerCase().includes(query.toLowerCase()) ||
+            vinyl.genre?.toLowerCase().includes(query.toLowerCase())
         )
         : [];
 
@@ -41,36 +41,36 @@ export default function VinylSearch() {
                     {vinyls.state === 'loading' ? (
                         <p>Loading...</p>
                     ) : vinyls.state === 'error' ? (
-                        <p className="text-danger">Error fetching vinyls.</p>
+                        <p className="text-danger">Error fetching vinyls</p>
                     ) : filteredVinyls.length > 0 ? (
                         <div className="list-group">
-                            {filteredVinyls.map(v => (
+                            {filteredVinyls.map(vinyl => (
                                 <Link
-                                    key={v.id}
-                                    to={`/vinyls/${v.id}`}
+                                    key={vinyl.id}
+                                    to={`/products/${vinyl.slug}`}
                                     className="list-group-item list-group-item-action"
                                     onClick={() => setShowResults(false)}
                                 >
                                     <div className="d-flex align-items-center">
-                                        {v.img_url && (
+                                        {vinyl.img_url && (
                                             <img
-                                                src={v.img_url}
-                                                alt={v.title}
+                                                src={vinyl.img_url}
+                                                alt={vinyl.title}
                                                 className="me-3"
                                                 style={{ width: '50px', height: '50px', objectFit: 'cover' }}
                                             />
                                         )}
                                         <div>
-                                            <h6 className="mb-0">{v.title}</h6>
-                                            <small className="text-muted">{v.author} {v.authorName} • {v.genre}</small>
-                                            <div className="text-primary">€{v.price}</div>
+                                            <h6 className="mb-0">{vinyl.title}</h6>
+                                            <small className="text-muted">{vinyl.authorName} • {vinyl.genre}</small>
+                                            <div className="text-primary">€{vinyl.price}</div>
                                         </div>
                                     </div>
                                 </Link>
                             ))}
                         </div>
                     ) : (
-                        <p className="text-muted mb-0">No results found.</p>
+                        <p className="text-muted mb-0">No results found</p>
                     )}
                 </div>
             )}
