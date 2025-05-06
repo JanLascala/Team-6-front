@@ -1,5 +1,5 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
-
+import Carousel from "../Components/dumb/carousel";
 export default function HomePage() {
     const { vinyls, isLoading } = useGlobalContext();
 
@@ -10,12 +10,16 @@ export default function HomePage() {
                 return <p>Loading...</p>
 
             case 'success':
+                // return (
+                //     <ul>
+                //         {vinyls.map(vinyl => (
+                //             <li key={vinyl.id}>{vinyl.authorName}</li>
+                //         ))}
+                //     </ul>
+                // )
+
                 return (
-                    <ul>
-                        {vinyls.map(vinyl => (
-                            <li key={vinyl.id}>{vinyl.authorName}</li>
-                        ))}
-                    </ul>
+                    <Carousel array={vinyls} />
                 )
 
             case 'error':
