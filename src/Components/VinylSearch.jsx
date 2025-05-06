@@ -62,7 +62,7 @@ export default function VinylSearch() {
                                         )}
                                         <div>
                                             <h6 className="mb-0">{v.title}</h6>
-                                            <small className="text-muted">{v.artist} • {v.genre}</small>
+                                            <small className="text-muted">{v.author} {v.authorName} • {v.genre}</small>
                                             <div className="text-primary">€{v.price}</div>
                                         </div>
                                     </div>

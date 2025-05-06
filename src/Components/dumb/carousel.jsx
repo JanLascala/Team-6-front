@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
     const [page, setPage] = useState(0);
@@ -28,20 +29,22 @@ function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
 
             <div className="row">
                 {visibleItems.map((item, i) => (
-                    <div className="col-md-4 mb-3" key={i}>
-                        <div className="card h-100 text-center">
-                            <img
-                                src={item.vinylImg}
-                                alt={item.title}
-                                className="card-img-top"
-                                style={{ objectFit: 'cover', height: '200px' }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{item.title}</h5>
-                                <p className="card-text">{item.price} €</p>
+                    <Link to={`/product/${item.slug}`} key={item.slug} className="text-decoration-none text-dark">
+                        <div className="col-md-4 mb-3" >
+                            <div className="card h-100 text-center">
+                                <img
+                                    src={item.vinylImg}
+                                    alt={item.title}
+                                    className="card-img-top"
+                                    style={{ objectFit: 'cover', height: '200px' }}
+                                />
+                                <div className="card-body">
+                                    <h5 className="card-title">{item.title}</h5>
+                                    <p className="card-text">{item.price} €</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 
