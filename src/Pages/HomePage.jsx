@@ -6,9 +6,9 @@ import ServerErrorPage from "../Components/dumb/ServerErrorUi";
 
 
 export default function HomePage() {
-    const { vinyls, isLoading } = useGlobalContext();
+    const { vinyls } = useGlobalContext();
 
-    switch (isLoading) {
+    switch (vinyls.state) {
 
         case 'loading':
             return <LoadingUi />
@@ -19,12 +19,12 @@ export default function HomePage() {
             return (
                 <>
                     <Jumbotron />
-                    <Carousel array={vinyls} />
+                    <Carousel array={vinyls.vinyl_data} />
                 </>
             )
 
         case 'error':
-            return <ServerErrorPage error={"error"} />
+            return <ServerErrorPage error={vinyls.message} />
 
         default:
             return <p>Unknown status</p>
