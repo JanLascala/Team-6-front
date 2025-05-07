@@ -10,6 +10,22 @@ function GlobalProvider({ children }) {
         vinyl_data: [],
         message: ""
     });
+    const [cart, setCart] = useState([]);
+    const addToCart = (vinyl) => {
+        setCart(prevCart => {
+            const existingItem = prevCart.find(item => item.slug === vinyl.slug);
+
+            if (existingItem) {
+                return prevCart.map(item =>
+                    item.slug === vinyl.slug
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            } else {
+                return [...prevCart, { ...vinyl, quantity: 1 }];
+            }
+        });
+    };
 
     useEffect(() => {
 
@@ -39,12 +55,14 @@ function GlobalProvider({ children }) {
     return (
         <GlobalContext.Provider
             value={{
-                vinyls
+                vinyls,
+                cart,
+                addToCart
             }}
         >
             {children}
         </GlobalContext.Provider>
-    )
+    );
 }
 
 function useGlobalContext() {

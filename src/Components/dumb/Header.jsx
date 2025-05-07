@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import VinylSearch from "../VinylSearch";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 export default function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
