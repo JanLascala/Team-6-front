@@ -6,6 +6,8 @@ import HomePage from './Pages/HomePage';
 import About from './Pages/About';
 import Vinyls from './Pages/Vinyls';
 import Cart from './Pages/Cart';
+import SingleVinyl from './Pages/SingleVinyl';
+
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/vinyls" element={<Vinyls />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/products/:slug" element={<SingleVinyl />} />
+
           </Route>
         </Routes>
       </BrowserRouter>
