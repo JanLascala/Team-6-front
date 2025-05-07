@@ -35,6 +35,10 @@ function Carousel({ array = [], itemsPerPage = 3 }) {
                             <div className="card h-100 text-center">
                                 <img
                                     src={item.vinylImg ? item.vinylImg : 'http://localhost:3000/vinyl_placeholder.png'}
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
+                                    }}
                                     alt={item.title}
                                     className="card-img-top img-fluid"
                                     style={{ objectFit: 'contain', height: '200px' }}
