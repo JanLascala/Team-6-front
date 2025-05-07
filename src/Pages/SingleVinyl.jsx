@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../Contexts/GlobalContext";
 
 export default function VinylSearch() {
