@@ -1,16 +1,20 @@
-/* import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../Contexts/GlobalContext";
 
 export default function VinylSearch() {
     const { slug } = useParams();
-    const { vinyls } = useGlobalContext
-    if (!vinyls || vinyls.state === "loading") {
+    const { vinyls } = useGlobalContext();
+
+    if (vinyls?.state === "loading") {
         return <p>Loading...</p>;
     }
-    if (vinyls.state === "error") return <p>{vinyls.message}</p>
 
-    const vinyl = vinyls.data.find(v => v.slug === slug)
+    if (vinyls?.state === "error") return <p>{vinyls.message}</p>
+
+    const vinyl = vinyls.vinyls_data.find(v => v.slug === slug)
+
     if (!vinyl) return <p>Vinyl not found</p>
+
     return (
         <>
             <div className="container">
@@ -25,7 +29,7 @@ export default function VinylSearch() {
                                 <p>Price: {vinyl.price}</p>
                             </div>
                             <div className="card-body">
-                                <img src={vinyl.image_url} alt="" />
+                                <img src={vinyl.image_url} alt={vinyl.title} />
                             </div>
                         </div>
                     </div>
@@ -33,4 +37,4 @@ export default function VinylSearch() {
             </div>
         </>
     )
-} */
+}
