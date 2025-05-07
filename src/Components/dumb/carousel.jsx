@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
+function Carousel({ array = [], itemsPerPage = 3 }) {
     const [page, setPage] = useState(0);
     const totalPages = Math.ceil(array.length / itemsPerPage);
 
@@ -34,10 +34,10 @@ function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
                         <Link to={`/products/${item.slug}`} className="text-decoration-none text-dark">
                             <div className="card h-100 text-center">
                                 <img
-                                    src={item.vinylImg}
+                                    src={item.vinylImg ? item.vinylImg : 'http://localhost:3000/vinyl_placeholder.png'}
                                     alt={item.title}
-                                    className="card-img-top"
-                                    style={{ objectFit: 'cover', height: '200px' }}
+                                    className="card-img-top img-fluid"
+                                    style={{ objectFit: 'contain', height: '200px' }}
                                 />
                                 <div className="card-body">
                                     <h5 className="card-title">{item.title}</h5>
@@ -57,4 +57,4 @@ function PagedCarouselSimple({ array = [], itemsPerPage = 3 }) {
     );
 }
 
-export default PagedCarouselSimple;
+export default Carousel;

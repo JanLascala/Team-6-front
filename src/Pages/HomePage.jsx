@@ -20,6 +20,7 @@ export default function HomePage() {
                 <>
                     <Jumbotron />
                     <Carousel array={vinyls.vinyl_data} />
+                    <Carousel array={vinyls.vinyl_data} />
                 </>
             )
 
