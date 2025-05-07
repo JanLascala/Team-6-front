@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import LoadingUi from "../Components/dumb/LoadingUi";
 import ServerErrorPage from "../Components/dumb/ServerErrorUi";
 import { useState, useEffect } from "react";
+import AddToCartButton from "../Components/AddToCartButton";
 
 export default function VinylSearch() {
     const { slug } = useParams();
@@ -42,6 +43,7 @@ export default function VinylSearch() {
                             className="img-fluid rounded shadow-sm"
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
+                        <AddToCartButton vinyl={data} />
                     </div>
 
                     <div className="row mb-5">
