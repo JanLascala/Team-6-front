@@ -26,9 +26,6 @@ export default function Header() {
                         <VinylSearch />
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link className="nav-link" to="/cart">
                                     <i className="bi bi-cart-plus"></i>
                                 </Link>

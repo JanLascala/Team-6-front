@@ -6,8 +6,10 @@ function GlobalProvider({ children }) {
 
     const url = `http://localhost:3000/api/vinyls`
     const [vinyls, setVinyls] = useState({
-        state: "loading"
-    })
+        state: "loading",
+        vinyl_data: [],
+        message: ""
+    });
 
     useEffect(() => {
 
