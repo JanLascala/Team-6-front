@@ -88,9 +88,9 @@ export default function VinylSearch() {
                                     onClick={() => setShowResults(false)}
                                 >
                                     <div className="d-flex align-items-center">
-                                        {vinyl.img_url && (
+                                        {vinyl.imgUrl && (
                                             <img
-                                                src={vinyl.img_url}
+                                                src={vinyl.imgUrl}
                                                 alt={vinyl.title}
                                                 className="me-3"
                                                 style={{ width: '50px', height: '50px', objectFit: 'cover' }}
