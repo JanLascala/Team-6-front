@@ -41,11 +41,14 @@ function Carousel({ array = [], itemsPerPage = 3 }) {
                                 />
                                 <div className="card-body">
                                     <h5 className="card-title">{item.title}</h5>
-                                    <p className="card-text">{item.price} €</p>
-                                    <p className="card-text">{item.genre}</p>
-                                    <p className="card-text">{item.format}</p>
+                                    <h4 className="card-text">{item.price} €</h4>
                                     <p className="card-text">{item.releaseDate}</p>
-                                    <p className="card-text">{item.publisherName}</p>
+                                    <p className="card-text">{item.genre}, {item.format}</p>
+                                    <p className="card-text">{item.publisherName}, {item.authorName}</p>
+
+
+
+
                                 </div>
                             </div>
                         </Link>
