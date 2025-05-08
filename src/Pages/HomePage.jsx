@@ -28,6 +28,8 @@ export default function HomePage() {
                     <Carousel array={filterByText(vinyls, "classical", "genre")} />
                     <h1>Hip Hop Hits!</h1>
                     <Carousel array={filterByText(vinyls, "hip hop", "genre")} />
+                    <h1>Our Gatefolds!</h1>
+                    <Carousel array={filterByText(vinyls, "gatefold", "format")} />
                 </>
             )
 
