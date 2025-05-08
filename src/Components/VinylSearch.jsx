@@ -13,22 +13,36 @@ export default function VinylSearch() {
         ? vinyls.vinyl_data.filter(vinyl =>
             vinyl.title?.toLowerCase().includes(query.toLowerCase()) ||
             vinyl.authorName?.toLowerCase().includes(query.toLowerCase()) ||
-            vinyl.genre?.toLowerCase().includes(query.toLowerCase())
+            vinyl.genreName?.toLowerCase().includes(query.toLowerCase())
         )
         : [];
 
-    // Sort the filtered vinyls based on the selected
-    const sortedVinyls = filteredVinyls.sort((a, b) => {
+    // Sort the filtered vinyls based on the selected sort option
+    const sortedVinyls = [...filteredVinyls].sort((a, b) => {
         if (sortBy === "title") {
-            return a.title.localeCompare(b.title); // Sort alphabetically by title
-        } else if (sortBy === "price") {
-            return a.price - b.price; // Sort by price
-        } else if (sortBy === "genre") {
-            return a.genre.localeCompare(b.genre); // Sort alphabetically by genre
-        } else if (sortBy === "artist") {
-            return a.authorName.localeCompare(b.authorName); // Sort alphabetically by artist
+            return (a.title || "").localeCompare(b.title || "");
+        } else if (sortBy === "priceAsc") {
+            return (a.price || 0) - (b.price || 0);
+        } else if (sortBy === "priceDesc") {
+            return (b.price || 0) - (a.price || 0);
+        } else if (sortBy === "recent") {
+            const convertDate = (dateStr) => {
+                if (!dateStr) return new Date(0);
+
+                if (dateStr.includes('-')) {
+                    const [day, month, year] = dateStr.split('-');
+                    return new Date(`${year}-${month}-${day}`);
+                }
+
+                return new Date(dateStr);
+            };
+
+            const dateA = convertDate(a.releaseDate);
+            const dateB = convertDate(b.releaseDate);
+
+            return dateB - dateA;
         }
-        return 0; // Default case
+        return 0;
     });
 
     const handleSearchChange = (e) => {
@@ -38,7 +52,12 @@ export default function VinylSearch() {
     };
 
     const handleSortChange = (e) => {
-        setSortBy(e.target.value); // Update sortBy
+        setSortBy(e.target.value);
+    };
+
+    const handleSearchClick = (e) => {
+        setShowResults(false)
+        setQuery('')
     };
 
     return (
@@ -49,13 +68,13 @@ export default function VinylSearch() {
                 placeholder="Search vinyls..."
                 value={query}
                 onChange={handleSearchChange}
-                style={{ minWidth: "200px" }}
+                style={{ minWidth: "300px" }}
             />
 
             {showResults && (
                 <div
                     className="position-absolute bg-white p-3 shadow rounded mt-1"
-                    style={{ width: '400px', zIndex: 1000, maxHeight: '500px', overflowY: 'auto' }}
+                    style={{ width: '300px', zIndex: 1000, maxHeight: '500px', overflowY: 'auto' }}
                 >
                     <h5 className="mb-2">Search Results</h5>
 
@@ -68,9 +87,9 @@ export default function VinylSearch() {
                             onChange={handleSortChange}
                         >
                             <option value="title">Title</option>
-                            <option value="price">Price</option>
-                            <option value="genre">Genre</option>
-                            <option value="artist">Artist</option>
+                            <option value="recent">Recent</option>
+                            <option value="priceAsc">Price asc</option>
+                            <option value="priceDesc">Price desc</option>
                         </select>
                     </div>
 
@@ -82,24 +101,22 @@ export default function VinylSearch() {
                         <div className="list-group">
                             {sortedVinyls.map(vinyl => (
                                 <Link
-                                    key={vinyl.id}
+                                    key={vinyl.productId}
                                     to={`/products/${vinyl.slug}`}
                                     className="list-group-item list-group-item-action"
-                                    onClick={() => setShowResults(false)}
+                                    onClick={() => handleSearchClick()}
                                 >
                                     <div className="d-flex align-items-center">
-                                        {vinyl.imgUrl && (
-                                            <img
-                                                src={vinyl.imgUrl}
-                                                alt={vinyl.title}
-                                                className="me-3"
-                                                style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                                            />
-                                        )}
+                                        <img
+                                            src='http://localhost:3000/vinyl_placeholder.png'
+                                            alt={vinyl.title}
+                                            className="me-3"
+                                            style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                                        />
                                         <div>
                                             <h6 className="mb-0">{vinyl.title}</h6>
-                                            <small className="text-muted">{vinyl.authorName} • {vinyl.genre}</small>
-                                            <div className="text-primary">€{vinyl.price}</div>
+                                            <small className="text-muted">{vinyl.authorName} • {vinyl.genreName}</small>
+                                            <div className="text-primary">€{vinyl.price} {vinyl.releaseDate}</div>
                                         </div>
                                     </div>
                                 </Link>
