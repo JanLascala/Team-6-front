@@ -88,7 +88,8 @@ export default function VinylSearch() {
                                         value={sortByValue}
                                         onChange={handleSortChange}
                                     >
-                                        <option value="title">Title</option>
+                                        <option value="none">-</option>
+                                        <option value="A-Z">A-Z</option>
                                         <option value="recent">Recent</option>
                                         <option value="priceAsc">Price asc</option>
                                         <option value="priceDesc">Price desc</option>
