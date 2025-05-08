@@ -3,6 +3,7 @@ import Jumbotron from "../Components/dumb/Jumbotron";
 import Carousel from "../Components/dumb/Carousel";
 import LoadingUi from "../Components/dumb/LoadingUi"
 import ServerErrorPage from "../Components/dumb/ServerErrorUi";
+import sortBy from "../functions/sortBy";
 
 
 export default function HomePage() {
@@ -19,8 +20,8 @@ export default function HomePage() {
             return (
                 <>
                     <Jumbotron />
-                    <Carousel array={vinyls.vinyl_data} />
-                    <Carousel array={vinyls.vinyl_data} />
+                    <Carousel array={sortBy("recent", vinyls.vinyl_data)} />
+                    <Carousel array={sortBy("A-Z", vinyls.vinyl_data)} />
                 </>
             )
 
