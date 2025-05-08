@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 function Carousel({ array = [], itemsPerPage = 3 }) {
     const [page, setPage] = useState(0);
     const totalPages = Math.ceil(array.length / itemsPerPage);

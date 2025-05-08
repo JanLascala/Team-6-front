@@ -26,6 +26,28 @@ function GlobalProvider({ children }) {
             }
         });
     };
+    const incrementQuantity = (slug) => {
+        setCart(prevCart =>
+            prevCart.map(item =>
+                item.slug === slug
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            )
+        );
+    };
+
+    const decrementQuantity = (slug) => {
+        setCart(prevCart =>
+            prevCart
+                .map(item =>
+                    item.slug === slug
+                        ? { ...item, quantity: item.quantity - 1 }
+                        : item
+                )
+                .filter(item => item.quantity > 0)
+        );
+    };
+
 
     useEffect(() => {
 
@@ -57,7 +79,9 @@ function GlobalProvider({ children }) {
             value={{
                 vinyls,
                 cart,
-                addToCart
+                addToCart,
+                incrementQuantity,
+                decrementQuantity
             }}
         >
             {children}

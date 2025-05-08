@@ -17,7 +17,7 @@ export default function AddToCartButton({ vinyl }) {
 
     return (
         <button
-            className={`btn btn-primary position-relative`}
+            className={`btn btn-primary btn-sm w-auto position-relative`}
             onClick={handleAddToCart}
             disabled={isInCart}
         >
