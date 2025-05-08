@@ -7,32 +7,33 @@ export default function sortBy(sortByValue, array) {
 
     const sortedVinyls = [...array].sort((a, b) => {
 
-        if (sortByValue === "none") {
-            return array;
-        } else if (sortByValue === "A-Z") {
-            return (a.title || "").localeCompare(b.title || "");
-        } else if (sortByValue === "priceAsc") {
-            return (a.price || 0) - (b.price || 0);
-        } else if (sortByValue === "priceDesc") {
-            return (b.price || 0) - (a.price || 0);
-        } else if (sortByValue === "recent") {
-            const convertDate = (dateStr) => {
-                if (!dateStr) return new Date(0);
+        switch (sortByValue) {
+            case "none":
+                return array;
+            case "A-Z":
+                return (a.title || "").localeCompare(b.title || "");
+            case "priceAsc":
+                return (a.price || 0) - (b.price || 0);
+            case "priceDesc":
+                return (b.price || 0) - (a.price || 0);
+            case "recent": {
+                const convertDate = (dateStr) => {
+                    if (!dateStr) return new Date(0);
 
-                if (dateStr.includes('-')) {
-                    const [day, month, year] = dateStr.split('-');
-                    return new Date(`${year}-${month}-${day}`);
-                }
+                    if (dateStr.includes('-')) {
+                        const [day, month, year] = dateStr.split('-');
+                        return new Date(`${year}-${month}-${day}`);
+                    }
 
-                return new Date(dateStr);
-            };
+                    return new Date(dateStr);
+                };
 
-            const dateA = convertDate(a.releaseDate);
-            const dateB = convertDate(b.releaseDate);
+                const dateA = convertDate(a.releaseDate);
+                const dateB = convertDate(b.releaseDate);
 
-            return dateB - dateA;
+                return dateB - dateA;
+            }
         }
-        return 0;
     });
 
     return sortedVinyls
