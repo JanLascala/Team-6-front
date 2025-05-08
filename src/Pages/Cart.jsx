@@ -2,7 +2,7 @@ import { useGlobalContext } from "../Contexts/GlobalContext";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
-    const { cart } = useGlobalContext();
+    const { cart, incrementQuantity, decrementQuantity } = useGlobalContext();
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     if (cart.length === 0) {
@@ -23,7 +23,11 @@ export default function Cart() {
                         <div>
                             <h5>{item.title}</h5>
                             <p>{item.author}</p>
-                            <small> Quantità: {item.quantity}</small>
+                            <div className="d-flex align-items-center gap-2">
+                                <i className="bi bi-dash-square" role="button" onClick={() => decrementQuantity(item.slug)}></i>
+                                <span>{item.quantity}</span>
+                                <i className="bi bi-plus-square" role="button" onClick={() => incrementQuantity(item.slug)}></i>
+                            </div>
                         </div>
                         <div>
                             <span>€ {(item.price * item.quantity).toFixed(2)}</span>
