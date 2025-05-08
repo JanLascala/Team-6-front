@@ -22,12 +22,24 @@ export default function Cart() {
                     <li key={item.slug} className="list-group-item d-flex justify-content-between align-items-center">
                         <div>
                             <h5>{item.title}</h5>
-                            <p>{item.author}</p>
+                            <p>{item.authorName}</p>
                             <div className="d-flex align-items-center gap-2">
                                 <i className="bi bi-dash-square" role="button" onClick={() => decrementQuantity(item.slug)}></i>
                                 <span>{item.quantity}</span>
                                 <i className="bi bi-plus-square" role="button" onClick={() => incrementQuantity(item.slug)}></i>
                             </div>
+
+                            {/*TODO style img better later */}
+                            <img
+                                src={item.vinylImg ? item.vinylImg : 'http://localhost:3000/vinyl_placeholder.png'}
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
+                                }}
+                                alt={item.title}
+                                className="card-img-top img-fluid"
+                                style={{ objectFit: 'contain', height: '200px' }}
+                            />
                         </div>
                         <div>
                             <span>€ {(item.price * item.quantity).toFixed(2)}</span>

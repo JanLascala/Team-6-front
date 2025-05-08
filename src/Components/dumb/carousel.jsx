@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AddToCartButton from '../AddToCartButton';
 
-
+//TODO fix page spacing on the sides to move carousel buttons to the sides
 function Carousel({ array = [], itemsPerPage = 3 }) {
     const [page, setPage] = useState(0);
     const totalPages = Math.ceil(array.length / itemsPerPage);
@@ -32,8 +33,9 @@ function Carousel({ array = [], itemsPerPage = 3 }) {
                 {visibleItems.map((item, i) => (
 
                     <div className="col-md-4 mb-3" key={item.slug} >
-                        <Link to={`/products/${item.slug}`} className="text-decoration-none text-dark">
-                            <div className="card h-100 text-center">
+
+                        <div className="card h-100 text-center">
+                            <Link to={`/products/${item.slug}`} className="text-decoration-none text-dark">
                                 <img
                                     src={item.vinylImg ? item.vinylImg : 'http://localhost:3000/vinyl_placeholder.png'}
                                     onError={(e) => {
@@ -44,6 +46,7 @@ function Carousel({ array = [], itemsPerPage = 3 }) {
                                     className="card-img-top img-fluid"
                                     style={{ objectFit: 'contain', height: '200px' }}
                                 />
+
                                 <div className="card-body">
                                     <h5 className="card-title">{item.title}</h5>
                                     <h4 className="card-text">{item.price} €</h4>
@@ -51,8 +54,9 @@ function Carousel({ array = [], itemsPerPage = 3 }) {
                                     <p className="card-text">{item.genreName}, {item.formatName}</p>
                                     <p className="card-text">{item.authorName}, {item.publisherName}</p>
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                            <AddToCartButton vinyl={item} />
+                        </div>
                     </div>
 
                 ))}

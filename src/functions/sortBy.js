@@ -1,13 +1,14 @@
-import filterByText from "./filterByText";
+//import filterByText from "./filterByText";
 
-export default function sortBy(vinyls, query, sortByValue) {
+export default function sortBy(sortByValue, array) {
+    console.log(array);
 
-    const filteredResults = filterByText(vinyls, query)
+    //const array = filterByText(vinyls, query)
 
-    const sortedVinyls = [...filteredResults].sort((a, b) => {
+    const sortedVinyls = [...array].sort((a, b) => {
 
         if (sortByValue === "none") {
-            return filteredResults;
+            return array;
         } else if (sortByValue === "A-Z") {
             return (a.title || "").localeCompare(b.title || "");
         } else if (sortByValue === "priceAsc") {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from "../Contexts/GlobalContext";
+import filterByText from "../functions/filterByText";
 import sortBy from '../functions/sortBy';
 
 export default function VinylSearch() {
@@ -16,7 +17,7 @@ export default function VinylSearch() {
 
         case 'success':
 
-            const sortedVinyls = sortBy(vinyls, query, sortByValue)
+            const sortedVinyls = sortBy(sortByValue, filterByText(vinyls, query))
 
             // Sort the filtered vinyls based on the selected sort option
             /* const sortedVinyls = [...filterByText(vinyls, query)].sort((a, b) => {
