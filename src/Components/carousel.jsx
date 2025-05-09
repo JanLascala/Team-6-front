@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AddToCartButton from '../AddToCartButton';
+import AddToCartButton from './AddToCartButton';
 
 function Carousel({ array = [], itemsPerPage = 3 }) {
     const [page, setPage] = useState(0);

@@ -1,6 +1,6 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import Jumbotron from "../Components/dumb/Jumbotron";
-import Carousel from "../Components/dumb/Carousel";
+import Carousel from "../Components/carousel";
 import LoadingUi from "../Components/dumb/LoadingUi"
 import ServerErrorPage from "./ServerErrorPage";
 import filterByText from "../functions/filterByText";
