@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import VinylSearch from "../VinylSearch";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useGlobalContext } from "../../Contexts/GlobalContext";
 
 export default function Header() {
+    const { cart } = useGlobalContext();
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
             <div className="container-fluid px-4">
@@ -28,8 +31,14 @@ export default function Header() {
                         <VinylSearch />
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/cart">
+                                <Link className="nav-link position-relative" to="/cart">
                                     <i className="bi bi-cart-plus"></i>
+                                    {
+                                        cart.length > 0 ?
+                                        (
+                                            <div id="cart-quantity" className="bg-primary">{cart.length}</div>
+                                        ) : null
+                                    }
                                 </Link>
                             </li>
                         </ul>
