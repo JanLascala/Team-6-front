@@ -1,14 +1,17 @@
 import { createContext, useContext, useState, useEffect } from "react";
-const GlobalContext = createContext();
+const GlobalContext = createContext()
 
-export default GlobalContext;
 function GlobalProvider({ children }) {
 
     const url = `http://localhost:3000/api/vinyls`
     const [vinyls, setVinyls] = useState({
         state: "loading"
     });
-    const [cart, setCart] = useState([]);
+    const storedCart = localStorage.getItem('cart');
+    const [cart, setCart] = useState(() => {
+        return storedCart ? JSON.parse(storedCart) : [];
+    });
+
     const addToCart = (vinyl) => {
         if (vinyl.nAvailable === 0) {
             alert("Questo vinile è esaurito!");
@@ -87,6 +90,9 @@ function GlobalProvider({ children }) {
                 })
             })
     }, [])
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     return (
         <GlobalContext.Provider
@@ -96,7 +102,8 @@ function GlobalProvider({ children }) {
                 addToCart,
                 incrementQuantity,
                 decrementQuantity,
-                removeFromCart
+                removeFromCart,
+                clearCart
             }}
         >
             {children}
@@ -109,4 +116,4 @@ function useGlobalContext() {
     return context;
 }
 
-export { GlobalProvider, useGlobalContext };
+export default { GlobalProvider, useGlobalContext };
