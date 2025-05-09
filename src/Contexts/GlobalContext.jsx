@@ -12,30 +12,43 @@ function GlobalProvider({ children }) {
     });
     const [cart, setCart] = useState([]);
     const addToCart = (vinyl) => {
+        if (vinyl.nAvailable === 0) {
+            alert("Questo vinile è esaurito!");
+            return;
+        }
+
         setCart(prevCart => {
             const existingItem = prevCart.find(item => item.slug === vinyl.slug);
 
-            if (existingItem) {
-                return prevCart.map(item =>
+            if (existingItem && existingItem.quantity >= existingItem.nAvailable) {
+                alert(`Hai già la quantità massima disponibile (${vinyl.nAvailable})`);
+                return prevCart;
+            }
+
+            return existingItem
+                ? prevCart.map(item =>
                     item.slug === vinyl.slug
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
-                );
-            } else {
-                return [...prevCart, { ...vinyl, quantity: 1 }];
-            }
+                )
+                : [...prevCart, { ...vinyl, quantity: 1, nAvailable: vinyl.nAvailable }];
         });
     };
+
     const incrementQuantity = (slug) => {
         setCart(prevCart =>
-            prevCart.map(item =>
-                item.slug === slug
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            )
+            prevCart.map(item => {
+                if (item.slug === slug) {
+                    if (item.quantity >= item.nAvailable) {
+                        alert("Quantità massima raggiunta!");
+                        return item;
+                    }
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            })
         );
     };
-
     const decrementQuantity = (slug) => {
         setCart(prevCart =>
             prevCart
@@ -46,6 +59,9 @@ function GlobalProvider({ children }) {
                 )
                 .filter(item => item.quantity > 0)
         );
+    };
+    const removeFromCart = (slug) => {
+        setCart(prevCart => prevCart.filter(item => item.slug !== slug));
     };
 
 
@@ -81,7 +97,8 @@ function GlobalProvider({ children }) {
                 cart,
                 addToCart,
                 incrementQuantity,
-                decrementQuantity
+                decrementQuantity,
+                removeFromCart
             }}
         >
             {children}
