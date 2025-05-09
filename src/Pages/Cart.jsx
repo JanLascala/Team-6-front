@@ -48,7 +48,9 @@ export default function Cart() {
                 ))}
             </ul>
             <h4>Totale: € {total.toFixed(2)}</h4>
-            <button className="btn btn-success mt-3">Go to Checkout</button>
+            <Link to='/checkout'>
+                <button className="btn btn-success mt-3">Go to Checkout</button>
+            </Link>
         </div>
     );
 }
