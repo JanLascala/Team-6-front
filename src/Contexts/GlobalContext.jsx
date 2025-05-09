@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
+
+
 const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
@@ -90,6 +92,10 @@ function GlobalProvider({ children }) {
                 })
             })
     }, [])
+
+    const clearCart = () => {
+        setCart([]);
+    };
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
@@ -116,4 +122,4 @@ function useGlobalContext() {
     return context;
 }
 
-export default { GlobalProvider, useGlobalContext };
+export { GlobalProvider, useGlobalContext }
