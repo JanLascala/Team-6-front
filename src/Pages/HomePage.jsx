@@ -2,7 +2,7 @@ import { useGlobalContext } from "../Contexts/GlobalContext";
 import Jumbotron from "../Components/dumb/Jumbotron";
 import Carousel from "../Components/dumb/Carousel";
 import LoadingUi from "../Components/dumb/LoadingUi"
-import ServerErrorPage from "../Components/dumb/ServerErrorUi";
+import ServerErrorPage from "./ServerErrorPage";
 import filterByText from "../functions/filterByText";
 import sortBy from "../functions/sortBy";
 

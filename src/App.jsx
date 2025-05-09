@@ -7,6 +7,7 @@ import About from './Pages/About';
 import Vinyls from './Pages/Vinyls';
 import Cart from './Pages/Cart';
 import SingleVinyl from './Pages/SingleVinyl';
+import ServerErrorPage from './Pages/ServerErrorPage';
 
 
 export default function App() {
@@ -20,6 +21,8 @@ export default function App() {
             <Route path="/vinyls" element={<Vinyls />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:slug" element={<SingleVinyl />} />
+            <Route path="*" element={<ServerErrorPage error={"The page you were looking for couldn't be found! - error 404"} />} />
+
 
           </Route>
         </Routes>

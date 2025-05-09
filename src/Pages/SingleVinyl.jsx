@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import LoadingUi from "../Components/dumb/LoadingUi";
-import ServerErrorPage from "../Components/dumb/ServerErrorUi";
+import ServerErrorPage from "./ServerErrorPage";
 import { useState, useEffect } from "react";
 import AddToCartButton from "../Components/AddToCartButton";
 
