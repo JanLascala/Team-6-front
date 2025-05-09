@@ -1,38 +1,107 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { useGlobalContext } from '../Contexts/GlobalContext.jsx';
 import CheckoutPage from './CheckoutPage.jsx';
 
 const stripePromise = loadStripe('pk_test_51RMR05FSjhx1khJeIPoZjR7MAjlZ8MznKApnIVMz63MBET3v3vifQFlPyLB7DXIIryz1Hij6bYGlti5RjtvvVeDH00bxQyOiQq');
 
 export default function StripeApp() {
+    const { cart } = useGlobalContext();
+    const safeCart = cart.map(item => ({
+        id: item.productId,
+        quantity: item.quantity
+    }));
+    console.log(safeCart)
     const [clientSecret, setClientSecret] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        surname: '',
+        address: '',
+        email: '',
+        phone: ''
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [orderId, setOrderId] = useState(null)
 
-    useEffect(() => {
-        fetch('http://localhost:3000/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                // Optional: include cart items, total amount, or user info
-            })
-        })
-            .then(res => res.json())
-            .then(data => {
-                setClientSecret(data.clientSecret);
-            })
-            .catch(err => {
-                console.error(err);
-                setError('Failed to initialize payment.');
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch('http://localhost:3000/orders/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cart: safeCart,
+                    description: 'Vinyl purchase',
+                    customerName: `${formData.name} ${formData.surname}`,
+                    customerEmail: formData.email,
+                    customerPhone: formData.phone,
+                    customerAddress: formData.address,
+                })
             });
-    }, []);
+
+            const data = await response.json();
+            if (data.clientSecret) {
+                setClientSecret(data.clientSecret);
+                setOrderId(data.orderId)
+            } else {
+                throw new Error('Missing client secret');
+            }
+        } catch (err) {
+            console.error(err);
+            setError('Failed to create payment. Please try again.');
+        }
+
+        setLoading(false);
+    };
+
+    if (!clientSecret) {
+        return (
+            <div className="container mt-5" style={{ maxWidth: 500 }}>
+                <h2 className="mb-4">Enter your details</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Name</label>
+                        <input name="name" className="form-control" onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Surname</label>
+                        <input name="surname" className="form-control" onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">address</label>
+                        <input name="address" type="address" className="form-control" onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Email</label>
+                        <input name="email" type="email" className="form-control" onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Phone</label>
+                        <input name="phone" type="tel" className="form-control" onChange={handleChange} />
+                    </div>
+                    {error && <div className="alert alert-danger">{error}</div>}
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                        {loading ? 'Loading...' : 'Proceed to Payment'}
+                    </button>
+                </form>
+            </div>
+        );
+    }
 
     return (
-        clientSecret && (
-            <Elements options={{ clientSecret }} stripe={stripePromise}>
-                <CheckoutPage clientSecret={clientSecret} />
-            </Elements>
-        )
+        <Elements options={{ clientSecret }} stripe={stripePromise}>
+            <CheckoutPage clientSecret={clientSecret} orderId={orderId} />
+        </Elements>
     );
 }

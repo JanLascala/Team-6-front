@@ -1,15 +1,19 @@
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 
-export default function CheckoutForm({ clientSecret }) {
+export default function CheckoutForm({ clientSecret, orderId }) {
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [paymentMessage, setPaymentMessage] = useState(null); // State for message
+    console.log("checkoutform mounted");
+    console.log(`the orderId is ${orderId}`);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setPaymentMessage(null); // Reset message
 
         if (!stripe || !elements || !clientSecret) return;
 
@@ -23,18 +27,53 @@ export default function CheckoutForm({ clientSecret }) {
 
         if (result.error) {
             setError(result.error.message);
+            setPaymentMessage({ text: `Payment failed: ${result.error.message}`, type: 'error' });
         } else if (result.paymentIntent.status === 'succeeded') {
-            alert('Payment successful!');
+            setPaymentMessage({ text: 'Payment successful!', type: 'success' });
+        } else {
+            setPaymentMessage({ text: 'Payment failed!', type: 'error' });
+        }
+
+        await updateOrderStatus(orderId);
+    };
+
+    const updateOrderStatus = async (orderId) => {
+        try {
+            const response = await fetch('http://localhost:3000/orders/change-order-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ orderId }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log(`Order status updated: ${result.message}`);
+            } else {
+                console.error(`Failed to update order status: ${result.error}`);
+            }
+        } catch (err) {
+            console.error('Error updating order status:', err);
         }
     };
-    console.log(stripe)
-    console.log(loading)
-    console.log(clientSecret)
 
     return (
         <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
             <CardElement />
             {error && <p className="text-danger mt-2">{error}</p>}
+
+            {/* Displaying the message box */}
+            {paymentMessage && (
+                <div
+                    className={`mt-3 p-3 text-white ${paymentMessage.type === 'success' ? 'bg-success' : 'bg-danger'}`}
+                    style={{ borderRadius: '5px' }}
+                >
+                    {paymentMessage.text}
+                </div>
+            )}
+
             <button
                 type="submit"
                 disabled={!stripe || loading || !clientSecret}
