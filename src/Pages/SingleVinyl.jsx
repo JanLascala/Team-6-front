@@ -49,6 +49,7 @@ export default function VinylSearch() {
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
                         <AddToCartButton vinyl={data} />
+                        <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
                     </div>
 
                     <div className="row mb-5">
