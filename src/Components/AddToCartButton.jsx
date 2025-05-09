@@ -4,30 +4,26 @@ import { useState } from "react";
 export default function AddToCartButton({ vinyl }) {
     const { addToCart, cart } = useGlobalContext();
     const [isAdded, setIsAdded] = useState(false);
-
     const isInCart = cart.some(item => item.slug === vinyl.slug);
 
     const handleAddToCart = () => {
-        if (!isInCart) {
-            addToCart(vinyl);
-            setIsAdded(true);
-            setTimeout(() => setIsAdded(false), 1500);
+        if (vinyl.nAvailable === 0) {
+            alert("Prodotto esaurito!");
+            return;
         }
+
+        addToCart(vinyl);
+        setIsAdded(true);
+        setTimeout(() => setIsAdded(false), 1500);
     };
 
     return (
         <button
-            className={`btn btn-dark btn-sm w-auto position-relative`}
+            className={`btn ${vinyl.nAvailable === 0 ? 'btn-secondary' : isInCart ? 'btn-success' : 'btn-dark'} btn-sm w-auto`}
             onClick={handleAddToCart}
-            disabled={isInCart}
+            disabled={vinyl.nAvailable === 0 || isInCart}
         >
-            {isInCart ? 'In the cart' : isAdded ? 'Added!!' : 'Add to cart'}
-
-            {isAdded && (
-                <span className="position-absolute">
-                    <span className="visually-hidden">Added</span>
-                </span>
-            )}
+            {vinyl.nAvailable === 0 ? 'worn out' : isInCart ? 'In the Cart' : isAdded ? 'Added!' : 'Add to cart'}
         </button>
     );
 }

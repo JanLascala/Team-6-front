@@ -1,39 +1,57 @@
 import { createContext, useContext, useState, useEffect } from "react";
-const GlobalContext = createContext();
 
-export default GlobalContext;
+
+const GlobalContext = createContext()
+
 function GlobalProvider({ children }) {
 
     const url = `http://localhost:3000/api/vinyls`
     const [vinyls, setVinyls] = useState({
         state: "loading"
     });
-    const [cart, setCart] = useState([]);
+    const storedCart = localStorage.getItem('cart');
+    const [cart, setCart] = useState(() => {
+        return storedCart ? JSON.parse(storedCart) : [];
+    });
+
     const addToCart = (vinyl) => {
+        if (vinyl.nAvailable === 0) {
+            alert("Questo vinile è esaurito!");
+            return;
+        }
+
         setCart(prevCart => {
             const existingItem = prevCart.find(item => item.slug === vinyl.slug);
 
-            if (existingItem) {
-                return prevCart.map(item =>
+            if (existingItem && existingItem.quantity >= existingItem.nAvailable) {
+                alert(`You have reached the maximum quantity available (${vinyl.nAvailable})`);
+                return prevCart;
+            }
+
+            return existingItem
+                ? prevCart.map(item =>
                     item.slug === vinyl.slug
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
-                );
-            } else {
-                return [...prevCart, { ...vinyl, quantity: 1 }];
-            }
+                )
+                : [...prevCart, { ...vinyl, quantity: 1, nAvailable: vinyl.nAvailable }];
         });
     };
+
     const incrementQuantity = (slug) => {
         setCart(prevCart =>
-            prevCart.map(item =>
-                item.slug === slug
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            )
+            prevCart.map(item => {
+                if (item.slug === slug) {
+                    if (item.quantity >= item.nAvailable) {
+                        alert("You have reached the maximum quantity available!");
+                        return item;
+                    }
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            })
         );
     };
-
     const decrementQuantity = (slug) => {
         setCart(prevCart =>
             prevCart
@@ -44,6 +62,9 @@ function GlobalProvider({ children }) {
                 )
                 .filter(item => item.quantity > 0)
         );
+    };
+    const removeFromCart = (slug) => {
+        setCart(prevCart => prevCart.filter(item => item.slug !== slug));
     };
 
 
@@ -72,6 +93,13 @@ function GlobalProvider({ children }) {
             })
     }, [])
 
+    const clearCart = () => {
+        setCart([]);
+    };
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
     return (
         <GlobalContext.Provider
             value={{
@@ -79,7 +107,9 @@ function GlobalProvider({ children }) {
                 cart,
                 addToCart,
                 incrementQuantity,
-                decrementQuantity
+                decrementQuantity,
+                removeFromCart,
+                clearCart
             }}
         >
             {children}
@@ -92,4 +122,4 @@ function useGlobalContext() {
     return context;
 }
 
-export { GlobalProvider, useGlobalContext };
+export { GlobalProvider, useGlobalContext }
