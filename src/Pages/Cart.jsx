@@ -101,11 +101,14 @@ export default function Cart() {
                         <h4 className="mb-0">Total:</h4>
                         <h4 className="mb-0">€ {total.toFixed(2)}</h4>
                     </div>
-                    <button className="btn btn-success btn-sm w-100 mt-4">
-                        Go to Checkout <i className="bi bi-arrow-right ms-2"></i>
-                    </button>
+                    <Link to='/checkout'>
+                        <button className="btn btn-success btn-sm w-100 mt-4">
+                            Go to Checkout <i className="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </Link>
                 </div>
             </div>
+
         </div>
     );
 }

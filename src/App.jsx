@@ -9,6 +9,7 @@ import Cart from './Pages/Cart';
 import SingleVinyl from './Pages/SingleVinyl';
 import ServerErrorPage from './Pages/ServerErrorPage';
 
+import StripeApp from './Pages/StripeApp'
 
 export default function App() {
   return (
@@ -21,9 +22,8 @@ export default function App() {
             <Route path="/vinyls" element={<Vinyls />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products/:slug" element={<SingleVinyl />} />
+            <Route path="/checkout" element={<StripeApp />} />
             <Route path="*" element={<ServerErrorPage error={"The page you were looking for couldn't be found! - error 404"} />} />
-
-
           </Route>
         </Routes>
       </BrowserRouter>
