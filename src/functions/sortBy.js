@@ -1,9 +1,5 @@
-//import filterByText from "./filterByText";
-
 export default function sortBy(sortByValue, array) {
     console.log(array);
-
-    //const array = filterByText(vinyls, query)
 
     const sortedVinyls = [...array].sort((a, b) => {
 

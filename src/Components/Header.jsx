@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import VinylSearch from "../VinylSearch";
+import VinylSearch from "./VinylSearch";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { useGlobalContext } from "../../Contexts/GlobalContext";
+import { useGlobalContext } from "../Contexts/GlobalContext";
 
 export default function Header() {
     const { cart } = useGlobalContext();
@@ -35,9 +35,9 @@ export default function Header() {
                                     <i className="bi bi-cart-plus"></i>
                                     {
                                         cart.length > 0 ?
-                                        (
-                                            <div id="cart-quantity" className="bg-primary">{cart.length}</div>
-                                        ) : null
+                                            (
+                                                <div id="cart-quantity" className="bg-primary">{cart.length}</div>
+                                            ) : null
                                     }
                                 </Link>
                             </li>
