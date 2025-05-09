@@ -9,6 +9,7 @@ export default function VinylSearch() {
     const [query, setQuery] = useState("");
     const [showResults, setShowResults] = useState(false);
     const [sortByValue, setSortByValue] = useState("title");
+    const [filterValue, setFilterValue] = useState("all");
 
     switch (vinyls.state) {
 
@@ -17,7 +18,7 @@ export default function VinylSearch() {
 
         case 'success':
 
-            const sortedVinyls = sortBy(sortByValue, filterByText(vinyls, query))
+            const sortedVinyls = sortBy(sortByValue, filterByText(vinyls, query, filterValue))
 
             const handleSearchChange = (e) => {
                 const value = e.target.value;
@@ -33,6 +34,11 @@ export default function VinylSearch() {
                 setShowResults(false)
                 setQuery('')
             };
+
+            const handleFilterChange = (value) => {
+                setFilterValue(prev => (prev === value ? "all" : value));
+            };
+
 
             return (
                 <>
@@ -53,6 +59,21 @@ export default function VinylSearch() {
                                     style={{ width: '300px', zIndex: 1000, maxHeight: '500px', overflowY: 'auto' }}
                                 >
                                     <h5 className="mb-2">Search Results</h5>
+
+                                    <div className="d-flex gap-2 mb-2">
+                                        {['all', 'title', 'author'].map(value => (
+                                            <label key={value} className="form-check-label">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input me-1"
+                                                    checked={filterValue === value}
+                                                    onChange={() => handleFilterChange(value)}
+                                                />
+                                                {value.charAt(0).toUpperCase() + value.slice(1)}
+                                            </label>
+                                        ))}
+                                    </div>
+
 
                                     <div className="mb-2">
                                         <label htmlFor="sort" className="form-label">Sort by:</label>
