@@ -19,7 +19,7 @@ function GlobalProvider({ children }) {
             const existingItem = prevCart.find(item => item.slug === vinyl.slug);
 
             if (existingItem && existingItem.quantity >= existingItem.nAvailable) {
-                alert(`Hai già la quantità massima disponibile (${vinyl.nAvailable})`);
+                alert(`You have reached the maximum quantity available (${vinyl.nAvailable})`);
                 return prevCart;
             }
 
@@ -38,7 +38,7 @@ function GlobalProvider({ children }) {
             prevCart.map(item => {
                 if (item.slug === slug) {
                     if (item.quantity >= item.nAvailable) {
-                        alert("Quantità massima raggiunta!");
+                        alert("You have reached the maximum quantity available!");
                         return item;
                     }
                     return { ...item, quantity: item.quantity + 1 };
