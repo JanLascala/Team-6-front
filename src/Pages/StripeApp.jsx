@@ -11,16 +11,27 @@ export default function StripeApp() {
     useEffect(() => {
         fetch('http://localhost:3000/create-payment-intent', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // Optional: include cart items, total amount, or user info
+            }),
         })
             .then(res => res.json())
-            .then(data => setClientSecret(data.clientSecret));
+            .then(data => {
+                setClientSecret(data.clientSecret);
+            })
+            .catch(err => {
+                console.error(err);
+                setError('Failed to initialize payment.');
+            });
     }, []);
 
     return (
         clientSecret && (
             <Elements options={{ clientSecret }} stripe={stripePromise}>
-                <CheckoutPage />
+                <CheckoutPage clientSecret={clientSecret} />
             </Elements>
         )
     );
