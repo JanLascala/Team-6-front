@@ -16,7 +16,7 @@ export default function StripeApp() {
             },
             body: JSON.stringify({
                 // Optional: include cart items, total amount, or user info
-            }),
+            })
         })
             .then(res => res.json())
             .then(data => {
