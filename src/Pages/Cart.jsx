@@ -1,7 +1,8 @@
+
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-export default function CartContent({ onClose }) {
+export default function Cart({ onClose }) {
     const { cart, incrementQuantity, decrementQuantity, removeFromCart } = useGlobalContext();
     const navigate = useNavigate();
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -26,10 +27,16 @@ export default function CartContent({ onClose }) {
                 {cart.map(item => (
                     <li key={item.slug} className="list-group-item">
                         <div className="d-flex gap-3">
-                            <img src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
+                            <img
+                                src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
+                                }}
                                 alt={item.title}
-                                style={{ width: "100px", height: "100px", objectFit: "cover" }}
-                                className="rounded" />
+                                className="card-img-top img-fluid"
+                                style={{ objectFit: 'contain', height: '200px' }}
+                            />
 
                             <div className="flex-grow-1">
                                 <h5>{item.title}</h5>
