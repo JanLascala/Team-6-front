@@ -43,7 +43,6 @@ export default function CheckoutForm({ clientSecret, orderId, customerData }) {
             }
         }
 
-
         await updateOrderStatus(orderId);
     };
 

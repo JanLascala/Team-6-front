@@ -95,7 +95,6 @@ export default function VinylSearch() {
                     <div
                         className="position-absolute bg-white p-3 shadow rounded mt-1"
                         style={{
-                            width: "200px",
                             zIndex: 1000,
                             maxHeight: "500px",
                             overflowY: "auto",

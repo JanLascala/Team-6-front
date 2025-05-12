@@ -7,8 +7,6 @@
 
 #headerNav {
 
-    height: var(--header-height);
-
     #header-right-section {
         width: 300px;
 
@@ -48,6 +46,7 @@ footer {
     right: 0;
     width: 380px;
     height: calc(100% - 60px);
+    background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
