@@ -18,3 +18,113 @@
 footer a:hover {
     text-decoration: underline;
 }
+
+.side-modal-overlay {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 380px;
+    height: calc(100% - 60px);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 1050;
+    /* Più alto della navbar */
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.side-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 100%;
+    max-width: 380px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+
+
+
+
+.list-group-item {
+    padding: 15px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-group-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.list-group-item h5 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+.list-group-item .d-flex {
+    align-items: center;
+    gap: 1px;
+}
+
+
+
+
+div h5 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+
+div .btn-success {
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+}
+
+
+.side-modal-content {
+    max-height: calc(100vh - 60px);
+    padding-bottom: 30px;
+}
+
+.side-modal-overlay {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.quantity-btn:hover:not(:disabled) {
+    background-color: #e2e6ea;
+    transform: scale(1.05);
+}
+
+.quantity-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
