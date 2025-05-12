@@ -81,11 +81,11 @@ export default function VinylSearch() {
 
     return (
         <>
-            <div className="position-relative">
+            <div className="position-relative w-100">
                 <input
                     id="searchBar"
                     type="search"
-                    className="form-control form-control-sm"
+                    className="form-control form-control-sm w-100"
                     placeholder="Search vinyls..."
                     value={query}
                     onChange={handleSearchChange}

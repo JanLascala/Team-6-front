@@ -1,9 +1,7 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
 
-
 #headerNav {
-    width: 100% !important;
 
     #cart-quantity {
         border-radius: 100%;
@@ -20,8 +18,6 @@
     }
 }
 
-
-
 footer {
     a:hover {
         text-decoration: underline;
@@ -34,14 +30,13 @@ footer {
     right: 0;
     width: 380px;
     height: calc(100% - 60px);
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(4, 4, 4, 0.1);
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
     z-index: 1050;
     transition: opacity 0.3s ease-in-out;
 }
-
 
 .side-modal-content {
     background-color: #fff;
@@ -71,19 +66,16 @@ footer {
     border-radius: 10px;
 }
 
-
 .list-group-item h5 {
     font-size: 1rem;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-
 .list-group-item .d-flex {
     align-items: center;
     gap: 1px;
 }
-
 
 div h5 {
     text-align: center;
@@ -91,13 +83,11 @@ div h5 {
     margin-top: 10px;
 }
 
-
 div .btn-success {
     background-color: #28a745;
     color: white;
     border-radius: 5px;
 }
-
 
 .side-modal-content {
     max-height: calc(100vh - 60px);

@@ -21,7 +21,7 @@ export default function Header() {
 
     return (
         <>
-            <nav id="headerNav" className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
+            <nav id="headerNav" className="navbar navbar-expand-sm navbar-light bg-light shadow-sm sticky-top">
                 <div className="container-fluid px-4">
                     <Link className="navbar-brand fw-bold" to="/">VinylStore</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -36,7 +36,7 @@ export default function Header() {
                         </ul>
 
                         <div className="d-flex align-items-center justify-content-between gap-2">
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center w-100">
                                 <VinylSearch />
                             </div>
                             <div className="navbar-nav">
