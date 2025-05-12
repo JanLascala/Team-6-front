@@ -111,7 +111,7 @@ export default function StripeApp() {
     return (
         // Stripe payment form when client secret is available
         <Elements options={{ clientSecret }} stripe={stripePromise}>
-            <CheckoutPage clientSecret={clientSecret} orderId={orderId} />
+            <CheckoutPage clientSecret={clientSecret} orderId={orderId} customerData={formData} />
         </Elements>
     );
 }

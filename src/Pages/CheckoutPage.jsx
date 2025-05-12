@@ -1,7 +1,7 @@
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 
-export default function CheckoutForm({ clientSecret, orderId }) {
+export default function CheckoutForm({ clientSecret, orderId, customerData }) {
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
@@ -44,7 +44,8 @@ export default function CheckoutForm({ clientSecret, orderId }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ orderId }),
+                body: JSON.stringify({ orderId, customerEmail: customerData.email, customerAddress: customerData.address, customerName: customerData.name, customerPhone: customerData.phone }),
+
             });
 
             const result = await response.json();
