@@ -35,7 +35,7 @@ export default function Header() {
                             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                         </ul>
 
-                        <div className="d-flex align-items-center justify-content-between gap-2">
+                        <div id="headerRightSection" className="d-flex align-items-center justify-content-between gap-2">
                             <div className="d-flex align-items-center w-100">
                                 <VinylSearch />
                             </div>

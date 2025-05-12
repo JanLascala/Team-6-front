@@ -3,18 +3,26 @@
 
 #headerNav {
 
-    #cart-quantity {
-        border-radius: 100%;
-        color: white;
-        width: 17px;
-        height: 17px;
-        position: absolute;
-        top: 25px;
-        left: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 1px;
+    #headerRightSection {
+        width: 300px;
+
+        #searchBar {
+            width: 100%;
+        }
+
+        #cart-quantity {
+            border-radius: 100%;
+            color: white;
+            width: 17px;
+            height: 17px;
+            position: absolute;
+            top: 25px;
+            left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 1px;
+        }
     }
 }
 
@@ -30,7 +38,6 @@ footer {
     right: 0;
     width: 380px;
     height: calc(100% - 60px);
-    background-color: rgba(4, 4, 4, 0.1);
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;

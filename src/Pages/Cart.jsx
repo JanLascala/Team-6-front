@@ -1,4 +1,3 @@
-
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +20,7 @@ export default function Cart({ onClose }) {
     }
 
     return (
-        <div style={{ padding: "0px", maxHeight: "70vh", overflowY: "auto" }}>
+        <div style={{ padding: "0px", overflowY: "auto" }}>
             <h4>Cart</h4>
             <ul className="list-group mb-3">
                 {cart.map(item => (
@@ -68,7 +67,6 @@ export default function Cart({ onClose }) {
                                         <i className="bi bi-trash"></i>
                                     </button>
                                 </div>
-
                             </div>
                         </div>
                     </li>
