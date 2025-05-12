@@ -1,13 +1,23 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
 
+:root {
+    --header-height: 60px;
+}
+
 #headerNav {
 
-    #headerRightSection {
+    height: var(--header-height);
+
+    #header-right-section {
         width: 300px;
 
-        #searchBar {
+        #search-bar {
             width: 100%;
+        }
+
+        #cart-container {
+            height: calc(100vh - var(--header-height));
         }
 
         #cart-quantity {

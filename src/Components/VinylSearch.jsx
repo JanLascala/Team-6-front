@@ -83,7 +83,7 @@ export default function VinylSearch() {
         <>
             <div className="position-relative w-100">
                 <input
-                    id="searchBar"
+                    id="search-bar"
                     type="search"
                     className="form-control form-control-sm w-100"
                     placeholder="Search vinyls..."

@@ -3,7 +3,7 @@ import VinylSearch from "./VinylSearch";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useState, useEffect } from "react";
-import Cart from '../Pages/Cart'
+import Cart from '../Components/Cart'
 
 export default function Header() {
     const { cart } = useGlobalContext();
@@ -35,7 +35,7 @@ export default function Header() {
                             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                         </ul>
 
-                        <div id="headerRightSection" className="d-flex align-items-center justify-content-between gap-2">
+                        <div id="header-right-section" className="d-flex align-items-center justify-content-between gap-2">
                             <div className="d-flex align-items-center w-100">
                                 <VinylSearch />
                             </div>
