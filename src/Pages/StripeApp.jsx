@@ -4,16 +4,23 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useGlobalContext } from '../Contexts/GlobalContext.jsx';
 import CheckoutPage from './CheckoutPage.jsx';
 
+// Initialize Stripe with the publishable key
 const stripePromise = loadStripe('pk_test_51RMR05FSjhx1khJeIPoZjR7MAjlZ8MznKApnIVMz63MBET3v3vifQFlPyLB7DXIIryz1Hij6bYGlti5RjtvvVeDH00bxQyOiQq');
 
 export default function StripeApp() {
+    // Access shopping cart from global context
     const { cart } = useGlobalContext();
+    // Create a safe version of cart with only necessary data for API
     const safeCart = cart.map(item => ({
         id: item.productId,
         quantity: item.quantity
     }));
     console.log(safeCart)
+
+    // Stripe client secret for payment intent
     const [clientSecret, setClientSecret] = useState('');
+
+    // Save data user enters in the form
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
@@ -35,6 +42,7 @@ export default function StripeApp() {
         setError(null);
 
         try {
+            // Call backend API to create a payment intent
             const response = await fetch('http://localhost:3000/orders/create-payment-intent', {
                 method: 'POST',
                 headers: {
@@ -65,6 +73,7 @@ export default function StripeApp() {
         setLoading(false);
     };
 
+    // Customer information form
     if (!clientSecret) {
         return (
             <div className="container mt-5" style={{ maxWidth: 500 }}>
@@ -79,7 +88,7 @@ export default function StripeApp() {
                         <input name="surname" className="form-control" onChange={handleChange} required />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">address</label>
+                        <label className="form-label">Address</label>
                         <input name="address" type="address" className="form-control" onChange={handleChange} required />
                     </div>
                     <div className="mb-3">
@@ -100,6 +109,7 @@ export default function StripeApp() {
     }
 
     return (
+        // Stripe payment form when client secret is available
         <Elements options={{ clientSecret }} stripe={stripePromise}>
             <CheckoutPage clientSecret={clientSecret} orderId={orderId} />
         </Elements>

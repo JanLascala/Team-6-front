@@ -45,7 +45,10 @@ export default function Cart() {
                                     </div>
                                     <div className="text-end">
                                         <span className="fs-5">€ {(item.price * item.quantity).toFixed(2)}</span>
-                                        <p className="small text-muted mb-0">€ {item.price.toFixed(2)} each</p>
+                                        <p className="small text-muted mb-0">
+                                            € {typeof item.price === "number" ? item.price.toFixed(2) : "N/A"} each
+                                        </p>
+
                                     </div>
                                 </div>
 
