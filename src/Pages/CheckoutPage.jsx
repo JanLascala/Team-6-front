@@ -2,6 +2,8 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useGlobalContext } from '../Contexts/GlobalContext';
 
+import OrderSummary from '../Components/OrderSummary.jsx'
+
 export default function CheckoutForm({ clientSecret, orderId, customerData }) {
     const stripe = useStripe();
     const elements = useElements();
@@ -70,27 +72,33 @@ export default function CheckoutForm({ clientSecret, orderId, customerData }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
-            <CardElement />
-            {error && <p className="text-danger mt-2">{error}</p>}
-
-            {/* Displaying the message box */}
-            {paymentMessage && (
-                <div
-                    className={`mt-3 p-3 text-white ${paymentMessage.type === 'success' ? 'bg-success' : 'bg-danger'}`}
-                    style={{ borderRadius: '5px' }}
-                >
-                    {paymentMessage.text}
+            <div className='position-relative'>
+                <div className="position-absolute end-0">
+                    <OrderSummary />
                 </div>
-            )}
+                <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
+                    <CardElement />
+                    {error && <p className="text-danger mt-2">{error}</p>}
 
-            <button
-                type="submit"
-                disabled={!stripe || loading || !clientSecret}
-                className="btn btn-primary mt-3"
-            >
-                {loading ? "Processing..." : "Pay"}
-            </button>
-        </form>
+                    {/* Displaying the message box */}
+                    {paymentMessage && (
+                        <div
+                            className={`mt-3 p-3 text-white ${paymentMessage.type === 'success' ? 'bg-success' : 'bg-danger'}`}
+                            style={{ borderRadius: '5px' }}
+                        >
+                            {paymentMessage.text}
+                        </div>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={!stripe || loading || !clientSecret}
+                        className="btn btn-primary mt-3"
+                    >
+                        {loading ? "Processing..." : "Pay"}
+                    </button>
+                </form>
+        </div>
+
     );
 }

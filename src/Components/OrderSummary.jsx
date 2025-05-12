@@ -11,17 +11,9 @@ export default function Cart({ onClose }) {
         navigate("/checkout");
     };
 
-    if (cart.length === 0) {
-        return (
-            <div style={{ padding: "20px" }}>
-                <h4>Your cart is empty</h4>
-            </div>
-        );
-    }
-
     return (
         <div id="cart-container" style={{ padding: "0px", overflowY: "auto" }}>
-            <h4>Cart</h4>
+            <h4>Order Summary</h4>
             <ul className="list-group mb-3">
                 {cart.map(item => (
                     <li key={item.slug} className="list-group-item">
