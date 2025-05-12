@@ -83,19 +83,19 @@ export default function VinylSearch() {
         <>
             <div className="position-relative">
                 <input
+                    id="searchBar"
                     type="search"
                     className="form-control form-control-sm"
                     placeholder="Search vinyls..."
                     value={query}
                     onChange={handleSearchChange}
-                    style={{ minWidth: "300px" }}
                 />
 
                 {showResults && (
                     <div
                         className="position-absolute bg-white p-3 shadow rounded mt-1"
                         style={{
-                            width: "300px",
+                            width: "200px",
                             zIndex: 1000,
                             maxHeight: "500px",
                             overflowY: "auto",

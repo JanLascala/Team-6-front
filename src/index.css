@@ -1,22 +1,31 @@
 @import 'bootstrap';
 @import 'bootstrap-icons';
 
-#cart-quantity {
-    border-radius: 100%;
-    color: white;
-    width: 17px;
-    height: 17px;
-    position: absolute;
-    top: 25px;
-    left: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1px;
+
+#headerNav {
+    width: 100% !important;
+
+    #cart-quantity {
+        border-radius: 100%;
+        color: white;
+        width: 17px;
+        height: 17px;
+        position: absolute;
+        top: 25px;
+        left: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 1px;
+    }
 }
 
-footer a:hover {
-    text-decoration: underline;
+
+
+footer {
+    a:hover {
+        text-decoration: underline;
+    }
 }
 
 .side-modal-overlay {

@@ -21,7 +21,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
+            <nav id="headerNav" className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
                 <div className="container-fluid px-4">
                     <Link className="navbar-brand fw-bold" to="/">VinylStore</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -35,16 +35,16 @@ export default function Header() {
                             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                         </ul>
 
-                        <div className="d-flex align-items-center gap-3">
-                            <VinylSearch />
-                            <ul className="navbar-nav">
-                                <li className="nav-item">
-                                    <button className="nav-link btn btn-link position-relative" onClick={toggleModal}>
-                                        <i className="bi bi-cart-plus fs-5"></i>
-                                        {cart.length > 0 && <div id="cart-quantity" className="bg-primary">{cart.length}</div>}
-                                    </button>
-                                </li>
-                            </ul>
+                        <div className="d-flex align-items-center justify-content-between gap-2">
+                            <div className="d-flex align-items-center">
+                                <VinylSearch />
+                            </div>
+                            <div className="navbar-nav">
+                                <button className="nav-link btn btn-link position-relative p-2" onClick={toggleModal}>
+                                    <i className="bi bi-cart-plus fs-5"></i>
+                                    {cart.length > 0 && <div id="cart-quantity" className="bg-primary">{cart.length}</div>}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
