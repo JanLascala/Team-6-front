@@ -14,7 +14,7 @@ export default function VinylSearch() {
     const [singleVinyl, setSingleVinyl] = useState({ state: 'loading' });
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/vinyls/${slug}`)
+        fetch(`http://localhost:3000/api/vinyls/single-vinyl/${slug}`)
             .then((res) => res.json())
             .then((data) => {
                 //console.log(data);
