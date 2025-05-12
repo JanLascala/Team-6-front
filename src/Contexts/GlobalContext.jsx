@@ -1,18 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-
-const GlobalContext = createContext()
+const GlobalContext = createContext();
 
 function GlobalProvider({ children }) {
-
-    const url = `http://localhost:3000/api/vinyls`
+    const url = `http://localhost:3000/api/vinyls`;
     const [vinyls, setVinyls] = useState({
         state: "loading"
     });
-    const storedCart = localStorage.getItem('cart');
-    const [cart, setCart] = useState(() => {
-        return storedCart ? JSON.parse(storedCart) : [];
-    });
+    const [cart, setCart] = useState([]);
 
     const addToCart = (vinyl) => {
         if (vinyl.nAvailable === 0) {
@@ -52,6 +47,7 @@ function GlobalProvider({ children }) {
             })
         );
     };
+
     const decrementQuantity = (slug) => {
         setCart(prevCart =>
             prevCart
@@ -63,13 +59,12 @@ function GlobalProvider({ children }) {
                 .filter(item => item.quantity > 0)
         );
     };
+
     const removeFromCart = (slug) => {
         setCart(prevCart => prevCart.filter(item => item.slug !== slug));
     };
 
-
     useEffect(() => {
-
         fetch(url, {
             method: 'GET',
             headers: {
@@ -91,14 +86,16 @@ function GlobalProvider({ children }) {
                     message: `error type: ${err}`
                 })
             })
-    }, [])
+    }, []);
+
+
+    const clearCartAfterPayment = () => {
+        setCart([]);
+    };
 
     const clearCart = () => {
         setCart([]);
     };
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
 
     return (
         <GlobalContext.Provider
@@ -109,7 +106,8 @@ function GlobalProvider({ children }) {
                 incrementQuantity,
                 decrementQuantity,
                 removeFromCart,
-                clearCart
+                clearCart,
+                clearCartAfterPayment // Aggiungi la funzione per svuotare il carrello
             }}
         >
             {children}
@@ -122,4 +120,4 @@ function useGlobalContext() {
     return context;
 }
 
-export { GlobalProvider, useGlobalContext }
+export { GlobalProvider, useGlobalContext };

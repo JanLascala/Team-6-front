@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AddToCartButton from './AddToCartButton';
-import Buttons from './Buttons';
+
 
 function Carousel({ array = [] }) {
     const [page, setPage] = useState(0);

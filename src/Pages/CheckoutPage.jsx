@@ -1,11 +1,13 @@
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { useGlobalContext } from '../Contexts/GlobalContext';
 
 export default function CheckoutForm({ clientSecret, orderId, customerData }) {
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { clearCart } = useGlobalContext();
     const [paymentMessage, setPaymentMessage] = useState(null); // State for message
     console.log("checkoutform mounted");
     console.log(`the orderId is ${orderId}`);
@@ -28,11 +30,19 @@ export default function CheckoutForm({ clientSecret, orderId, customerData }) {
         if (result.error) {
             setError(result.error.message);
             setPaymentMessage({ text: `Payment failed: ${result.error.message}`, type: 'error' });
-        } else if (result.paymentIntent.status === 'succeeded') {
-            setPaymentMessage({ text: 'Payment successful!', type: 'success' });
         } else {
-            setPaymentMessage({ text: 'Payment failed!', type: 'error' });
+            if (result.paymentIntent.status === 'succeeded') {
+                setPaymentMessage({ text: 'Payment successful!', type: 'success' });
+
+                if (clearCart) {
+                    clearCart();
+                    console.log("Carrello svuotato");
+                }
+            } else {
+                setPaymentMessage({ text: 'Payment failed!', type: 'error' });
+            }
         }
+
 
         await updateOrderStatus(orderId);
     };
