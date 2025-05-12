@@ -107,7 +107,7 @@ function GlobalProvider({ children }) {
                 decrementQuantity,
                 removeFromCart,
                 clearCart,
-                clearCartAfterPayment // Aggiungi la funzione per svuotare il carrello
+                clearCartAfterPayment
             }}
         >
             {children}
