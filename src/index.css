@@ -7,10 +7,17 @@
     --secondary-color: #ffd679;
     --tertiary-color: #000;
     --dark-color: #212529;
+    --light-color: #ffffff;
+    --primary-color-2: #480000;
+    --secondary-color-2: #b86117;
+}
+
+body {
+    background-color: var(--light-color) !important;
 }
 
 #headerNav {
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
 
     * {
         color: #ffffff !important;
@@ -61,7 +68,7 @@ footer {
     gap: 1rem;
     padding: 1.5rem;
     align-items: center;
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
 
     a:hover {
         text-decoration: underline;
