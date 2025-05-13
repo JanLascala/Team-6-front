@@ -1,22 +1,17 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
-import { useNavigate } from "react-router-dom";
 
-export default function Cart({ onClose }) {
-    const { cart, incrementQuantity, decrementQuantity, removeFromCart } = useGlobalContext();
-    const navigate = useNavigate();
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-    const handleCheckout = () => {
-        onClose();
-        navigate("/checkout");
-    };
+export default function CartSummary() {
+    const { cart } = useGlobalContext();
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shippingCost = subtotal >= 100 ? 0 : 12;
+    const total = subtotal + shippingCost;
 
     return (
         <div id="cart-container" style={{ padding: "0px", overflowY: "auto" }}>
             <h4>Order Summary</h4>
             <ul className="list-group mb-3">
                 {cart.map(item => (
-                    <li key={item.slug} className="list-group-item">
+                    <li key={item.slug} className="list-group-item border-0">
                         <div className="d-flex gap-3">
                             <img
                                 src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
@@ -33,31 +28,7 @@ export default function Cart({ onClose }) {
                                 <h5>{item.title}</h5>
                                 <p>{item.authorName}</p>
                                 <div className="d-flex align-items-center gap-2 flex-wrap">
-                                    <button
-                                        className="btn btn-outline-secondary"
-                                        onClick={() => decrementQuantity(item.slug)}
-                                        disabled={item.quantity <= 1}
-                                    >
-                                        <i className="bi bi-dash-lg"></i>
-                                    </button>
-
-                                    <span className="px-2">{item.quantity}</span>
-
-                                    <button
-                                        className="btn btn-outline-secondary"
-                                        onClick={() => incrementQuantity(item.slug)}
-                                        disabled={item.quantity >= item.nAvailable}
-                                    >
-                                        <i className="bi bi-plus-lg"></i>
-                                    </button>
-
-                                    <button
-                                        className="btn btn-outline-danger btn-sm ms-2"
-                                        onClick={() => removeFromCart(item.slug)}
-                                        title="Rimuovi dal carrello"
-                                    >
-                                        <i className="bi bi-trash"></i>
-                                    </button>
+                                    <span className="px-2">Quantity: {item.quantity}</span>
                                 </div>
                             </div>
                         </div>
@@ -66,10 +37,22 @@ export default function Cart({ onClose }) {
             </ul>
 
             <div>
-                <h5>Total: € {total.toFixed(2)}</h5>
-                <button className="btn btn-success w-100 mt-2" onClick={handleCheckout}>
-                    Go to Checkout →
-                </button>
+                <div className="d-flex justify-content-between mb-2">
+                    <h6>Subtotal:</h6>
+                    <h6>€ {subtotal.toFixed(2)}</h6>
+                </div>
+
+                <div className="d-flex justify-content-between mb-2">
+                    <h6>Shipping:</h6>
+                    <h6>{shippingCost === 0 ? "Free" : `€ ${shippingCost.toFixed(2)}`}</h6>
+                </div>
+
+                <hr className="my-2" />
+
+                <div className="d-flex justify-content-between">
+                    <h5>Total:</h5>
+                    <h5>€ {total.toFixed(2)}</h5>
+                </div>
             </div>
         </div>
     );

@@ -6,7 +6,6 @@ import ServerErrorPage from "./ServerErrorPage";
 import filterByText from "../functions/filterByText";
 import sortBy from "../functions/sortBy";
 
-
 export default function HomePage() {
     const { vinyls } = useGlobalContext();
 
@@ -16,7 +15,6 @@ export default function HomePage() {
             return <LoadingUi />
 
         case 'success':
-
 
             return (
                 <>
