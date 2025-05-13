@@ -20,7 +20,7 @@
 
 body {
     background-color: var(--light-color) !important;
-    color: var(--light-color) !important;
+    color: var(--dark-color) !important;
 }
 
 #headerNav {
