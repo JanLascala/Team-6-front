@@ -10,6 +10,21 @@ function GlobalProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
+    /* useEffect per per salvare il carrello nel local storage */
+    useEffect(() => {
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+    }, []);
+
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }, [cart]);
+
     const addToCart = (vinyl) => {
         if (vinyl.nAvailable === 0) {
             alert("Questo vinile è esaurito!");
@@ -74,28 +89,27 @@ function GlobalProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setVinyls({
                     state: "success",
                     vinyl_data: data
-                })
+                });
             })
             .catch(err => {
-                console.error(err)
                 setVinyls({
                     state: "error",
                     message: `error type: ${err}`
-                })
-            })
+                });
+            });
     }, []);
-
 
     const clearCartAfterPayment = () => {
         setCart([]);
+        localStorage.removeItem('cart');
     };
 
     const clearCart = () => {
         setCart([]);
+        localStorage.removeItem('cart');
     };
 
     return (
