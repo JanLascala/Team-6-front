@@ -107,7 +107,7 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
     };
 
     return (
-        <div className='position-relative container'>
+        <div className='position-relative container border rounded'>
             <div className="row row-cols-2">
                 <div className="col">
                     <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>

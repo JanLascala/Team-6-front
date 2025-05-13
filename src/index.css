@@ -10,17 +10,24 @@
     --light-color: #ffffff;
     --primary-color-2: #480000;
     --secondary-color-2: #b86117;
+    --main-bg-test: #1B1A17;
+    --primary-test: #4E342E;
+    --secondary-test: #795548;
+    --tertiary-test: #D7CCC8;
+    --light-text-test: #F5F5F5;
+    --link-test: #FFB300;
 }
 
 body {
     background-color: var(--light-color) !important;
+    color: var(--light-color) !important;
 }
 
 #headerNav {
-    background-color: var(--primary-color);
+    background-color: var(--dark-color);
 
     * {
-        color: #ffffff !important;
+        color: var(--light-color) !important;
     }
 
     #header-right-section {
@@ -65,8 +72,6 @@ main {
     }
 }
 
-
-
 footer {
     display: flex;
     flex-direction: row;
@@ -74,7 +79,7 @@ footer {
     gap: 1rem;
     padding: 1.5rem;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: var(--tertiary-color);
 
     a:hover {
         text-decoration: underline;

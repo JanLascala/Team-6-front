@@ -27,7 +27,6 @@ export default function Vinyls() {
         }
     }
 
-
     return (
         <>
             <h1 className="mb-4">Vinyls</h1>

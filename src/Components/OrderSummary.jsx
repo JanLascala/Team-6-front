@@ -9,7 +9,7 @@ export default function CartSummary() {
     return (
         <div id="order-summary" style={{ padding: "0px", overflowY: "auto" }}>
             <h4>Order Summary</h4>
-            <ul id="order-summary-list" className="list-group mb-3">
+            <ul id="order-summary-list" className="list-group">
                 {cart.map(item => (
                     <li key={item.slug} className="list-group-item border-0">
                         <div className="d-flex gap-3">
