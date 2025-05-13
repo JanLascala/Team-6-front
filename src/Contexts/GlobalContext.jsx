@@ -76,9 +76,28 @@ function GlobalProvider({ children }) {
         );
     };
 
+    useEffect(() => {
+        if (vinyls.state === "success" && vinyls.vinyl_data) {
+            setCart(prevCart =>
+                prevCart.filter(cartItem => {
+                    const vinyl = vinyls.vinyl_data.find(v => v.slug === cartItem.slug);
+                    return vinyl && vinyl.nAvailable > 0;
+                })
+            );
+        }
+    }, [vinyls]);
+
     const removeFromCart = (slug) => {
-        setCart(prevCart => prevCart.filter(item => item.slug !== slug));
+        setCart(prevCart => {
+            const newCart = prevCart.filter(item => item.slug !== slug);
+            console.log("Articolo rimosso:", slug, "Nuovo carrello:", newCart); // Log per debug
+            if (newCart.length === 0) {
+                localStorage.removeItem('cart');
+            }
+            return newCart;
+        });
     };
+
 
     useEffect(() => {
         fetch(url, {
