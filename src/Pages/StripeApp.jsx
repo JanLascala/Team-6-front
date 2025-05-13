@@ -10,12 +10,17 @@ const stripePromise = loadStripe('pk_test_51RMR05FSjhx1khJeIPoZjR7MAjlZ8MznKApnI
 export default function StripeApp() {
     // Access shopping cart from global context
     const { cart } = useGlobalContext();
+    // console.log("this is the normal cart data!")
+    // console.log(cart)
     // Create a safe version of cart with only necessary data for API
     const safeCart = cart.map(item => ({
         id: item.productId,
-        quantity: item.quantity
+        slug: item.slug,
+        quantity: item.quantity,
+        nAvailable: item.nAvailable
     }));
-    console.log(safeCart)
+    // console.log("this is thecart data sent to the api!")
+    // console.log(safeCart)
 
     // Stripe client secret for payment intent
     const [clientSecret, setClientSecret] = useState('');
@@ -111,7 +116,7 @@ export default function StripeApp() {
     return (
         // Stripe payment form when client secret is available
         <Elements options={{ clientSecret }} stripe={stripePromise}>
-            <CheckoutPage clientSecret={clientSecret} orderId={orderId} customerData={formData} />
+            <CheckoutPage clientSecret={clientSecret} orderId={orderId} customerData={formData} cart={safeCart} />
         </Elements>
     );
 }

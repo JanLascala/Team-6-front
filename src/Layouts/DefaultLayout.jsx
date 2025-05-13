@@ -7,7 +7,7 @@ export default function DefaultLayout() {
     return (
         <>
             <Header />
-            <main className="container-fluid my-4" style={{ minHeight: 'calc(100vh - 56px)' }}>
+            <main className="container-fluid" style={{ minHeight: 'calc(100vh - 56px)' }}>
                 <Outlet />
             </main>
             <Footer />
