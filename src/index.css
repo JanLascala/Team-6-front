@@ -3,8 +3,8 @@
 
 :root {
     --header-height: 110px;
-    --primary-color: #99490c;
-    --secondary-color: #ffd679;
+    --primary-color: #97511c;
+    --secondary-color: #e6c781d4;
     --tertiary-color: #000;
     --dark-color: #212529;
     --light-color: #ffffff;
@@ -55,6 +55,7 @@ body {
 
 main {
     padding: 3rem 0px;
+    background-color: var(--secondary-color);
 
     #order-summary-container {
         height: calc(100vh - var(--header-height));

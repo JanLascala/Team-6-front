@@ -63,6 +63,8 @@ export default function Cart({ onClose }) {
         }
     }, [cart]);
 
+
+
     return (
         <div id="cart-container">
             <h4>Cart</h4>
