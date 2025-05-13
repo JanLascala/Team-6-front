@@ -10,7 +10,7 @@ function GlobalProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    /* useEffect per per salvare il carrello nel local storage */
+    /* useEffect per salvare il carrello nel local storage */
     useEffect(() => {
         const savedCart = localStorage.getItem('cart');
         if (savedCart) {

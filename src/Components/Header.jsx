@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import VinylSearch from "./VinylSearch";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useGlobalContext } from "../Contexts/GlobalContext";
-import { useState, useEffect } from "react";
 import Cart from '../Components/Cart'
 
 export default function Header() {

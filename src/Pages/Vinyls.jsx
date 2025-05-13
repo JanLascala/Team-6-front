@@ -1,3 +1,4 @@
+import VinylSearch from "../Components/VinylSearch";
 import { useGlobalContext } from "../Contexts/GlobalContext"
 
 export default function Vinyls() {
@@ -11,11 +12,7 @@ export default function Vinyls() {
 
             case 'success':
                 return (
-                    <ul>
-                        {vinyls.map(vinyl => (
-                            <li key={vinyl.id}>{vinyl.title}</li>
-                        ))}
-                    </ul>
+                    <VinylSearch />
                 )
 
             case 'error':
