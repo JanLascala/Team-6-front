@@ -24,11 +24,7 @@ body {
 }
 
 #headerNav {
-    background-color: var(--dark-color);
-
-    * {
-        color: var(--light-color) !important;
-    }
+    background-color: var(--light-color);
 
     #header-right-section {
         width: 300px;
@@ -80,7 +76,7 @@ footer {
     gap: 1rem;
     padding: 1.5rem;
     align-items: center;
-    background-color: var(--tertiary-color);
+    background-color: var(--light-color);
 
     a:hover {
         text-decoration: underline;
