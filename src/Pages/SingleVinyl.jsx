@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingUi from "../Components/LoadingUi";
 import ServerErrorPage from "./ServerErrorPage";
-import Carousel from "../Components/carousel";
 import AddToCartButton from "../Components/AddToCartButton";
-import filterByText from "../functions/filterByText";
+import UseVinylsByGenre from "../hooks/UseVinylsByGenre"
 
 export default function VinylSearch() {
     const { vinyls } = useGlobalContext();
@@ -103,10 +102,7 @@ export default function VinylSearch() {
                         </ol>
                     </div>
 
-                    <h1 style={{ paddingTop: "1rem" }}>We think you might like these!</h1>
-
-                    {/* did this to avoid sometimes vinyls not fetching fast enough and causing the page to crash as there was no array to map on */}
-                    {vinyls.state === "success" ? <Carousel array={filterByText(vinyls, data.genreName, "genre")} /> : <h6>Loading...</h6>}
+                    <UseVinylsByGenre genre={data.genreName} title={"We think you might like these!"} />
 
                 </div>
             );
