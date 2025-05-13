@@ -72,32 +72,40 @@ export default function CheckoutForm({ clientSecret, orderId, customerData }) {
     };
 
     return (
-        <div className='position-relative'>
-            <div className="position-absolute end-0">
-                <OrderSummary />
-            </div>
-            <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
-                <CardElement />
-                {error && <p className="text-danger mt-2">{error}</p>}
+        <div className='position-relative container'>
+            <div className="row row-cols-2">
+                <div className="col">
+                    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
+                        <CardElement />
+                        {error && <p className="text-danger mt-2">{error}</p>}
 
-                {/* Displaying the message box */}
-                {paymentMessage && (
-                    <div
-                        className={`mt-3 p-3 text-white ${paymentMessage.type === 'success' ? 'bg-success' : 'bg-danger'}`}
-                        style={{ borderRadius: '5px' }}
-                    >
-                        {paymentMessage.text}
+                        {/* Displaying the message box */}
+                        {paymentMessage && (
+                            <div
+                                className={`mt-3 p-3 text-white ${paymentMessage.type === 'success' ? 'bg-success' : 'bg-danger'}`}
+                                style={{ borderRadius: '5px' }}
+                            >
+                                {paymentMessage.text}
+                            </div>
+                        )}
+
+                        <button
+                            type="submit"
+                            disabled={!stripe || loading || !clientSecret}
+                            className="btn btn-primary mt-3"
+                        >
+                            {loading ? "Processing..." : "Pay"}
+                        </button>
+                    </form>
+                </div>
+                <div className="col">
+                    <div id='order-summary-container'>
+                        <OrderSummary />
                     </div>
-                )}
+                </div>
+            </div>
 
-                <button
-                    type="submit"
-                    disabled={!stripe || loading || !clientSecret}
-                    className="btn btn-primary mt-3"
-                >
-                    {loading ? "Processing..." : "Pay"}
-                </button>
-            </form>
+
         </div>
 
     );
