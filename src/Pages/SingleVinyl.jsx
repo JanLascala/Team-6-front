@@ -47,7 +47,9 @@ export default function VinylSearch() {
                             className="img-fluid rounded shadow-sm"
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
-                        <AddToCartButton vinyl={data} />
+                        <div className="mt-3">
+                            <AddToCartButton vinyl={data} />
+                        </div>
                         <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
                     </div>
 
@@ -59,7 +61,7 @@ export default function VinylSearch() {
                                 <li className="list-group-item"><strong>Format:</strong> {data.formatName}</li>
                                 <li className="list-group-item"><strong>Release Date:</strong> {data.releaseDate}</li>
                                 <li className="list-group-item"><strong>Price:</strong> ${data.price}</li>
-                                <li className="list-group-item"><strong>Available:</strong> {data.nAvailable} in stock</li>
+                                <li className="list-group-item mt-2"><strong>Available:</strong> {data.nAvailable} in stock</li>
                             </ul>
                         </div>
 
