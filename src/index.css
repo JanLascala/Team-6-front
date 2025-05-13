@@ -46,20 +46,26 @@ body {
     }
 }
 
-#order-summary-container {
-    height: calc(100vh - var(--header-height));
+main {
+    padding: 3rem 0px;
 
-    #order-summary {
+    #order-summary-container {
         height: calc(100vh - var(--header-height));
-        display: flex;
-        flex-direction: column;
-        padding: 20px 0;
 
-        #order-summary-list {
-            overflow: auto;
+        #order-summary {
+            height: calc(100vh - var(--header-height));
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+
+            #order-summary-list {
+                overflow: auto;
+            }
         }
     }
 }
+
+
 
 footer {
     display: flex;
