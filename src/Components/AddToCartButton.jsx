@@ -1,8 +1,9 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useState } from "react";
 
+
 export default function AddToCartButton({ vinyl }) {
-    const { addToCart, cart } = useGlobalContext();
+    const { addToCart, cart, setIsCartOpen } = useGlobalContext();
     const [isAdded, setIsAdded] = useState(false);
     const isInCart = cart.some(item => item.slug === vinyl.slug);
     const currentItem = cart.find(item => item.slug === vinyl.slug)
@@ -15,6 +16,7 @@ export default function AddToCartButton({ vinyl }) {
 
 
         addToCart(vinyl);
+        setIsCartOpen(true);
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 1500);
     }

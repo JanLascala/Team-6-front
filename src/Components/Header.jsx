@@ -6,17 +6,9 @@ import { useState, useEffect } from "react";
 import Cart from '../Components/Cart'
 
 export default function Header() {
-    const { cart } = useGlobalContext();
-    const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        if (cart.length === 0) {
-            setShowModal(false);
-        }
-    }, [cart]);
-
+    const { cart, isCartOpen, setIsCartOpen } = useGlobalContext();
     const toggleModal = () => {
-        setShowModal(prev => !prev);
+        setIsCartOpen(prev => !prev);
     };
 
     return (
@@ -50,7 +42,7 @@ export default function Header() {
                 </div>
             </nav>
 
-            {showModal && (
+            {isCartOpen && (
                 <div className="side-modal-overlay" onClick={toggleModal}>
                     <div className="side-modal-content" onClick={e => e.stopPropagation()}>
                         <button className="modal-close-btn" onClick={toggleModal}>✖</button>
