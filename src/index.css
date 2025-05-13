@@ -2,7 +2,7 @@
 @import 'bootstrap-icons';
 
 :root {
-    --header-height: 60px;
+    --header-height: 90px;
     --primary-color: #99490c;
     --secondary-color: #ffd679;
     --tertiary-color: #000;
@@ -30,6 +30,14 @@
             align-items: center;
             padding-bottom: 1px;
         }
+    }
+}
+
+#order-summary-container {
+    height: calc(100vh - var(--header-height));
+
+    #order-summary {
+        height: calc(100vh - var(--header-height));
     }
 }
 
