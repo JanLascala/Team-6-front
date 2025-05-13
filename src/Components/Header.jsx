@@ -13,7 +13,7 @@ export default function Header() {
 
     return (
         <>
-            <nav id="headerNav" className="navbar navbar-expand-sm navbar-light bg-light shadow-sm sticky-top">
+            <nav id="headerNav" className="navbar navbar-expand-sm shadow-sm sticky-top">
                 <div className="container-fluid px-4">
                     <Link className="navbar-brand fw-bold" to="/">VinylStore</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
