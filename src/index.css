@@ -19,7 +19,7 @@
 }
 
 body {
-    background-color: var(--main-bg-test) !important;
+    background-color: var(--light-color) !important;
     color: var(--dark-color) !important;
 }
 
@@ -51,7 +51,7 @@ body {
 
 main {
     padding: 3rem 0px;
-    background-color: var(--secondary-color);
+    background-color: var(--light-color);
 
     #order-summary-container {
         height: calc(100vh - var(--header-height));
@@ -76,7 +76,7 @@ footer {
     gap: 1rem;
     padding: 1.5rem;
     align-items: center;
-    background-color: var(--light-color);
+    background-color: var(--dark-color);
 
     a:hover {
         text-decoration: underline;

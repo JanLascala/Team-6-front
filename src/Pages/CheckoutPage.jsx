@@ -1,31 +1,54 @@
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useGlobalContext } from '../Contexts/GlobalContext';
-
 import OrderSummary from '../Components/OrderSummary.jsx'
 
 export default function CheckoutForm({ clientSecret, orderId, customerData, cart }) {
-    console.log("This is the safe cart inside the checkout component!")
-    console.log(cart)
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const { clearCart } = useGlobalContext();
-    const [paymentMessage, setPaymentMessage] = useState(null); // State for message
-    console.log("checkoutform mounted");
-    console.log(`the orderId is ${orderId}`);
+    const [paymentMessage, setPaymentMessage] = useState(null);
+
+    // Common elements style
+    const commonOptions = {
+        style: {
+            base: {
+                fontSize: '16px',
+                color: '#424770',
+                fontFamily: 'Arial, sans-serif',
+                '::placeholder': {
+                    color: '#aab7c4',
+                },
+                padding: '10px',
+            },
+            invalid: {
+                color: '#9e2146',
+                iconColor: '#9e2146'
+            },
+        },
+        hidePostalCode: true,
+        hideIcon: true,
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setPaymentMessage(null); // Reset message
+        setPaymentMessage(null);
 
         if (!stripe || !elements || !clientSecret) return;
 
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
-                card: elements.getElement(CardElement),
+                card: elements.getElement(CardNumberElement),
+                billing_details: {
+                    name: customerData.name,
+                    email: customerData.email,
+                    address: {
+                        line1: customerData.address,
+                    },
+                },
             }
         });
 
@@ -107,11 +130,36 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
     };
 
     return (
-        <div className='position-relative container border rounded p-4'>
-            <div className="row row-cols-2">
-                <div className="col">
-                    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
-                        <CardElement />
+        <div className='position-relative container p-1'>
+            <div className="row">
+                <div className="col-md-6 pe-md-4">
+                    <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }} className="payment-form">
+                        <h4 className="mb-4">Payment details</h4>
+
+                        <div className="mb-3">
+                            <label className="form-label mb-2">Card number</label>
+                            <div className="form-control p-3 bg-light">
+                                <CardNumberElement options={commonOptions} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+
+                            <div className="col-6 mb-3">
+                                <label className="form-label mb-2">Expiration date</label>
+                                <div className="form-control p-3 bg-light">
+                                    <CardExpiryElement options={commonOptions} />
+                                </div>
+                            </div>
+
+                            <div className="col-6 mb-3">
+                                <label className="form-label mb-2">CVC</label>
+                                <div className="form-control p-3 bg-light">
+                                    <CardCvcElement options={commonOptions} />
+                                </div>
+                            </div>
+                        </div>
+
                         {error && <p className="text-danger mt-2">{error}</p>}
 
                         {/* Displaying the message box */}
@@ -127,21 +175,25 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
                         <button
                             type="submit"
                             disabled={!stripe || loading || !clientSecret}
-                            className="btn btn-primary mt-3"
+                            className="btn btn-primary mt-3 w-100"
                         >
-                            {loading ? "Processing..." : "Pay"}
+                            {loading ?
+                                <div className="d-flex align-items-center justify-content-center">
+                                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    <span>Loading...</span>
+                                </div>
+                                : "Pay"
+                            }
                         </button>
                     </form>
                 </div>
-                <div className="col">
+
+                <div className="col-md-6 ps-md-4 border-start">
                     <div id='order-summary-container'>
                         <OrderSummary />
                     </div>
                 </div>
             </div>
-
-
         </div>
-
     );
 }
