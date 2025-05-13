@@ -19,7 +19,7 @@
 }
 
 body {
-    background-color: var(--light-color) !important;
+    background-color: var(--main-bg-test) !important;
     color: var(--dark-color) !important;
 }
 
