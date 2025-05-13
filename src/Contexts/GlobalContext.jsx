@@ -8,6 +8,7 @@ function GlobalProvider({ children }) {
         state: "loading"
     });
     const [cart, setCart] = useState([]);
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
     const addToCart = (vinyl) => {
         if (vinyl.nAvailable === 0) {
@@ -107,7 +108,9 @@ function GlobalProvider({ children }) {
                 decrementQuantity,
                 removeFromCart,
                 clearCart,
-                clearCartAfterPayment
+                clearCartAfterPayment,
+                isCartOpen,
+                setIsCartOpen,
             }}
         >
             {children}
