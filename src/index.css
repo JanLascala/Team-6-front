@@ -107,7 +107,7 @@ footer {
     padding: 20px;
     width: 100%;
     height: calc(100vh - 90px);
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     position: relative;
     transition: transform 0.3s ease-in-out;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
@@ -117,20 +117,18 @@ footer {
 #cart-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    /* Altezza fissa per occupare tutta la pagina */
+    height: 100%;
+    overflow-y: auto;
+    /* ora scrolla tutto il contenitore cart */
     position: relative;
 }
 
 .cart-items-container {
     flex-grow: 1;
-    /* Permette alla sezione degli item di occupare lo spazio disponibile */
-    overflow-y: auto;
-    /* Abilita lo scrolling verticale */
     padding: 10px;
-    /* Spazio interno per gli item */
     box-sizing: border-box;
-    /* Assicura che il padding non alteri le dimensioni */
+    overflow-y: visible;
+    /* togli lo scroll da qui */
 }
 
 .modal-footer {
