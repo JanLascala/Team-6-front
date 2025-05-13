@@ -3,6 +3,9 @@
 
 :root {
     --header-height: 60px;
+    --primary-color: #99490c;
+    --secondary-color: #ffd679;
+    --tertiary-color: #000;
 }
 
 #headerNav {
