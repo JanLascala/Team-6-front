@@ -4,7 +4,9 @@ import { useGlobalContext } from '../Contexts/GlobalContext';
 
 import OrderSummary from '../Components/OrderSummary.jsx'
 
-export default function CheckoutForm({ clientSecret, orderId, customerData }) {
+export default function CheckoutForm({ clientSecret, orderId, customerData, cart }) {
+    console.log("This is the safe cart inside the checkout component!")
+    console.log(cart)
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
@@ -45,27 +47,60 @@ export default function CheckoutForm({ clientSecret, orderId, customerData }) {
             }
         }
 
-        await updateOrderStatus(orderId);
+        await updateOrderStatus(orderId, cart);
     };
 
-    const updateOrderStatus = async (orderId) => {
+    const updateOrderStatus = async (orderId, cart) => {
         try {
             const response = await fetch('http://localhost:3000/orders/change-order-status', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ orderId, customerEmail: customerData.email, customerAddress: customerData.address, customerName: customerData.name, customerPhone: customerData.phone }),
-
+                body: JSON.stringify({
+                    orderId,
+                    customerEmail: customerData.email,
+                    customerAddress: customerData.address,
+                    customerName: customerData.name,
+                    customerPhone: customerData.phone
+                }),
             });
 
             const result = await response.json();
 
             if (response.ok) {
-                console.log(`Order status updated: ${result.message}`);
+                console.log(`Response from server: ${result.message}`);
+
+                if (result.message.toLowerCase().includes('succeeded')) {
+                    console.log('Payment confirmed, proceeding to update stock...');
+
+                    const updates = cart.map(item => ({
+                        slug: item.slug,
+                        nAvailable: item.nAvailable - item.quantity
+                    }));
+
+                    const stockUpdateResponse = await fetch('http://localhost:3000/api/vinyls/update_quantity', {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ updates }),
+                    });
+
+                    const stockUpdateResult = await stockUpdateResponse.json();
+
+                    if (stockUpdateResponse.ok) {
+                        console.log('Stock updated:', stockUpdateResult.message);
+                    } else {
+                        console.error('Failed to update stock:', stockUpdateResult.error);
+                    }
+                } else {
+                    console.warn('Payment did not succeed. Skipping stock update.');
+                }
             } else {
                 console.error(`Failed to update order status: ${result.error}`);
             }
+
         } catch (err) {
             console.error('Error updating order status:', err);
         }
