@@ -3,9 +3,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Jumbotron() {
+    const carouselStyle = {
+        height: '600px',
+    };
+
+    const imageContainerStyle = {
+        height: '600px',
+        width: '100%',
+        overflow: 'hidden',
+        position: 'relative'
+    };
+
+    const imageStyle = {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: 'center'
+    };
 
     return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={carouselStyle}>
             <ol className="carousel-indicators">
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active"></li>
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
@@ -13,13 +30,19 @@ function Jumbotron() {
             </ol>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img className="d-block w-100 carousel-img" src="https://www.qdnapoli.it/images/vinile.jpg" alt="First slide" />
+                    <div style={imageContainerStyle}>
+                        <img className="d-block carousel-img" src="https://www.qdnapoli.it/images/vinile.jpg" alt="First slide" style={imageStyle} />
+                    </div>
                 </div>
                 <div className="carousel-item">
-                    <img className="d-block w-100 carousel-img" src="https://venditaviniliusati.it/wp-content/uploads/2017/09/Valutazione-dischi-vinile-usati.jpg" alt="Second slide" />
+                    <div style={imageContainerStyle}>
+                        <img className="d-block carousel-img" src="https://venditaviniliusati.it/wp-content/uploads/2017/09/Valutazione-dischi-vinile-usati.jpg" alt="Second slide" style={imageStyle} />
+                    </div>
                 </div>
                 <div className="carousel-item">
-                    <img className="d-block w-100 carousel-img" src="https://www.miraloop.com/upload/img/music-vintage-vinyl-favim.com-434847.jpg" alt="Third slide" />
+                    <div style={imageContainerStyle}>
+                        <img className="d-block carousel-img" src="https://www.miraloop.com/upload/img/music-vintage-vinyl-favim.com-434847.jpg" alt="Third slide" style={imageStyle} />
+                    </div>
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
