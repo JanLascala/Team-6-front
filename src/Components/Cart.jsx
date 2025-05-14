@@ -51,8 +51,7 @@ export default function Cart({ onClose }) {
                                     <div className="d-flex align-items-center gap-2 flex-wrap">
                                         <button
                                             className="btn btn-outline-secondary"
-                                            onClick={() => decrementQuantity(item.slug)}
-                                            disabled={item.quantity <= 1}
+                                            onClick={() => item.quantity > 0 ? decrementQuantity(item.slug) : removeFromCart(item.slug)}
                                         >
                                             <i className="bi bi-dash-lg"></i>
                                         </button>
