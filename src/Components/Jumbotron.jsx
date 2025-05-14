@@ -5,6 +5,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function Jumbotron() {
     const carouselStyle = {
         height: '600px',
+        marginBottom: '30px',
+        marginTop: 0,
+        marginLeft: 0,
+        marginRight: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        width: '100%',
+        maxWidth: '100%',
+        borderRadius: 0,
     };
 
     const imageContainerStyle = {
