@@ -43,7 +43,7 @@ function Carousel({ array = [] }) {
     return (
         <div id="shop-section" className="container py-3">
             <div className="d-flex align-items-center justify-content-around">
-                <button className="btn btn-outline-secondary" onClick={handlePrev} disabled={page === 0}>
+                <button className="btn btn-outline-secondary me-3" onClick={handlePrev} disabled={page === 0}>
                     ‹
                 </button>
 
@@ -84,7 +84,7 @@ function Carousel({ array = [] }) {
                     ))}
                 </div>
 
-                <button className="btn btn-outline-secondary" onClick={handleNext} disabled={page === totalPages - 1}>
+                <button className="btn btn-outline-secondary ms-3" onClick={handleNext} disabled={page === totalPages - 1}>
                     ›
                 </button>
             </div>
