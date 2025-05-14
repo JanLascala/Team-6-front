@@ -36,7 +36,7 @@ export default function VinylSearch() {
             return (
                 <div className="container my-5">
                     <div className="text-center mb-4 mt-5">
-                        <h1 className="display-4">{data.title}</h1>
+                        <h1 className="display-4 mb-5">{data.title}</h1>
                         <img
                             src={data.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
                             onError={(e) => {
@@ -92,11 +92,11 @@ export default function VinylSearch() {
                         <p className="text-muted">{data.publisherDescription}</p>
                     </div>
 
-                    <div>
-                        <h3>Track List <span className="badge bg-secondary">{data.tracksNumber} tracks</span></h3>
+                    <div className="mb-5">
+                        <h3>Track List <span className="badge bg-secondary mb-2">{data.tracksNumber} tracks</span></h3>
                         <ol className="list-group list-group-numbered mt-3">
                             {data.tracks.map((track, index) => (
-                                <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                                <li key={index} className="list-group-item d-flex flex-row justify-content-between align-items-center">
                                     {track.name}
                                     <span className="badge bg-primary rounded-pill">{track.length}</span>
                                 </li>
