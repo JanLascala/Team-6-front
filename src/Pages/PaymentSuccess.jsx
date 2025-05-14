@@ -11,7 +11,7 @@ export default function PaymentSuccess() {
                 <p className="mb-0">Your order has been placed and will be processed shortly.</p>
             </div>
 
-            <Link to="/" className="btn btn-primary btn-lg px-5">
+            <Link to="/" className="btn btn-dark btn-lg px-5">
                 Return to Homepage
             </Link>
         </div>

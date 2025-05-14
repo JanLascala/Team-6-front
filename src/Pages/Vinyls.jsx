@@ -25,21 +25,22 @@ export default function Vinyls() {
         if (sortValue) setSortByValue(sortValue);
         if (filter) setFilterValue(filter);
 
-        if (searchQuery && searchQuery.trim()) {
-            setShowResults(true);
-            fetchVinyls(searchQuery, filter || "all");
-        } else {
-            setShowResults(false);
-        }
+        // Always show results, fetch based on current query
+        setShowResults(true);
+        fetchVinyls(searchQuery || "", filter || "all");
     }, [location.search]);
 
     const fetchVinyls = (searchQuery, filterValue) => {
-        fetch(
-            `http://localhost:3000/api/vinyls/search?filter=${filterValue}&search=${searchQuery}`
-        )
+        // If searchQuery is empty, fetch all vinyls
+        const endpoint = searchQuery.trim()
+            ? `http://localhost:3000/api/vinyls/search?filter=${filterValue}&search=${searchQuery}`
+            : `http://localhost:3000/api/vinyls`;
+
+        fetch(endpoint)
             .then((res) => res.json())
             .then((data) => {
                 setSearchResults(data);
+                setShowResults(true); // Always show results
             })
             .catch((err) => console.error("Error fetching vinyls:", err));
     };
@@ -47,15 +48,12 @@ export default function Vinyls() {
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setQuery(value);
-        setShowResults(value.trim() !== "");
+        setShowResults(true); // Always show results, even when empty
 
         updateURL(value, sortByValue, filterValue);
 
-        if (value.trim()) {
-            fetchVinyls(value, filterValue);
-        } else {
-            setSearchResults([]);
-        }
+        // Fetch all vinyls when empty or fetch filtered results
+        fetchVinyls(value, filterValue);
     };
 
     const handleSortChange = (e) => {
@@ -95,9 +93,6 @@ export default function Vinyls() {
                             value={query}
                             onChange={handleSearchChange}
                         />
-                        <button className="btn btn-primary" type="button">
-                            <i className="bi bi-search"></i>
-                        </button>
                     </div>
                 </div>
 
@@ -192,7 +187,7 @@ export default function Vinyls() {
                         </div>
                     ))
                 ) : (
-                    <div className="col-12">
+                    <div className="w-100">
                         <div className="alert alert-info">
                             No vinyls found matching your search criteria.
                         </div>
