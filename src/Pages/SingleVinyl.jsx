@@ -6,32 +6,67 @@ import ServerErrorPage from "./ServerErrorPage";
 import AddToCartButton from "../Components/AddToCartButton";
 import UseVinylsByGenre from "../hooks/UseVinylsByGenre"
 
+
 export default function VinylSearch() {
     const { vinyls } = useGlobalContext();
-    console.log(vinyls)
     const { slug } = useParams();
     const [singleVinyl, setSingleVinyl] = useState({ state: 'loading' });
 
     useEffect(() => {
+        // Prima cerca nei vinili già caricati nel contesto globale
+        if (vinyls.state === "success") {
+            const existingVinyl = vinyls.vinyl_data.find(v => v.slug === slug);
+            if (existingVinyl) {
+                setSingleVinyl({ state: "success", vinyl_data: existingVinyl });
+                return;
+            }
+        }
+
+
         fetch(`http://localhost:3000/api/vinyls/single-vinyl/${slug}`)
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) throw new Error('Network response was not ok');
+                return res.json();
+            })
             .then((data) => {
-                //console.log(data);
-                setSingleVinyl({ state: "success", vinyl_data: data });
+                if (!data) throw new Error('No data received');
+
+                const safeData = {
+                    ...data,
+                    tracks: Array.isArray(data.tracks) ? data.tracks : []
+                };
+
+                setSingleVinyl({ state: "success", vinyl_data: safeData });
             })
             .catch((err) => {
-                //console.error(err);
-                setSingleVinyl({ state: 'error', message: `error type: ${err}` });
+                console.error('Fetch error:', err);
+                setSingleVinyl({ state: 'error', message: err.message });
             });
-    }, [slug]);
+    }, [slug, vinyls]);
 
     switch (singleVinyl.state) {
-
         case 'loading':
             return <LoadingUi />;
 
         case 'success': {
             const data = singleVinyl.vinyl_data;
+
+            const renderTrackList = () => {
+                if (!data.tracks || data.tracks.length === 0) {
+                    return <p>No tracks available</p>;
+                }
+
+                return (
+                    <ol className="list-group list-group-numbered mt-3">
+                        {data.tracks.map((track, index) => (
+                            <li key={index} className="list-group-item d-flex flex-row justify-content-between align-items-center">
+                                {track.name}
+                                <span className="badge bg-primary rounded-pill">{track.length}</span>
+                            </li>
+                        ))}
+                    </ol>
+                );
+            };
 
             return (
                 <div className="container my-5">
@@ -87,25 +122,11 @@ export default function VinylSearch() {
                     </div>
 
                     <div className="mb-5">
-                        <h3>Publisher</h3>
-                        <p><strong>{data.publisherName}</strong></p>
-                        <p className="text-muted">{data.publisherDescription}</p>
-                    </div>
-
-                    <div className="mb-5">
-                        <h3>Track List <span className="badge bg-secondary mb-2">{data.tracksNumber} tracks</span></h3>
-                        <ol className="list-group list-group-numbered mt-3">
-                            {data.tracks.map((track, index) => (
-                                <li key={index} className="list-group-item d-flex flex-row justify-content-between align-items-center">
-                                    {track.name}
-                                    <span className="badge bg-primary rounded-pill">{track.length}</span>
-                                </li>
-                            ))}
-                        </ol>
+                        <h3>Track List <span className="badge bg-secondary mb-2">{data.tracks?.length || 0} tracks</span></h3>
+                        {renderTrackList()}
                     </div>
 
                     <UseVinylsByGenre genre={data.genreName} title={"We think you might like these!"} />
-
                 </div>
             );
         }
