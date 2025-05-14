@@ -53,6 +53,10 @@ main {
     padding: 3rem 0px;
     background-color: var(--light-color);
 
+    .vinyls-page-card {
+        text-decoration: none;
+    }
+
     #order-summary-container {
         height: calc(100vh - var(--header-height));
 

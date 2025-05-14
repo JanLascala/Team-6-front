@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import sortBy from "../functions/sortBy";
+import AddToCartButton from "../Components/AddToCartButton";
 
 export default function Vinyls() {
     const { vinyls } = useGlobalContext();
@@ -164,32 +165,30 @@ export default function Vinyls() {
                 ) : sortedVinyls.length > 0 ? (
                     sortedVinyls.map((vinyl) => (
                         <div key={vinyl.slug} className="col">
-                            <div className="card h-100">
-                                <img
-                                    src={"http://localhost:3000/vinyl_placeholder.png"}
-                                    className="card-img-top"
-                                    alt={vinyl.title}
-                                    style={{ height: "200px", objectFit: "cover" }}
-                                />
-                                <div className="card-body">
-                                    <h5 className="card-title">{vinyl.title}</h5>
-                                    <p className="card-text text-muted mb-1">
-                                        {vinyl.authorName}
-                                    </p>
-                                    <p className="card-text">
-                                        <small>{vinyl.genreName}</small>
-                                    </p>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <span className="fs-5 fw-bold">€{vinyl.price}</span>
-                                        <Link
-                                            to={`/products/${vinyl.slug}`}
-                                            className="btn btn-sm btn-outline-primary"
-                                        >
-                                            View Details
-                                        </Link>
+                            <Link
+                                to={`/products/${vinyl.slug}`}
+                                className='text-decoration-none'>
+                                <div className="card h-100 vinyls-page-card">
+                                    <img
+                                        src={"http://localhost:3000/vinyl_placeholder.png"}
+                                        className="card-img-top"
+                                        alt={vinyl.title}
+                                        style={{ height: "200px", objectFit: "cover" }}
+                                    />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{vinyl.title}</h5>
+                                        <p className="card-text text-muted mb-1">
+                                            {vinyl.authorName}
+                                        </p>
+                                        <p className="card-text">
+                                            <small>{vinyl.genreName}</small>
+                                        </p>
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <span className="fs-5 fw-bold">€{vinyl.price}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ))
                 ) : (
@@ -200,6 +199,6 @@ export default function Vinyls() {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 }

@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <>
             <footer className="text-white">
-                <div>© 2025 Il tuo negozio di vinili</div>
+                <div>© 2025 VinylStore</div>
                 <div className="d-flex gap-3">
                     <Link to="/about" className="nav-link"><div className="text-white">About us</div></Link>
                     <Link to="/contact" className="nav-link"><div className="text-white">Contacts</div></Link>

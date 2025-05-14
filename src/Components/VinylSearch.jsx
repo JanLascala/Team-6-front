@@ -82,7 +82,7 @@ export default function VinylSearch() {
 
     return (
         <>
-            <div className="position-relative w-100">
+            <div className="position-relative" style={{ width: "250px" }}>
                 <input
                     id="search-bar"
                     type="search"
