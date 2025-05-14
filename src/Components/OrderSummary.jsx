@@ -3,7 +3,7 @@ import { useGlobalContext } from "../Contexts/GlobalContext";
 export default function CartSummary() {
     const { cart } = useGlobalContext();
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shippingCost = subtotal >= 100 ? 0 : 12;
+    const shippingCost = subtotal >= 100 || subtotal == 0 ? 0 : 12;
     const total = subtotal + shippingCost;
 
     return (

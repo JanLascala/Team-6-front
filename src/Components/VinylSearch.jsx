@@ -48,8 +48,6 @@ export default function VinylSearch() {
         setQuery(value);
         setShowResults(value.trim() !== "");
 
-        updateURL(value, sortByValue, filterValue);
-
         if (value.trim()) {
             fetchVinyls(value, filterValue);
         } else {
@@ -60,24 +58,27 @@ export default function VinylSearch() {
     const handleSortChange = (e) => {
         const value = e.target.value;
         setSortByValue(value);
-        updateURL(query, value, filterValue);
     };
 
     const handleFilterChange = (value) => {
         setFilterValue(value);
-        updateURL(query, sortByValue, value);
         fetchVinyls(query, value);
     };
 
-    const updateURL = (search, sort, filter) => {
-        const params = new URLSearchParams(location.search);
-        if (search) params.set("search", search);
-        if (sort) params.set("sort", sort);
-        if (filter) params.set("filter", filter);
-        navigate(`${location.pathname}?${params.toString()}`);
+    const handleLoadMore = () => {
+        const params = new URLSearchParams();
+        params.set("search", query);
+        params.set("sort", sortByValue);
+        params.set("filter", filterValue);
+        navigate(`/vinyls?${params.toString()}`);
+        setShowResults(false); 
     };
 
     const sortedVinyls = sortBy(sortByValue, searchResults);
+
+    const limitedResults = sortedVinyls.slice(0, 5);
+
+    const hasMoreResults = sortedVinyls.length > 5;
 
     return (
         <>
@@ -98,6 +99,7 @@ export default function VinylSearch() {
                             zIndex: 1000,
                             maxHeight: "500px",
                             overflowY: "auto",
+                            width: "100%"
                         }}
                     >
                         <h5 className="mb-2">Search Results</h5>
@@ -138,34 +140,46 @@ export default function VinylSearch() {
                             <p>Loading...</p>
                         ) : vinyls.state === "error" ? (
                             <p className="text-danger">Error fetching vinyls</p>
-                        ) : sortedVinyls.length > 0 ? (
-                            <div className="list-group">
-                                {sortedVinyls.map((vinyl) => (
-                                    <Link
-                                        key={vinyl.slug}
-                                        to={`/products/${vinyl.slug}`}
-                                        className="list-group-item list-group-item-action"
-                                    >
-                                        <div className="d-flex align-items-center">
-                                            <img
-                                                src={"http://localhost:3000/vinyl_placeholder.png"}
-                                                alt={vinyl.title}
-                                                className="me-3"
-                                                style={{ width: "50px", height: "50px", objectFit: "cover" }}
-                                            />
-                                            <div>
-                                                <h6 className="mb-0">{vinyl.title}</h6>
-                                                <small className="text-muted">
-                                                    {vinyl.authorName} • {vinyl.genreName}
-                                                </small>
-                                                <div className="text-primary">
-                                                    €{vinyl.price} {vinyl.releaseDate}
+                        ) : limitedResults.length > 0 ? (
+                            <>
+                                <div className="list-group">
+                                    {limitedResults.map((vinyl) => (
+                                        <Link
+                                            key={vinyl.slug}
+                                            to={`/products/${vinyl.slug}`}
+                                            className="list-group-item list-group-item-action"
+                                            onClick={() => setShowResults(false)}
+                                        >
+                                            <div className="d-flex align-items-center">
+                                                <img
+                                                    src={"http://localhost:3000/vinyl_placeholder.png"}
+                                                    alt={vinyl.title}
+                                                    className="me-3"
+                                                    style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                                                />
+                                                <div>
+                                                    <h6 className="mb-0">{vinyl.title}</h6>
+                                                    <small className="text-muted">
+                                                        {vinyl.authorName} • {vinyl.genreName}
+                                                    </small>
+                                                    <div className="text-primary">
+                                                        €{vinyl.price} {vinyl.releaseDate}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+
+                                {hasMoreResults && (
+                                    <button
+                                        onClick={handleLoadMore}
+                                        className="btn btn-outline-primary w-100 mt-2"
+                                    >
+                                        Load More Results ({sortedVinyls.length - 5} more)
+                                    </button>
+                                )}
+                            </>
                         ) : (
                             <p className="text-muted mb-0">No results found</p>
                         )}

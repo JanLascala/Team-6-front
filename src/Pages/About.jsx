@@ -72,9 +72,6 @@ export default function About() {
                         <Link to="/vinyls" className="btn btn-dark btn-lg px-4">
                             Browse Our Collection
                         </Link>
-                        <Link to="/contact" className="btn btn-outline-dark btn-lg px-4">
-                            Contact Us
-                        </Link>
                     </div>
                 </div>
             </div>
