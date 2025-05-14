@@ -40,7 +40,7 @@ export default function VinylsByFormat({ format, title }) {
         case 'success':
             return (
                 <>
-                    <h1>{title}</h1>
+                    <h1 id="shop-section" className="mb-4 text-center">{title}</h1>
                     <Carousel array={carouselVinyls.vinyl_data} />
                 </>
             );

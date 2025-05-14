@@ -22,7 +22,7 @@ function Jumbotron() {
     };
 
     return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={carouselStyle}>
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" /* style={carouselStyle} */>
             <ol className="carousel-indicators">
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active"></li>
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
@@ -32,16 +32,25 @@ function Jumbotron() {
                 <div className="carousel-item active">
                     <div style={imageContainerStyle}>
                         <img className="d-block carousel-img" src="https://www.qdnapoli.it/images/vinile.jpg" alt="First slide" style={imageStyle} />
+                        <a href="#shop-section" className="btn btn-dark position-absolute top-50 start-50 translate-middle">
+                            Shop Now
+                        </a>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <div style={imageContainerStyle}>
                         <img className="d-block carousel-img" src="https://venditaviniliusati.it/wp-content/uploads/2017/09/Valutazione-dischi-vinile-usati.jpg" alt="Second slide" style={imageStyle} />
+                        <a href="#shop-section" className="btn btn-dark position-absolute top-50 start-50 translate-middle">
+                            Shop Now
+                        </a>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <div style={imageContainerStyle}>
                         <img className="d-block carousel-img" src="https://www.miraloop.com/upload/img/music-vintage-vinyl-favim.com-434847.jpg" alt="Third slide" style={imageStyle} />
+                        <a href="#shop-section" className="btn btn-dark position-absolute top-50 start-50 translate-middle">
+                            Shop Now
+                        </a>
                     </div>
                 </div>
             </div>

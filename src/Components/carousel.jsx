@@ -41,7 +41,7 @@ function Carousel({ array = [] }) {
     const visibleItems = array.slice(startIndex, startIndex + itemsPerPage);
 
     return (
-        <div className="container py-3">
+        <div id="shop-section" className="container py-3">
             <div className="d-flex align-items-center justify-content-around">
                 <button className="btn btn-outline-secondary" onClick={handlePrev} disabled={page === 0}>
                     ‹
