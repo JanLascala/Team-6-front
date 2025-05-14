@@ -15,36 +15,37 @@ export default function Header() {
 
     return (
         <>
+
             <nav id="headerNav" className="navbar navbar-expand-sm shadow-sm sticky-top">
-                <div className="container-fluid px-4">
-                    <Link className="navbar-brand fw-bold text-light" to="/">VinylStore</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarContent">
-                        <ul className="navbar-nav me-auto gap-3">
-                            <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
-                            <li className="nav-item"><Link className="nav-link text-light" to="/vinyls">Vinyls</Link></li>
-                            <li className="nav-item"><Link className="nav-link text-light" to="/about">About</Link></li>
-                        </ul>
-
-                        <div id="header-right-section" className="d-flex align-items-center gap-2">
-                            {!isVinylsPage && (
-                                <div className="d-flex align-items-center">
-                                    <VinylSearch />
-                                </div>
-                            )}
-                            <div className="navbar-nav ms-auto">
-                                <button className="nav-link btn btn-link position-relative p-2 d-flex" onClick={toggleModal}>
-                                    <i className="bi bi-cart-plus fs-5 text-light"></i>
-                                    {cart.length > 0 && <div id="cart-quantity" className="bg-primary">{cart.length}</div>}
-                                </button>
+                <div className="container-fluid px-4 d-flex justify-content-between align-items-center">
+                    <div className="d-flex align-items-center gap-3">
+                        <Link className="navbar-brand fw-bold text-light" to="/">VinylStore</Link>
+                        {!isVinylsPage && (
+                            <div className="d-flex align-items-center">
+                                <VinylSearch />
                             </div>
+                        )}
+                    </div>
+
+                    <div className="d-flex align-items-center gap-3">
+                        <div className="collapse navbar-collapse" id="navbarContent">
+                            <ul className="navbar-nav me-auto gap-3">
+                                <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
+                                <li className="nav-item"><Link className="nav-link text-light" to="/vinyls">Vinyls</Link></li>
+                                <li className="nav-item"><Link className="nav-link text-light" to="/about">About</Link></li>
+                            </ul>
+                        </div>
+
+                        <div className="navbar-nav">
+                            <button className="nav-link btn btn-link position-relative p-2 d-flex" onClick={toggleModal}>
+                                <i className="bi bi-cart-plus fs-5 text-light"></i>
+                                {cart.length > 0 && <div id="cart-quantity" className="bg-primary">{cart.length}</div>}
+                            </button>
                         </div>
                     </div>
                 </div>
             </nav>
+
 
             {isCartOpen && (
                 <div className="side-modal-overlay" onClick={toggleModal}>
