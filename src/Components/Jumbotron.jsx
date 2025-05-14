@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Jumbotron() {
     const carouselStyle = {
-        height: '600px',
+        height: '700px',
         marginBottom: '30px',
         marginTop: 0,
         marginLeft: 0,
@@ -17,7 +17,7 @@ function Jumbotron() {
     };
 
     const imageContainerStyle = {
-        height: '600px',
+        height: '650px',
         width: '100%',
         overflow: 'hidden',
         position: 'relative'

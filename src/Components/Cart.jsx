@@ -20,7 +20,7 @@ export default function Cart({ onClose }) {
     }
 
     return (
-        <div id="cart-container" className="position-absolute bottom-0" style={{
+        <div id="cart-container" className="position-absolute bottom-0 text-dark" style={{
             padding: "0px",
             display: "flex",
             flexDirection: "column",

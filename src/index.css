@@ -45,21 +45,21 @@ body {
             width: 100%;
             color: var(--dark-color);
         }
+    }
 
-        #cart-quantity {
-            border-radius: 50%;
-            color: white;
-            width: 17px;
-            height: 17px;
-            position: absolute;
-            top: 25px;
-            left: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-bottom: 1px;
-            transform: translate(40%, -40%);
-        }
+    #cart-quantity {
+        border-radius: 50%;
+        color: white;
+        width: 17px;
+        height: 17px;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 1px;
+        transform: translate(40%, -40%);
     }
 }
 
@@ -96,12 +96,11 @@ main {
     }
 
     .carousel-item {
-        margin-bottom: 200px;
+        margin-bottom: 100px;
     }
 
     #shop-section {
-        scroll-margin-top: 120px;
-
+        scroll-margin-top: 150px;
     }
 
     .btn-shop-now {
