@@ -39,7 +39,7 @@ export default function VinylsRecent({ title }) {
         case 'success':
             return (
                 <>
-                    <h1>{title}</h1>
+                    <h2 className='carousel-title'>{title}</h2>
                     <Carousel array={carouselVinyls.vinyl_data} />
                 </>
             );
