@@ -24,13 +24,18 @@ body {
 }
 
 #headerNav {
-    background-color: var(--light-color);
+    background-color: var(--primary-color-2);
 
     #header-right-section {
         width: 300px;
 
+        ul {
+            color: white !important;
+        }
+
         #search-bar {
             width: 100%;
+            color: var(--dark-color);
         }
 
         #cart-quantity {
@@ -51,7 +56,6 @@ body {
 
 main {
     padding: 3rem 0px;
-    background-color: var(--light-color);
 
     .vinyls-page-card {
         text-decoration: none;
@@ -80,7 +84,7 @@ footer {
     gap: 1rem;
     padding: 1.5rem;
     align-items: center;
-    background-color: var(--dark-color);
+    background-color: var(--primary-color-2);
 
     a:hover {
         text-decoration: underline;
@@ -232,7 +236,15 @@ div {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
