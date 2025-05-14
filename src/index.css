@@ -15,16 +15,21 @@
     --secondary-test: #795548;
     --tertiary-test: #D7CCC8;
     --light-text-test: #F5F5F5;
+    --main-bg-test: #ccb9ac;
     --link-test: #FFB300;
+    --def-dark: #21211f;
+    --def-primary: #cd3c2a;
+    --def-secondary: #da9b68;
+    --def-tertiary: #faf9db;
 }
 
 body {
-    background-color: var(--light-color) !important;
+    background-color: var(--def-tertiary) !important;
     color: var(--dark-color) !important;
 }
 
 #headerNav {
-    background-color: var(--primary-color-2);
+    background-color: var(--def-primary);
 
     #header-right-section {
         width: 300px;
@@ -59,6 +64,20 @@ main {
 
     .vinyls-page-card {
         text-decoration: none;
+    }
+
+    #jumbotron {
+        background-image: url(https://music.it/wp-content/uploads/2021/11/disco-in-vinile-e1636389013344.jpeg);
+        height: 500px;
+
+        #carouselExampleIndicators {
+            height: 300px;
+            
+            img {
+                max-height: 400px;
+            }
+        }
+
     }
 
     #order-summary-container {
