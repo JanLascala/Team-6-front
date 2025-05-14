@@ -47,7 +47,7 @@ export default function VinylSearch() {
                             className="img-fluid rounded shadow-sm"
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
-                        <div className="mt-5 mb-2">
+                        <div className="mt-3">
                             <AddToCartButton vinyl={data} />
                         </div>
                         <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
