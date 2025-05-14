@@ -63,14 +63,11 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
             if (result.paymentIntent.status === 'succeeded') {
                 setPaymentMessage({ text: 'Payment successful!', type: 'success' });
 
-                if (clearCart) {
-                    clearCart();
-                    console.log("Carrello svuotato");
-                }
-
                 await updateOrderStatus(orderId, cart);
 
                 navigate('/payment-success');
+                clearCart();
+                console.log("Carrello svuotato");
             } else {
                 setPaymentMessage({ text: 'Payment failed!', type: 'error' });
             }
