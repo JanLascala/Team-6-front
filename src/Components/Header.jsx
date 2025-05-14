@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import VinylSearch from "./VinylSearch";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useGlobalContext } from "../Contexts/GlobalContext";
@@ -6,6 +6,9 @@ import Cart from '../Components/Cart'
 
 export default function Header() {
     const { cart, isCartOpen, setIsCartOpen } = useGlobalContext();
+    const location = useLocation();
+    const isVinylsPage = location.pathname === "/vinyls";
+
     const toggleModal = () => {
         setIsCartOpen(prev => !prev);
     };
@@ -26,12 +29,14 @@ export default function Header() {
                             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                         </ul>
 
-                        <div id="header-right-section" className="d-flex align-items-center justify-content-between gap-2">
-                            <div className="d-flex align-items-center w-100">
-                                <VinylSearch />
-                            </div>
-                            <div className="navbar-nav">
-                                <button className="nav-link btn btn-link position-relative p-2" onClick={toggleModal}>
+                        <div id="header-right-section" className="d-flex align-items-center gap-2">
+                            {!isVinylsPage && (
+                                <div className="d-flex align-items-center">
+                                    <VinylSearch />
+                                </div>
+                            )}
+                            <div className="navbar-nav ms-auto">
+                                <button className="nav-link btn btn-link position-relative p-2 d-flex" onClick={toggleModal}>
                                     <i className="bi bi-cart-plus fs-5"></i>
                                     {cart.length > 0 && <div id="cart-quantity" className="bg-primary">{cart.length}</div>}
                                 </button>
