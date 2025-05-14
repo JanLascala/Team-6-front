@@ -1,7 +1,8 @@
-import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import { useGlobalContext } from '../Contexts/GlobalContext';
-import OrderSummary from '../Components/OrderSummary.jsx'
+import { useNavigate } from 'react-router-dom';
+import OrderSummary from '../Components/OrderSummary.jsx';
 
 export default function CheckoutForm({ clientSecret, orderId, customerData, cart }) {
     const stripe = useStripe();
@@ -10,6 +11,7 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
     const [error, setError] = useState(null);
     const { clearCart } = useGlobalContext();
     const [paymentMessage, setPaymentMessage] = useState(null);
+    const navigate = useNavigate();
 
     // Common elements style
     const commonOptions = {
@@ -56,7 +58,7 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
 
         if (result.error) {
             setError(result.error.message);
-            setPaymentMessage({ text: `Payment failed: ${result.error.message}`, type: 'error' });
+            setPaymentMessage({ text: 'Payment failed!', type: 'error' });
         } else {
             if (result.paymentIntent.status === 'succeeded') {
                 setPaymentMessage({ text: 'Payment successful!', type: 'success' });
@@ -65,12 +67,14 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
                     clearCart();
                     console.log("Carrello svuotato");
                 }
+
+                await updateOrderStatus(orderId, cart);
+
+                navigate('/payment-success');
             } else {
                 setPaymentMessage({ text: 'Payment failed!', type: 'error' });
             }
         }
-
-        await updateOrderStatus(orderId, cart);
     };
 
     const updateOrderStatus = async (orderId, cart) => {
