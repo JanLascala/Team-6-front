@@ -47,6 +47,19 @@ function GlobalProvider({ children }) {
                 )
                 : [...prevCart, { ...vinyl, quantity: 1, nAvailable: vinyl.nAvailable }];
         });
+
+        setVinyls(prevVinyls => {
+            if (prevVinyls.state !== "success") return prevVinyls;
+
+            return {
+                ...prevVinyls,
+                vinyl_data: prevVinyls.vinyl_data.map(v =>
+                    v.slug === vinyl.slug
+                        ? { ...v, nAvailable: v.nAvailable - 1 }
+                        : v
+                )
+            };
+        });
     };
 
     const incrementQuantity = (slug) => {
@@ -75,6 +88,7 @@ function GlobalProvider({ children }) {
                 .filter(item => item.quantity > 0)
         );
     };
+
 
     useEffect(() => {
         if (vinyls.state === "success" && vinyls.vinyl_data) {
@@ -130,6 +144,7 @@ function GlobalProvider({ children }) {
         setCart([]);
         localStorage.removeItem('cart');
     };
+
 
     return (
         <GlobalContext.Provider
