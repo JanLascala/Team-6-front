@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart({ onClose }) {
-    const { cart, incrementQuantity, decrementQuantity, removeFromCart } = useGlobalContext();
+    const { cart, incrementQuantity, decrementQuantity, removeFromCart, updateCart } = useGlobalContext();
     const navigate = useNavigate();
     const [isCheckingAvailability, setIsCheckingAvailability] = useState(false);
     const availableItems = cart.filter(item => item.nAvailable > 0);
@@ -32,6 +32,8 @@ export default function Cart({ onClose }) {
             setIsCheckingAvailability(false);
         }
     };
+
+
 
     const handleCheckout = async () => {
         const allAvailable = await checkAvailability();
