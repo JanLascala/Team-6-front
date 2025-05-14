@@ -35,7 +35,7 @@ export default function VinylSearch() {
 
             return (
                 <div className="container my-5">
-                    <div className="text-center mb-4">
+                    <div className="text-center mb-4 mt-5">
                         <h1 className="display-4">{data.title}</h1>
                         <img
                             src={data.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
@@ -47,14 +47,14 @@ export default function VinylSearch() {
                             className="img-fluid rounded shadow-sm"
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
-                        <div className="mt-3">
+                        <div className="mt-5 mb-2">
                             <AddToCartButton vinyl={data} />
                         </div>
                         <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
                     </div>
 
                     <div className="row mb-5">
-                        <div className="col-md-6">
+                        <div className="col-md-6 mt-5">
                             <h3>Details</h3>
                             <ul className="list-group">
                                 <li className="list-group-item"><strong>Genre:</strong> {data.genreName}</li>
@@ -65,7 +65,7 @@ export default function VinylSearch() {
                             </ul>
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="col-md-6 mt-5">
                             <h3>Author</h3>
                             <div className="d-flex align-items-center gap-3">
                                 <img

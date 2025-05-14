@@ -96,7 +96,7 @@ export default function Vinyls() {
                     </div>
                 </div>
 
-                <div className="col-md-6">
+                <div className="col-md-6 my-5 mx-auto">
                     <div className="d-flex align-items-center justify-content-end gap-3">
                         <div className="d-flex gap-2 align-items-center">
                             <span>Filter: </span>
