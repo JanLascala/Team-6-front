@@ -110,7 +110,11 @@ export default function Vinyls() {
                                         type="radio"
                                         className="form-check-input me-1"
                                         checked={filterValue === value}
-                                        onChange={() => handleFilterChange(value)}
+                                        onChange={(e) => {
+                                            e.preventDefault();
+                                            document.getElementById("search-bar").blur();
+                                            handleFilterChange(value);
+                                        }}
                                     />
                                     {value.charAt(0).toUpperCase() + value.slice(1)}
                                 </label>

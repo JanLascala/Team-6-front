@@ -71,7 +71,7 @@ export default function VinylSearch() {
         params.set("sort", sortByValue);
         params.set("filter", filterValue);
         navigate(`/vinyls?${params.toString()}`);
-        setShowResults(false); 
+        setShowResults(false);
     };
 
     const sortedVinyls = sortBy(sortByValue, searchResults);
