@@ -134,7 +134,7 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
             <div className="row">
                 <div className="col-md-6 pe-md-4">
                     <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }} className="payment-form">
-                        <h4 className="mb-4">Payment details</h4>
+                        <h4 className="my-4">Payment details</h4>
 
                         <div className="mb-3">
                             <label className="form-label mb-2">Card number</label>
