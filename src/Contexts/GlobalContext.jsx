@@ -75,7 +75,21 @@ function GlobalProvider({ children }) {
                 return item;
             })
         );
+
+        setVinyls(prevVinyls => {
+            if (prevVinyls.state !== "success") return prevVinyls;
+
+            return {
+                ...prevVinyls,
+                vinyl_data: prevVinyls.vinyl_data.map(v =>
+                    v.slug === slug
+                        ? { ...v, nAvailable: v.nAvailable - 1 }
+                        : v
+                )
+            };
+        });
     };
+
 
     const decrementQuantity = (slug) => {
         setCart(prevCart =>
@@ -87,7 +101,21 @@ function GlobalProvider({ children }) {
                 )
                 .filter(item => item.quantity > 0)
         );
+
+        setVinyls(prevVinyls => {
+            if (prevVinyls.state !== "success") return prevVinyls;
+
+            return {
+                ...prevVinyls,
+                vinyl_data: prevVinyls.vinyl_data.map(v =>
+                    v.slug === slug
+                        ? { ...v, nAvailable: v.nAvailable + 1 }
+                        : v
+                )
+            };
+        });
     };
+
 
 
     useEffect(() => {
