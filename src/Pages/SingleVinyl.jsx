@@ -1,6 +1,6 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import LoadingUi from "../Components/LoadingUi";
 import ServerErrorPage from "./ServerErrorPage";
 import AddToCartButton from "../Components/AddToCartButton";
@@ -11,24 +11,25 @@ export default function VinylSearch() {
     const { vinyls } = useGlobalContext();
     const { slug } = useParams();
     const [singleVinyl, setSingleVinyl] = useState({ state: 'loading' });
+    const loadedSlugRef = useRef(null);
 
     useEffect(() => {
-        setSingleVinyl({ state: 'loading' });
+        if (loadedSlugRef.current === slug && singleVinyl.state === 'success') {
+            return;
+        }
 
-        // 1. Cerca il vinile già presente nel contesto
+        setSingleVinyl({ state: 'loading' });
+        loadedSlugRef.current = slug;
+
         if (vinyls.state === 'success') {
             const existingVinyl = vinyls.vinyl_data.find(v => v.slug === slug);
 
-            if (existingVinyl) {
-                // Se ha le tracce, usa quello subito
-                if (Array.isArray(existingVinyl.tracks) && existingVinyl.tracks.length > 0) {
-                    setSingleVinyl({ state: 'success', vinyl_data: existingVinyl });
-                    return; // non fetchare
-                }
+            if (existingVinyl && Array.isArray(existingVinyl.tracks) && existingVinyl.tracks.length > 0) {
+                setSingleVinyl({ state: 'success', vinyl_data: existingVinyl });
+                return;
             }
         }
 
-        // 2. Se non c'è o mancano le tracce, fai la fetch
         fetch(`http://localhost:3000/api/vinyls/single-vinyl/${slug}`)
             .then((res) => {
                 if (!res.ok) throw new Error('Network response was not ok');
@@ -37,12 +38,9 @@ export default function VinylSearch() {
             .then((data) => {
                 if (!data) throw new Error('No data received');
 
-                // Trova il vinile originale nel contesto
-                const existingVinyl = vinyls.state === 'success'
-                    ? vinyls.vinyl_data.find(v => v.slug === slug)
-                    : null;
+                const currentVinyls = vinyls.state === 'success' ? vinyls.vinyl_data : [];
+                const existingVinyl = currentVinyls.find(v => v.slug === slug);
 
-                // Se lo troviamo, gli attacchiamo le tracce nuove
                 const mergedVinyl = existingVinyl
                     ? { ...existingVinyl, tracks: data.tracks }
                     : {
@@ -56,7 +54,23 @@ export default function VinylSearch() {
                 console.error('Fetch error:', err);
                 setSingleVinyl({ state: 'error', message: err.message });
             });
-    }, [slug, vinyls]);
+    }, [slug]);
+
+    useEffect(() => {
+        if (singleVinyl.state === 'success' && vinyls.state === 'success') {
+            const updatedVinyl = vinyls.vinyl_data.find(v => v.slug === slug);
+
+            if (updatedVinyl) {
+                setSingleVinyl(prev => ({
+                    ...prev,
+                    vinyl_data: {
+                        ...prev.vinyl_data,
+                        nAvailable: updatedVinyl.nAvailable
+                    }
+                }));
+            }
+        }
+    }, [vinyls.vinyl_data, slug]);
 
     switch (singleVinyl.state) {
         case 'loading':
