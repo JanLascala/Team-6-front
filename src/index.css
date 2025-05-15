@@ -23,7 +23,7 @@ body {
             transform: scale(1.01);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
-        
+
         a {
             text-decoration: inherit !important;
             color: white !important;
@@ -349,8 +349,4 @@ div {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.animate-track {
-    animation: fadeInUp 0.4s ease forwards;
 }
