@@ -3,24 +3,11 @@
 
 :root {
     --header-height: 60px;
-    --primary-color: #97511c;
-    --secondary-color: #e6c781d4;
-    --tertiary-color: #000;
-    --dark-color: #212529;
-    --light-color: #ffffff;
-    --primary-color-2: #480000;
-    --secondary-color-2: #b86117;
-    --main-bg-test: #1B1A17;
-    --primary-test: #4E342E;
-    --secondary-test: #795548;
-    --tertiary-test: #D7CCC8;
-    --light-text-test: #F5F5F5;
-    --main-bg-test: #ccb9ac;
-    --link-test: #FFB300;
-    --def-dark: #21211f;
-    --def-primary: #cd3c2a;
-    --def-secondary: #da9b68;
-    --def-tertiary: #faf9db;
+    --primary-color: #1e1e1e;
+    --secondary-color: #1f1f1f;
+    --tertiary-color: #fff;
+    --main-bg-color: #262626;
+    --form-color: #171717;
 }
 
 body {
