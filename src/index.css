@@ -350,7 +350,3 @@ div {
         transform: translateY(0);
     }
 }
-
-.animate-track {
-    animation: fadeInUp 0.4s ease forwards;
-}
