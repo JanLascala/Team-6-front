@@ -15,10 +15,18 @@ body {
     color: white !important;
 
     .vinyl-card {
-        background-color: var(--form-color);
+        background-color: var(--main-bg-color);
+        border: 0px;
+        transition: transform 0.2s, box-shadow 0.3s;
+
+        &:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);;
+        }
         
         a {
             text-decoration: inherit !important;
+            color: white !important;
         }
     }
 }
