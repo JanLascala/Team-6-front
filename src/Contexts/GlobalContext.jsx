@@ -134,8 +134,6 @@ function GlobalProvider({ children }) {
         });
     };
 
-
-
     useEffect(() => {
         if (vinyls.state === "success" && vinyls.vinyl_data) {
             setCart(prevCart =>
@@ -148,9 +146,27 @@ function GlobalProvider({ children }) {
     }, [vinyls]);
 
     const removeFromCart = (slug) => {
+        const itemToRemove = cart.find(item => item.slug === slug);
+
+        if (itemToRemove) {
+            setVinyls(prevVinyls => {
+                if (prevVinyls.state !== "success") return prevVinyls;
+
+                return {
+                    ...prevVinyls,
+                    vinyl_data: prevVinyls.vinyl_data.map(v =>
+                        v.slug === slug
+                            ? { ...v, nAvailable: v.nAvailable + itemToRemove.quantity }
+                            : v
+                    )
+                };
+            });
+        }
+
         setCart(prevCart => {
             const newCart = prevCart.filter(item => item.slug !== slug);
-            console.log("Articolo rimosso:", slug, "Nuovo carrello:", newCart); // Log per debug
+            console.log("Articolo rimosso:", slug, "Nuovo carrello:", newCart, "Quantità ripristinata:", itemToRemove?.quantity);
+
             if (newCart.length === 0) {
                 localStorage.removeItem('cart');
             }

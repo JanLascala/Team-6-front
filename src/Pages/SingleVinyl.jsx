@@ -70,7 +70,7 @@ export default function VinylSearch() {
                 }));
             }
         }
-    }, [vinyls.vinyl_data, slug]);
+    }, [vinyls, slug]);
 
     switch (singleVinyl.state) {
         case 'loading':
