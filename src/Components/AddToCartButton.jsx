@@ -18,7 +18,12 @@ export default function AddToCartButton({ vinyl }) {
     const currentItem = cart.find(item => item.slug === updatedVinyl.slug);
     const maxQuantity = currentItem?.quantity >= updatedVinyl.nAvailable;
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+
+        console.log('AddToCart clicked', { updatedVinyl, maxQuantity });
+
+
         if (updatedVinyl.nAvailable === 0 || maxQuantity) {
             return;
         }
@@ -31,6 +36,7 @@ export default function AddToCartButton({ vinyl }) {
 
     return (
         <button
+            type="button"
             className={`btn ${updatedVinyl.nAvailable === 0 ? 'btn-secondary' : maxQuantity ? 'btn-warning' : isInCart ? 'btn-success' : 'btn-dark'} btn-sm w-auto`}
             onClick={handleAddToCart}
             disabled={updatedVinyl.nAvailable === 0 || maxQuantity || isInCart}
