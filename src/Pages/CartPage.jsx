@@ -102,6 +102,7 @@ export default function Cart({ onClose }) {
                                             <p>{item.authorName}</p>
                                             <div className="d-flex align-items-center gap-2 flex-wrap">
                                                 <button
+                                                    type="button"
                                                     className="btn btn-outline-secondary"
                                                     onClick={() => decrementQuantity(item.slug)}
                                                     disabled={item.quantity <= 1}
@@ -112,6 +113,7 @@ export default function Cart({ onClose }) {
                                                 <span className="px-2">{item.quantity}</span>
 
                                                 <button
+                                                    type="button"
                                                     className="btn btn-outline-secondary"
                                                     onClick={() => incrementQuantity(item.slug)}
                                                     disabled={item.quantity >= currentAvailable}
