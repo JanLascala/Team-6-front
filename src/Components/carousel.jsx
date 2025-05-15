@@ -53,10 +53,10 @@ function Carousel({ array = [] }) {
                             className={`mb-3 col-${12 / itemsPerPage}`}
                             key={item.slug}
                         >
-                            <div className="card h-100 text-center d-flex flex-column">
+                            <div className="vinyl-card card h-100 text-center d-flex flex-column">
                                 <Link
                                     to={`/products/${item.slug}`}
-                                    className="text-decoration-none text-dark flex-grow-1 d-flex flex-column"
+                                    className="text-decoration-none flex-grow-1 d-flex flex-column"
                                 >
                                     <img
                                         src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}

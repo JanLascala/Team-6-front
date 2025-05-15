@@ -102,7 +102,7 @@ export default function VinylSearch() {
                             width: "100%"
                         }}
                     >
-                        <h5 className="mb-2">Search Results</h5>
+                        <h5 className="mb-2 text-start">Search Results</h5>
 
                         <div className="d-flex gap-2 mb-2">
                             {["all", "title", "author"].map((value) => (

@@ -11,15 +11,22 @@
 }
 
 body {
-    background-color: #292636 !important;
+    background-color: var(--main-bg-color) !important;
     color: white !important;
-    /* background-image: url(https://media.discordapp.net/attachments/1369585851037650974/1372144887834873866/dark-wood-texture-background-old-panels-2024-12-02-18-16-49-utc.jpg?ex=6825b502&is=68246382&hm=140b1460ca82336934cdc2c3125a9b5b958e24e808ba4e71a674346594ad2e6b&=&format=webp&width=1351&height=859); */
-    background-size: contain;
+
+    .vinyl-card {
+        background-color: var(--form-color);
+        
+        a {
+            text-decoration: inherit !important;
+        }
+    }
 }
 
 #headerNav {
 
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
+    height: var(--header-height);
 
     #header-right-section {
         width: 300px;
@@ -143,7 +150,7 @@ footer {
     gap: 1rem;
     padding: 1.5rem;
     align-items: center;
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
 
     a:hover {
         text-decoration: underline;
