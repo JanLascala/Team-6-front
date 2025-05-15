@@ -9,13 +9,14 @@ import Cart from './Components/Cart';
 import SingleVinyl from './Pages/SingleVinyl';
 import ServerErrorPage from './Pages/ServerErrorPage';
 import PaymentSuccess from './Pages/PaymentSuccess';
-
 import StripeApp from './Pages/StripeApp'
+import ScrollToTop from './Components/ScrollToTop';
 
 export default function App() {
   return (
     <GlobalProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<HomePage />} />
