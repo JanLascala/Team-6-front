@@ -34,13 +34,13 @@ export default function CartSummary() {
                                 <div className="flex-grow-1">
                                     <div className="d-flex justify-content-between align-items-start">
                                         <div>
-                                            <p className="mb-0 fw-bold text-truncate" style={{ maxWidth: "150px", fontSize: "0.95rem" }}>{item.title}</p>
-                                            <small className="text-muted" style={{ fontSize: "0.8rem" }}>{item.authorName}</small>
+                                            <p className="mb-0  fw-bold text-truncate" style={{ maxWidth: "150px", fontSize: "0.95rem" }}>{item.title}</p>
+                                            <small className="order-summary-text" style={{ fontSize: "0.8rem" }}>{item.authorName}</small>
                                         </div>
 
                                         <div className="text-end">
                                             <p className="mb-0 fw-bold" style={{ fontSize: "0.95rem" }}>€{(item.price * item.quantity).toFixed(2)}</p>
-                                            <small className="text-muted" style={{ fontSize: "0.8rem" }}>
+                                            <small className="order-summary-text" style={{ fontSize: "0.8rem" }}>
                                                 {item.quantity} × €{item.price.toFixed(2)}
                                             </small>
                                         </div>

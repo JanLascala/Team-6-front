@@ -29,6 +29,23 @@ function Jumbotron() {
         objectFit: 'cover',
         objectPosition: 'center'
     };
+    const captionStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: '4rem',
+        fontWeight: '800',
+        fontFamily: "'Arial Black', Gadget, sans-serif",
+        textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+        textAlign: 'center',
+        padding: '0 20px',
+        userSelect: 'none',
+        whiteSpace: 'pre-line',
+        zIndex: 10
+    };
+
 
     return (
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" /* style={carouselStyle} */>
@@ -40,29 +57,66 @@ function Jumbotron() {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <div style={imageContainerStyle}>
-                        <img className="d-block carousel-img" src="https://www.qdnapoli.it/images/vinile.jpg" alt="First slide" style={imageStyle} />
-                        <a href="#shop-section" className="btn btn-dark carousel-button translate-middle">
+                        <img
+                            className="d-block carousel-img"
+                            src="https://www.qdnapoli.it/images/vinile.jpg"
+                            alt="First slide"
+                            style={imageStyle}
+                        />
+                        <div style={captionStyle}>
+                            The future is digital.<br />The soul is vinyl.
+                        </div>
+                        <a
+                            href="#shop-section"
+                            className="btn btn-dark carousel-button shop-now-btn"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                             Shop Now
                         </a>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <div style={imageContainerStyle}>
-                        <img className="d-block carousel-img" src="https://venditaviniliusati.it/wp-content/uploads/2017/09/Valutazione-dischi-vinile-usati.jpg" alt="Second slide" style={imageStyle} />
-                        <a href="#shop-section" className="btn btn-dark carousel-button translate-middle">
+                        <img
+                            className="d-block carousel-img"
+                            src="https://venditaviniliusati.it/wp-content/uploads/2017/09/Valutazione-dischi-vinile-usati.jpg"
+                            alt="Second slide"
+                            style={imageStyle}
+                        />
+                        <div style={captionStyle}>
+                            The future is digital.<br />The soul is vinyl.
+                        </div>
+                        <a
+                            href="#shop-section"
+                            className="btn btn-dark carousel-button shop-now-btn"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                             Shop Now
                         </a>
                     </div>
                 </div>
                 <div className="carousel-item">
                     <div style={imageContainerStyle}>
-                        <img className="d-block carousel-img" src="https://www.miraloop.com/upload/img/music-vintage-vinyl-favim.com-434847.jpg" alt="Third slide" style={imageStyle} />
-                        <a href="#shop-section" className="btn btn-dark carousel-button translate-middle">
+                        <img
+                            className="d-block carousel-img"
+                            src="https://www.miraloop.com/upload/img/music-vintage-vinyl-favim.com-434847.jpg"
+                            alt="Third slide"
+                            style={imageStyle}
+                        />
+                        <div style={captionStyle}>
+                            The future is digital.<br />The soul is vinyl.
+                        </div>
+                        <a
+                            href="#shop-section"
+                            className="btn btn-dark carousel-button shop-now-btn"
+                            onClick={(e) => e.stopPropagation()}
+                        >
                             Shop Now
                         </a>
                     </div>
                 </div>
             </div>
+
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>

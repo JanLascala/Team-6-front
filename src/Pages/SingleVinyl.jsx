@@ -115,7 +115,7 @@ export default function VinylSearch() {
                         />
                         <div className="mt-3 d-flex flex-column align-items-center gap-2">
                             <AddToCartButton vinyl={data} />
-                            <p className="fw-bold fs-5 mb-0">${data.price.toFixed(2)}</p>
+                            <p className="fw-bold fs-5 mb-0">€{data.price.toFixed(2)}</p>
                         </div>
                         <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
                     </div>

@@ -50,7 +50,7 @@ export default function Header() {
             {isCartOpen && (
                 <div className="side-modal-overlay" onClick={toggleModal}>
                     <div className="side-modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close-btn" onClick={toggleModal}>✖</button>
+                        <button className="btn btn-sm btn-light text-secondary position-absolute top-0 start-0 m-3" onClick={toggleModal}>✖</button>
                         <Cart onClose={toggleModal} />
                     </div>
                 </div>

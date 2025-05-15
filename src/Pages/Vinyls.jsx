@@ -178,7 +178,7 @@ export default function Vinyls() {
                                         <p className="card-text">
                                             <small>{vinyl.genreName}</small>
                                         </p>
-                                        <div className="d-flex  justify-content-between align-items-center">
+                                        <div className="ard-body d-flex flex-column flex-grow-1">
                                             <span className="fs-5 fw-bold text-center">€{vinyl.price}</span>
                                         </div>
                                     </div>

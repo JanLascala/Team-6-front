@@ -74,13 +74,23 @@ main {
     }
 
     .vinyls-page {
+        width: 90%;
+        height: 600px;
 
         background-color: var(--main-bg-color) !important;
 
         .vinyls-page-card {
+            background-color: var(--main-bg-color);
+            transition: transform 0.2s, box-shadow 0.3s;
+            border: 0px;
             text-decoration: none;
             background-color: var(--form-color) !important;
             color: var(--tertiary-color) !important;
+
+            &:hover {
+                transform: scale(1.01);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
 
 
             .card-text {
@@ -111,6 +121,16 @@ main {
         margin-bottom: 2rem;
     }
 
+    .shop-now-btn {
+        position: absolute;
+        bottom: 200px;
+        right: 210px;
+        z-index: 10;
+        padding: 0.5rem 0.8rem;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
     #jumbotron {
         margin: 0px !important;
 
@@ -128,6 +148,8 @@ main {
 
     .carousel-indicators {
         display: none;
+        pointer-events: none;
+        position: relative;
     }
 
     .carousel-item {
@@ -135,23 +157,15 @@ main {
     }
 
     #shop-section {
-        scroll-margin-top: 150px;
+        scroll-margin-top: 150px !important;
     }
 
-    .btn-shop-now {
-        padding: 10px 20px;
-        font-size: 1.2rem;
-        background-color: #ff6600;
-        border: none;
-        color: white;
-        transition: background-color 0.3s ease;
-    }
 
-    .btn-shop-now:hover {
-        background-color: #cc5200;
-    }
+
 
     #order-summary-container {
+
+
         height: calc(100vh - var(--header-height));
 
         #order-summary {
@@ -167,19 +181,11 @@ main {
     }
 }
 
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1.5rem;
-    align-items: center;
-    background-color: var(--primary-color);
+.order-summary-text {
+    color: var(--tertiary-color);
 
-    a:hover {
-        text-decoration: underline;
-    }
 }
+
 
 .side-modal-overlay {
     position: fixed;
@@ -201,9 +207,7 @@ footer {
     background-color: #fff;
     padding: 20px;
     width: 100%;
-    height: calc(100vh - 90px);
-    /* overflow-y: hidden; */
-    position: relative;
+    height: 100%;
     transition: transform 0.3s ease-in-out;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px 0 0 10px;
@@ -214,7 +218,6 @@ footer {
     flex-direction: column;
     height: 100%;
     overflow-y: auto;
-    /* ora scrolla tutto il contenitore cart */
     position: relative;
 }
 
@@ -223,12 +226,10 @@ footer {
     padding: 10px;
     box-sizing: border-box;
     overflow-y: visible;
-    /* togli lo scroll da qui */
 }
 
 .modal-footer {
     position: sticky;
-    /* Mantiene il footer fisso in basso */
     bottom: 0;
     background-color: #fff;
     padding: 20px;
@@ -238,18 +239,14 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Centra il contenuto */
     align-items: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid rgb(162, 255, 0);
-    /* Aggiunge un'ombra per evidenziare il footer */
 }
 
 .modal-footer .btn {
     width: 100%;
-    /* Rendi il bottone largo quanto il footer */
     max-width: 300px;
-    /* Imposta una larghezza massima */
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -348,5 +345,19 @@ div {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem;
+    align-items: center;
+    background-color: var(--primary-color);
+
+    a:hover {
+        text-decoration: underline;
     }
 }
