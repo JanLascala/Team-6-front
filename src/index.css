@@ -19,6 +19,7 @@ body {
 
         a {
             text-decoration: inherit !important;
+            color: white !important;
         }
     }
 }
