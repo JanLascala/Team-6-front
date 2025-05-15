@@ -16,7 +16,7 @@ body {
 
     .vinyl-card {
         background-color: var(--form-color);
-        
+
         a {
             text-decoration: inherit !important;
         }
@@ -73,13 +73,29 @@ main {
             text-decoration: none;
             background-color: var(--form-color) !important;
             color: var(--tertiary-color) !important;
-            height: ;
+
 
             .card-text {
                 color: var(--tertiary-color) !important;
             }
         }
     }
+
+    .list-group-item {
+        background-color: var(--form-color) !important;
+        color: var(--tertiary-color) !important;
+        border: 1px solid var(--tertiary-color) !important;
+
+    }
+
+    .transition-img {
+        transition: transform 0.3s ease;
+    }
+
+    .transition-img:hover {
+        transform: scale(1.03);
+    }
+
 
     .carousel-title {
         display: flex;
@@ -313,4 +329,20 @@ div {
     100% {
         transform: scale(1);
     }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-track {
+    animation: fadeInUp 0.4s ease forwards;
 }

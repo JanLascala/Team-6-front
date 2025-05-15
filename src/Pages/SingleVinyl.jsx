@@ -58,7 +58,10 @@ export default function VinylSearch() {
                 return (
                     <ol className="list-group list-group-numbered mt-3">
                         {data.tracks.map((track, index) => (
-                            <li key={index} className="list-group-item d-flex flex-row justify-content-between align-items-center">
+                            <li
+                                key={index}
+                                className="list-group-item d-flex flex-row justify-content-between align-items-center animate-track"
+                            >
                                 {track.name}
                                 <span className="badge bg-primary rounded-pill">{track.length}</span>
                             </li>
@@ -70,7 +73,7 @@ export default function VinylSearch() {
             return (
                 <div className="container my-5">
                     <div className="text-center mb-4 mt-5">
-                        <h1 className="display-4 mb-5">{data.title}</h1>
+                        <h1 className="display-4 mb-4 fw-bold text-uppercase">{data.title}</h1>
                         <img
                             src={data.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
                             onError={(e) => {
@@ -78,18 +81,19 @@ export default function VinylSearch() {
                                 e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
                             }}
                             alt={data.title}
-                            className="img-fluid rounded shadow-sm"
+                            className="img-fluid rounded shadow-sm transition-img"
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
-                        <div className="mt-3">
+                        <div className="mt-3 d-flex flex-column align-items-center gap-2">
                             <AddToCartButton vinyl={data} />
+                            <p className="fw-bold fs-5 mb-0">${data.price.toFixed(2)}</p>
                         </div>
                         <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
                     </div>
 
-                    <div className="row mb-5">
+                    <div className="row mb-5 details-container">
                         <div className="col-md-6 mt-5">
-                            <h3>Details</h3>
+                            <h3 className="mt-5 mb-3 border-bottom pb-2">Details</h3>
                             <ul className="list-group">
                                 <li className="list-group-item"><strong>Genre:</strong> {data.genreName}</li>
                                 <li className="list-group-item"><strong>Format:</strong> {data.formatName}</li>
@@ -100,7 +104,7 @@ export default function VinylSearch() {
                         </div>
 
                         <div className="col-md-6 mt-5">
-                            <h3>Author</h3>
+                            <h3 className="mt-5 mb-3 border-bottom pb-2">Author</h3>
                             <div className="d-flex align-items-center gap-3">
                                 <img
                                     src={data.authorImg || 'http://localhost:3000/author_placeholder.png'}
@@ -121,7 +125,7 @@ export default function VinylSearch() {
                     </div>
 
                     <div className="mb-5">
-                        <h3>Track List <span className="badge bg-secondary mb-2">{data.tracks?.length || 0} tracks</span></h3>
+                        <h3 className="mb-3 border-bottom pb-2">Track List <span className="badge bg-secondary ms-2">{data.tracks?.length || 0} tracks</span></h3>
                         {renderTrackList()}
                     </div>
 
