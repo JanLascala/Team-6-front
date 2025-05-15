@@ -17,7 +17,7 @@ function Jumbotron() {
     };
 
     const imageContainerStyle = {
-        height: '650px',
+        height: 'calc(100vh - var(--header-height)',
         width: '100%',
         overflow: 'hidden',
         position: 'relative'
@@ -41,7 +41,7 @@ function Jumbotron() {
                 <div className="carousel-item active">
                     <div style={imageContainerStyle}>
                         <img className="d-block carousel-img" src="https://www.qdnapoli.it/images/vinile.jpg" alt="First slide" style={imageStyle} />
-                        <a href="#shop-section" className="btn btn-dark position-absolute top-50 start-50 translate-middle">
+                        <a href="#shop-section" className="btn btn-dark carousel-button">
                             Shop Now
                         </a>
                     </div>
@@ -49,7 +49,7 @@ function Jumbotron() {
                 <div className="carousel-item">
                     <div style={imageContainerStyle}>
                         <img className="d-block carousel-img" src="https://venditaviniliusati.it/wp-content/uploads/2017/09/Valutazione-dischi-vinile-usati.jpg" alt="Second slide" style={imageStyle} />
-                        <a href="#shop-section" className="btn btn-dark position-absolute top-50 start-50 translate-middle">
+                        <a href="#shop-section" className="btn btn-dark carousel-button">
                             Shop Now
                         </a>
                     </div>
@@ -57,7 +57,7 @@ function Jumbotron() {
                 <div className="carousel-item">
                     <div style={imageContainerStyle}>
                         <img className="d-block carousel-img" src="https://www.miraloop.com/upload/img/music-vintage-vinyl-favim.com-434847.jpg" alt="Third slide" style={imageStyle} />
-                        <a href="#shop-section" className="btn btn-dark position-absolute top-50 start-50 translate-middle">
+                        <a href="#shop-section" className="btn btn-dark carousel-button">
                             Shop Now
                         </a>
                     </div>
