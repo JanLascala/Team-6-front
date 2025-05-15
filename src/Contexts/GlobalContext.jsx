@@ -34,20 +34,29 @@ function GlobalProvider({ children }) {
         setCart(prevCart => {
             const existingItem = prevCart.find(item => item.slug === vinyl.slug);
 
-            if (existingItem && existingItem.quantity >= existingItem.nAvailable) {
-                alert(`You have reached the maximum quantity available (${vinyl.nAvailable})`);
+            if (existingItem && existingItem.quantity >= vinyl.nAvailable) {
+                alert(`Hai già raggiunto il numero massimo disponibile (${vinyl.nAvailable})`);
                 return prevCart;
             }
 
             return existingItem
                 ? prevCart.map(item =>
                     item.slug === vinyl.slug
-                        ? { ...item, quantity: item.quantity + 1 }
+                        ? {
+                            ...item,
+                            quantity: item.quantity + 1,
+                            nAvailable: vinyl.nAvailable // ← qui salviamo SEMPRE la disponibilità aggiornata
+                        }
                         : item
                 )
-                : [...prevCart, { ...vinyl, quantity: 1, nAvailable: vinyl.nAvailable }];
+                : [...prevCart, {
+                    ...vinyl,
+                    quantity: 1,
+                    nAvailable: vinyl.nAvailable // ← anche qui
+                }];
         });
 
+        // Aggiorna anche lo stato globale dei vinili
         setVinyls(prevVinyls => {
             if (prevVinyls.state !== "success") return prevVinyls;
 
@@ -61,6 +70,7 @@ function GlobalProvider({ children }) {
             };
         });
     };
+
 
     const incrementQuantity = (slug) => {
         setCart(prevCart =>
@@ -90,6 +100,14 @@ function GlobalProvider({ children }) {
         });
     };
 
+
+    const getVinylAvailability = (slug) => {
+        if (vinyls.state === "success") {
+            const vinyl = vinyls.vinyl_data.find(v => v.slug === slug);
+            return vinyl ? vinyl.nAvailable : 0;
+        }
+        return 0;
+    };
 
     const decrementQuantity = (slug) => {
         setCart(prevCart =>
@@ -187,6 +205,7 @@ function GlobalProvider({ children }) {
                 clearCartAfterPayment,
                 isCartOpen,
                 setIsCartOpen,
+                getVinylAvailability,
             }}
         >
             {children}

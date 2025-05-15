@@ -58,8 +58,20 @@ main {
         bottom: 90px;
     }
 
-    .vinyls-page-card {
-        text-decoration: none;
+    .vinyls-page {
+
+        background-color: var(--main-bg-color) !important;
+
+        .vinyls-page-card {
+            text-decoration: none;
+            background-color: var(--form-color) !important;
+            color: var(--tertiary-color) !important;
+            height: ;
+
+            .card-text {
+                color: var(--tertiary-color) !important;
+            }
+        }
     }
 
     .carousel-title {

@@ -79,7 +79,7 @@ export default function Vinyls() {
     const sortedVinyls = sortBy(sortByValue, searchResults);
 
     return (
-        <div className="container-fluid py-4">
+        <div className="vinyls-page container-fluid py-4">
             <h1 className="mb-4">Vinyl Collection</h1>
 
             <div className="row mb-4">
@@ -163,14 +163,14 @@ export default function Vinyls() {
                             <Link
                                 to={`/products/${vinyl.slug}`}
                                 className='text-decoration-none'>
-                                <div className="card h-100 vinyls-page-card">
+                                <div className="card vinyls-page-card h-100 text-center d-flex flex-column">
                                     <img
                                         src={"http://localhost:3000/vinyl_placeholder.png"}
-                                        className="card-img-top"
+                                        className="card-img-top img-fluid"
                                         alt={vinyl.title}
                                         style={{ height: "200px", objectFit: "cover" }}
                                     />
-                                    <div className="card-body">
+                                    <div className="card-body d-flex flex-column flex-grow-1">
                                         <h5 className="card-title">{vinyl.title}</h5>
                                         <p className="card-text text-muted mb-1">
                                             {vinyl.authorName}
@@ -178,8 +178,8 @@ export default function Vinyls() {
                                         <p className="card-text">
                                             <small>{vinyl.genreName}</small>
                                         </p>
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <span className="fs-5 fw-bold">€{vinyl.price}</span>
+                                        <div className="d-flex  justify-content-between align-items-center">
+                                            <span className="fs-5 fw-bold text-center">€{vinyl.price}</span>
                                         </div>
                                     </div>
                                 </div>

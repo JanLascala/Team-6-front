@@ -13,7 +13,6 @@ export default function VinylSearch() {
     const [singleVinyl, setSingleVinyl] = useState({ state: 'loading' });
 
     useEffect(() => {
-        // Prima cerca nei vinili già caricati nel contesto globale
         if (vinyls.state === "success") {
             const existingVinyl = vinyls.vinyl_data.find(v => v.slug === slug);
             if (existingVinyl) {
