@@ -87,10 +87,10 @@ export default function Cart({ onClose }) {
                                 <li key={item.slug} className="list-group">
                                     <div className="d-flex gap-3">
                                         <img
-                                            src={item.vinylImg || 'http://localhost:3000/https://picsum.photos/300/200'}
+                                            src={item.vinylImg || 'https://picsum.photos/300/200'}
                                             onError={(e) => {
                                                 e.target.onerror = null;
-                                                e.target.src = 'http://localhost:3000/https://picsum.photos/300/200';
+                                                e.target.src = 'https://picsum.photos/300/200';
                                             }}
                                             alt={item.title}
                                             className="card-img-top img-fluid"
@@ -142,7 +142,7 @@ export default function Cart({ onClose }) {
                     </ul>
 
                     <div className="modal-footer">
-                        <h5>otal: € {total.toFixed(2)}</h5>
+                        <h5>Subtotal: € {total.toFixed(2)}</h5>
                         <button
                             className="btn btn-success w-100 mt-2"
                             onClick={handleCheckout}

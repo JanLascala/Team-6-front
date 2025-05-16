@@ -21,13 +21,12 @@ export default function Cart({ onClose }) {
 
     return (
         <div id="cart-container" className="m-0 p-0 position-absolute bottom-0 text-dark" style={{
-            padding: "0px",
             display: "flex",
             flexDirection: "column",
             height: "100%",
             maxHeight: "80vh"
         }}>
-            <h4 className="px-3 pb-2 mb-0">Cart</h4>
+            <h4 className="mb-0">Cart</h4>
 
             <div style={{ flexGrow: 1, overflowY: "auto" }}>
                 <ul className="list-group mb-0">
@@ -84,8 +83,8 @@ export default function Cart({ onClose }) {
             </div>
 
             <div className="p-3 pt-2 mt-auto border-top">
-                <h5>Total: € {total.toFixed(2)}</h5>
-                <button className="btn btn-success w-100 mt-2" onClick={handleCheckout}>
+                <h5>Subtotal: € {total.toFixed(2)}</h5>
+                <button className="btn btn-checkout w-100 mt-2" onClick={handleCheckout}>
                     Go to Checkout →
                 </button>
             </div>

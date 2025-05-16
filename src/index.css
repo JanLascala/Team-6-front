@@ -8,9 +8,11 @@
     --tertiary-color: #fff;
     --main-bg-color: #262626;
     --form-color: #171717;
+    --highlight-color: #c4c92e;
 }
 
 body {
+
     background-color: var(--main-bg-color) !important;
     color: white !important;
 
@@ -133,7 +135,7 @@ main {
     }
 
     .shop-now-btn {
-        background-color: #c4c92e;
+        background-color: var(--highlight-color) !important;
         position: absolute;
         bottom: 200px;
         right: 210px;
@@ -144,7 +146,7 @@ main {
     }
 
     .shop-now-btn:hover {
-        background-color: #b3b82b !important;
+        background-color: var(--highlight-color) !important;
         color: black !important;
         cursor: pointer;
     }
@@ -338,6 +340,20 @@ div {
     &:hover:not(:disabled) {
         background-color: #e2e6ea;
         transform: scale(1.05);
+    }
+}
+
+.btn-checkout {
+    background-color: var(--highlight-color);
+    color: black;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+        background-color: #c4c92e;
+        transform: scale(1.05);
+        cursor: pointer;
     }
 }
 

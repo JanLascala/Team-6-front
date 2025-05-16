@@ -136,10 +136,10 @@ export default function VinylSearch() {
                             <h3 className="mt-5 mb-3 border-bottom pb-2">Author</h3>
                             <div className="d-flex align-items-center gap-3">
                                 <img
-                                    src={data.authorImg || 'http://localhost:3000/https://picsum.photos/300/200'}
+                                    src={data.authorImg || 'https://picsum.photos/300/200'}
                                     onError={(e) => {
                                         e.target.onerror = null;
-                                        e.target.src = 'http://localhost:3000/https://picsum.photos/300/200';
+                                        e.target.src = 'https://picsum.photos/300/200';
                                     }}
                                     alt={data.authorName}
                                     className="rounded-circle border"
