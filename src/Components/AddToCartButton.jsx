@@ -37,7 +37,7 @@ export default function AddToCartButton({ vinyl }) {
     return (
         <button
             type="button"
-            className={`btn ${updatedVinyl.nAvailable === 0 ? 'btn-secondary' : maxQuantity ? 'btn-warning' : isInCart ? 'btn-success' : 'btn-dark'} btn-sm w-auto`}
+            className={`btn add-to-cart-btn ${updatedVinyl.nAvailable === 0 ? 'btn-secondary' : maxQuantity ? 'btn-warning' : isInCart ? 'btn-success' : 'btn-dark'} btn-sm w-auto`}
             onClick={handleAddToCart}
             disabled={updatedVinyl.nAvailable === 0 || maxQuantity || isInCart}
         >
