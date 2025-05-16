@@ -70,7 +70,7 @@ function Jumbotron() {
                         </div>
                         <a
                             href="#carousels-first-title"
-                            className="btn btn-dark carousel-button shop-now-btn"
+                            className="btn carousel-button shop-now-btn"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Shop Now
@@ -90,7 +90,7 @@ function Jumbotron() {
                         </div>
                         <a
                             href="#carousels-first-title"
-                            className="btn btn-dark carousel-button shop-now-btn"
+                            className="btn carousel-button shop-now-btn"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Shop Now
@@ -110,7 +110,7 @@ function Jumbotron() {
                         </div>
                         <a
                             href="#carousels-first-title"
-                            className="btn btn-dark carousel-button shop-now-btn"
+                            className="btn carousel-button shop-now-btn"
                             onClick={(e) => e.stopPropagation()}
                         >
                             Shop Now
