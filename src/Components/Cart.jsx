@@ -13,7 +13,7 @@ export default function Cart({ onClose }) {
 
     if (cart.length === 0) {
         return (
-            <div className="text-dark" style={{ padding: "20px" }}>
+            <div className="text-dark" style={{ padding: "40px 0 0 0" }}>
                 <h4>Your cart is empty</h4>
             </div>
         );
