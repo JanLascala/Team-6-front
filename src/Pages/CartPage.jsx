@@ -142,7 +142,7 @@ export default function Cart({ onClose }) {
                     </ul>
 
                     <div className="modal-footer">
-                        <h5>Total: € {total.toFixed(2)}</h5>
+                        <h5>otal: € {total.toFixed(2)}</h5>
                         <button
                             className="btn btn-success w-100 mt-2"
                             onClick={handleCheckout}
