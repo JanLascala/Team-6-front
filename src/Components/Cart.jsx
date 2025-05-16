@@ -20,14 +20,14 @@ export default function Cart({ onClose }) {
     }
 
     return (
-        <div id="cart-container" className="position-absolute bottom-0 text-dark" style={{
+        <div id="cart-container" className="m-0 p-0 position-absolute bottom-0 text-dark" style={{
             padding: "0px",
             display: "flex",
             flexDirection: "column",
             height: "100%",
             maxHeight: "80vh"
         }}>
-            <h4 className="p-3 pb-2 mb-0">Cart</h4>
+            <h4 className="px-3 pb-2 mb-0">Cart</h4>
 
             <div style={{ flexGrow: 1, overflowY: "auto" }}>
                 <ul className="list-group mb-0">
