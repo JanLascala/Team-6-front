@@ -32,8 +32,8 @@ export default function Cart({ onClose }) {
             <div style={{ flexGrow: 1, overflowY: "auto" }}>
                 <ul className="list-group mb-0">
                     {cart.map(item => (
-                        <li key={item.slug} className="list-group-item">
-                            <div className="d-flex gap-3">
+                        <li key={item.slug} className="list-group-item py-2">
+                            <div className="d-flex align-items-center gap-2">
                                 <img
                                     src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
                                     onError={(e) => {
@@ -41,31 +41,33 @@ export default function Cart({ onClose }) {
                                         e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
                                     }}
                                     alt={item.title}
-                                    className="card-img-top img-fluid"
-                                    style={{ objectFit: 'contain', height: '200px' }}
+                                    className="img-fluid"
+                                    style={{ objectFit: 'cover', height: '60px', width: '60px' }}
                                 />
 
                                 <div className="flex-grow-1">
-                                    <h5>{item.title}</h5>
-                                    <p>{item.authorName}</p>
-                                    <div className="d-flex align-items-center gap-2 flex-wrap">
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            onClick={() => item.quantity > 0 ? decrementQuantity(item.slug) : removeFromCart(item.slug)}
-                                        >
-                                            <i className="bi bi-dash-lg"></i>
-                                        </button>
+                                    <h6 className="mb-0">{item.title}</h6>
+                                    <small className="text-muted">{item.authorName}</small>
+                                    <div className="d-flex align-items-center mt-1 gap-3">
+                                        <div className="me-auto">€ {item.price.toFixed(2)}</div>
+                                        <div className="btn-group btn-group-sm">
+                                            <button
+                                                className="btn btn-outline-secondary btn-sm"
+                                                onClick={() => item.quantity > 0 ? decrementQuantity(item.slug) : removeFromCart(item.slug)}
+                                            >
+                                                <i className="bi bi-dash"></i>
+                                            </button>
 
-                                        <span className="px-2">{item.quantity}</span>
+                                            <span className="btn btn-outline-dark disabled px-2">{item.quantity}</span>
 
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            onClick={() => incrementQuantity(item.slug)}
-                                            disabled={item.quantity >= item.nAvailable}
-                                        >
-                                            <i className="bi bi-plus-lg"></i>
-                                        </button>
-
+                                            <button
+                                                className="btn btn-outline-secondary btn-sm"
+                                                onClick={() => incrementQuantity(item.slug)}
+                                                disabled={item.quantity >= item.nAvailable}
+                                            >
+                                                <i className="bi bi-plus"></i>
+                                            </button>
+                                        </div>
                                         <button
                                             className="btn btn-outline-danger btn-sm ms-2"
                                             onClick={() => removeFromCart(item.slug)}
