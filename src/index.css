@@ -368,18 +368,50 @@ footer {
     }
 }
 
-@media (min-width: 560px) and (max-width: 800px) {
-    .carousel-item>div {
-        height: 60vh !important;
+
+
+
+@media (min-width: 561px) and (max-width: 804px) {
+
+    #jumbotron,
+    #jumbotron .carousel,
+    #jumbotron #carouselExampleIndicators {
+        height: 400px !important;
+        min-height: 400px !important;
+        max-height: 400px !important;
     }
 
-    .carousel-item h1 {
-        font-size: 2rem !important;
-        /* riduci un po’ la grandezza */
+    #jumbotron .carousel-item,
+    #jumbotron .carousel-item img,
+    #jumbotron #carouselExampleIndicators img {
+        height: 250px !important;
+        min-height: 250px !important;
+        max-height: 250px !important;
+        object-fit: cover !important;
+        width: 100% !important;
     }
 
-    .carousel-item .btn {
-        font-size: 0.9rem !important;
-        padding: 0.4rem 1.2rem !important;
+    #jumbotron .carousel-caption,
+    #jumbotron [class*="carousel-caption"] {
+        font-size: 1.2rem !important;
+        padding: 0 10px !important;
+        top: 65% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90vw !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+    }
+
+    #jumbotron .shop-now-btn {
+        bottom: 60px !important;
+        right: 50% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        font-size: 1rem !important;
+        padding: 0.5rem 1rem !important;
+        width: auto !important;
+        min-width: 140px !important;
+        text-align: center !important;
     }
 }
