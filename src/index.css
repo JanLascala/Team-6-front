@@ -84,7 +84,6 @@ main {
     }
 
     .vinyls-page {
-        width: 90%;
         background-color: var(--main-bg-color) !important;
 
         .vinyls-page-card {

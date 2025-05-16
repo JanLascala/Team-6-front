@@ -1,0 +1,110 @@
+main {
+
+    .carousel-button {
+        position: absolute;
+        right: 45% !important;
+        bottom: 25% !important;
+    }
+
+    .vinyls-page {
+        background-color: var(--main-bg-color) !important;
+
+        .vinyls-page-card {
+            background-color: var(--main-bg-color);
+            transition: transform 0.2s, box-shadow 0.3s;
+            border: 0px;
+            text-decoration: none;
+            background-color: var(--form-color) !important;
+            color: var(--tertiary-color) !important;
+
+            &:hover {
+                transform: scale(1.01);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+
+
+            .card-text {
+                color: var(--tertiary-color) !important;
+            }
+        }
+    }
+
+    .list-group-item {
+        background-color: var(--form-color) !important;
+        color: var(--tertiary-color) !important;
+        border: 1px solid var(--tertiary-color) !important;
+
+    }
+
+    .transition-img {
+        transition: transform 0.3s ease;
+    }
+
+    .transition-img:hover {
+        transform: scale(1.03);
+    }
+
+    .carousel-title {
+        display: flex;
+        justify-content: start;
+        margin-bottom: 2rem;
+        margin-left: 7rem;
+    }
+
+    .shop-now-btn {
+        position: absolute;
+        bottom: 200px;
+        transform: 'translateX(-50%)';
+        z-index: 10;
+        padding: 0.5rem 0.8rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        background-color: var(--highlight-color);
+        font-weight: 500;
+    }
+
+    #jumbotron {
+        margin: 0px !important;
+
+        #carouselExampleIndicators {
+
+            height: 600px;
+
+            img {
+                max-height: 400px;
+            }
+
+        }
+
+    }
+
+    .carousel-indicators {
+        display: none;
+        pointer-events: none;
+        position: relative;
+    }
+
+    .carousel-item {
+        margin-bottom: 100px;
+    }
+
+    #shop-section {
+        scroll-margin-top: 150px !important;
+    }
+
+    #order-summary-container {
+
+        height: calc(100vh - var(--header-height));
+
+        #order-summary {
+            height: calc(100vh - var(--header-height));
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+
+            #order-summary-list {
+                overflow: auto;
+            }
+        }
+    }
+}
