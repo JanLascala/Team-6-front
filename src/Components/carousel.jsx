@@ -68,15 +68,15 @@ function Carousel({ array = [] }) {
                                         className="card-img-top img-fluid"
                                         style={{ objectFit: 'contain', height: '200px' }}
                                     />
-                                    <div className="card-body d-flex flex-column flex-grow-1">
-                                        <h5 className="card-title">{item.title}</h5>
+                                    <div className="card-body d-flex flex-column flex-grow-1 align-items-start px-5">
+                                        <h5 className="card-title text-start">{item.title}</h5>
                                         <h4 className="card-text">{item.price} €</h4>
                                         <p className="card-text">{item.releaseDate}</p>
                                         <p className="card-text">{item.genreName}, {item.formatName}</p>
                                         <p className="card-text">{item.authorName}, {item.publisherName}</p>
                                     </div>
                                 </Link>
-                                <div className="p-2 border-top">
+                                <div className="p-2 d-flex px-5">
                                     <AddToCartButton vinyl={item} />
                                 </div>
                             </div>

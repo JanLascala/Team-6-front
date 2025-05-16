@@ -67,7 +67,7 @@ function Jumbotron() {
                             The future is digital.<br />The soul is vinyl.
                         </div>
                         <a
-                            href="#shop-section"
+                            href="#carousels-first-title"
                             className="btn btn-dark carousel-button shop-now-btn"
                             onClick={(e) => e.stopPropagation()}
                         >
@@ -87,7 +87,7 @@ function Jumbotron() {
                             The future is digital.<br />The soul is vinyl.
                         </div>
                         <a
-                            href="#shop-section"
+                            href="#carousels-first-title"
                             className="btn btn-dark carousel-button shop-now-btn"
                             onClick={(e) => e.stopPropagation()}
                         >
@@ -107,7 +107,7 @@ function Jumbotron() {
                             The future is digital.<br />The soul is vinyl.
                         </div>
                         <a
-                            href="#shop-section"
+                            href="#carousels-first-title"
                             className="btn btn-dark carousel-button shop-now-btn"
                             onClick={(e) => e.stopPropagation()}
                         >
