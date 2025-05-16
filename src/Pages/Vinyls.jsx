@@ -165,7 +165,7 @@ export default function Vinyls() {
                                 className='text-decoration-none'>
                                 <div className="card vinyls-page-card h-100 text-center d-flex flex-column">
                                     <img
-                                        src={"http://localhost:3000/vinyl_placeholder.png"}
+                                        src={"https://picsum.photos/300/200"}
                                         className="card-img-top img-fluid"
                                         alt={vinyl.title}
                                         style={{ height: "200px", objectFit: "cover" }}

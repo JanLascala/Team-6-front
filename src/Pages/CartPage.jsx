@@ -87,10 +87,10 @@ export default function Cart({ onClose }) {
                                 <li key={item.slug} className="list-group">
                                     <div className="d-flex gap-3">
                                         <img
-                                            src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
+                                            src={item.vinylImg || 'http://localhost:3000/https://picsum.photos/300/200'}
                                             onError={(e) => {
                                                 e.target.onerror = null;
-                                                e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
+                                                e.target.src = 'http://localhost:3000/https://picsum.photos/300/200';
                                             }}
                                             alt={item.title}
                                             className="card-img-top img-fluid"

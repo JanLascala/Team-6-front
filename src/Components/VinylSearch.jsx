@@ -152,7 +152,7 @@ export default function VinylSearch() {
                                         >
                                             <div className="d-flex align-items-center">
                                                 <img
-                                                    src={"http://localhost:3000/vinyl_placeholder.png"}
+                                                    src={"https://picsum.photos/300/200"}
                                                     alt={vinyl.title}
                                                     className="me-3"
                                                     style={{ width: "50px", height: "50px", objectFit: "cover" }}
