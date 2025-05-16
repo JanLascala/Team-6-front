@@ -16,35 +16,48 @@ export default function Header() {
     return (
         <>
 
-            <nav id="headerNav" className="navbar navbar-expand-sm shadow-sm sticky-top">
+            <nav className="navbar navbar-expand-sm shadow-sm sticky-top bg-dark">
                 <div className="container-fluid px-4 d-flex justify-content-between align-items-center">
+
+                    {/* Logo + Searchbar */}
                     <div className="d-flex align-items-center gap-3">
                         <Link className="navbar-brand fw-bold text-light" to="/">VinylStore</Link>
                         {!isVinylsPage && (
-                            <div className="d-flex align-items-center">
+                            <div className="d-none d-sm-flex align-items-center">
                                 <VinylSearch />
                             </div>
                         )}
                     </div>
 
-                    <div className="d-flex align-items-center gap-3">
-                        <div className="collapse navbar-collapse" id="navbarContent">
-                            <ul className="navbar-nav me-auto gap-3">
-                                <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
-                                <li className="nav-item"><Link className="nav-link text-light" to="/vinyls">Vinyls</Link></li>
-                                <li className="nav-item"><Link className="nav-link text-light" to="/about">About</Link></li>
-                            </ul>
-                        </div>
+                    {/* Bottone per menu mobile */}
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
 
-                        <div className="navbar-nav">
-                            <button className="nav-link btn btn-link position-relative p-2 d-flex" onClick={toggleModal}>
-                                <i className="bi bi-cart-plus fs-5 text-light"></i>
-                                {cart.length > 0 && <div id="cart-quantity" className="bg-primary">{cart.length}</div>}
-                            </button>
-                        </div>
+                    {/* Menu navigazione collapsabile */}
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarContent">
+                        <ul className="navbar-nav mb-2 mb-lg-0 gap-3">
+                            <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-light" to="/vinyls">Vinyls</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-light" to="/about">About</Link></li>
+                        </ul>
                     </div>
+
+                    {/* Carrello - sempre visibile */}
+                    <div className="d-flex align-items-center">
+                        <button className="btn btn-link nav-link position-relative p-2 d-flex" onClick={toggleModal}>
+                            <i className="bi bi-cart-plus fs-5 text-light"></i>
+                            {cart.length > 0 && (
+                                <div id="cart-quantity" className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                    {cart.length}
+                                </div>
+                            )}
+                        </button>
+                    </div>
+
                 </div>
             </nav>
+
 
 
             {isCartOpen && (

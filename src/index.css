@@ -368,3 +368,19 @@ footer {
         text-decoration: underline;
     }
 }
+
+@media (min-width: 560px) and (max-width: 800px) {
+    .carousel-item>div {
+        height: 60vh !important;
+    }
+
+    .carousel-item h1 {
+        font-size: 2rem !important;
+        /* riduci un po’ la grandezza */
+    }
+
+    .carousel-item .btn {
+        font-size: 0.9rem !important;
+        padding: 0.4rem 1.2rem !important;
+    }
+}
