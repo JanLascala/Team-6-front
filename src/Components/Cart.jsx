@@ -35,10 +35,10 @@ export default function Cart({ onClose }) {
                         <li key={item.slug} className="list-group-item py-2">
                             <div className="d-flex align-items-center gap-2">
                                 <img
-                                    src={item.vinylImg || 'http://localhost:3000/vinyl_placeholder.png'}
+                                    src={item.vinylImg || 'https://picsum.photos/300/200'}
                                     onError={(e) => {
                                         e.target.onerror = null;
-                                        e.target.src = 'http://localhost:3000/vinyl_placeholder.png';
+                                        e.target.src = 'https://picsum.photos/300/200';
                                     }}
                                     alt={item.title}
                                     className="img-fluid"

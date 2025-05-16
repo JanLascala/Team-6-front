@@ -21,10 +21,10 @@ export default function CartSummary() {
                         <li key={item.slug} className="list-group-item py-2 px-0 border-0 border-bottom">
                             <div className="d-flex align-items-center">
                                 <img
-                                    src={item.vinylImg || 'http://localhost:3000/https://picsum.photos/300/200'}
+                                    src={item.vinylImg || 'https://picsum.photos/300/200'}
                                     onError={(e) => {
                                         e.target.onerror = null;
-                                        e.target.src = 'http://localhost:3000/https://picsum.photos/300/200';
+                                        e.target.src = 'https://picsum.photos/300/200';
                                     }}
                                     alt={item.title}
                                     className="me-2"
