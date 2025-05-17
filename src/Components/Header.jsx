@@ -22,7 +22,7 @@ export default function Header() {
                     {/* Logo + Searchbar */}
                     <div className="d-flex align-items-center gap-3">
                         <Link className="navbar-brand fw-bold text-light" to="/">
-                            <img src="../../public/vinylvibelogo.png" alt="VinylVibe logo" height={'70px'} /></Link>
+                            <img src="../../public/vinylvibelogo.png" alt="VinylVibe logo" height={'80px'} /></Link>
                         {!isVinylsPage && (
                             <div className="d-none d-sm-flex align-items-center">
                                 <VinylSearch />
@@ -35,7 +35,7 @@ export default function Header() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    {/* Menu navigazione collapsabile */}
+                    {/* Menu navigazione collapsible */}
                     <div className="collapse navbar-collapse justify-content-end" id="navbarContent">
                         <ul className="navbar-nav mb-2 mb-lg-0 gap-3">
                             <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
