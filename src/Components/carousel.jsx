@@ -73,7 +73,7 @@ function Carousel({ array = [] }) {
                                         <h4 className="card-text">{item.price} €</h4>
                                         <p className="card-text">{item.releaseDate}</p>
                                         <p className="card-text">{item.genreName}, {item.formatName}</p>
-                                        <p className="card-text">{item.authorName}, {item.publisherName}</p>
+                                        <p className="card-text">{item.authorName}</p>
                                     </div>
                                 </Link>
                                 <div className="p-2 d-flex px-5">
