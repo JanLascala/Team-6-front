@@ -8,9 +8,11 @@
     --tertiary-color: #fff;
     --main-bg-color: #262626;
     --form-color: #171717;
+    --highlight-color: #c4c92e;
 }
 
 body {
+
     background-color: var(--main-bg-color) !important;
     color: white !important;
 
@@ -35,6 +37,7 @@ body {
     }
 }
 
+
 #headerNav {
 
     background-color: var(--primary-color);
@@ -52,6 +55,15 @@ body {
             color: var(--dark-color);
         }
     }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+
 
     #cart-quantity {
         border-radius: 50%;
@@ -123,6 +135,7 @@ main {
     }
 
     .shop-now-btn {
+        background-color: var(--highlight-color) !important;
         position: absolute;
         bottom: 200px;
         right: 210px;
@@ -130,6 +143,12 @@ main {
         padding: 0.5rem 0.8rem;
         font-size: 1rem;
         border-radius: 5px;
+    }
+
+    .shop-now-btn:hover {
+        background-color: var(--highlight-color) !important;
+        color: black !important;
+        cursor: pointer;
     }
 
     #jumbotron {
@@ -247,7 +266,7 @@ main {
     justify-content: center;
     align-items: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgb(162, 255, 0);
+
 }
 
 .modal-footer .btn {
@@ -324,6 +343,20 @@ div {
     }
 }
 
+.btn-checkout {
+    background-color: var(--highlight-color);
+    color: black;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+        background-color: #c4c92e;
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+}
+
 .success-icon {
     animation: pulse 1.5s infinite;
 }
@@ -365,53 +398,5 @@ footer {
 
     a:hover {
         text-decoration: underline;
-    }
-}
-
-
-
-
-@media (min-width: 561px) and (max-width: 804px) {
-
-    #jumbotron,
-    #jumbotron .carousel,
-    #jumbotron #carouselExampleIndicators {
-        height: 400px !important;
-        min-height: 400px !important;
-        max-height: 400px !important;
-    }
-
-    #jumbotron .carousel-item,
-    #jumbotron .carousel-item img,
-    #jumbotron #carouselExampleIndicators img {
-        height: 250px !important;
-        min-height: 250px !important;
-        max-height: 250px !important;
-        object-fit: cover !important;
-        width: 100% !important;
-    }
-
-    #jumbotron .carousel-caption,
-    #jumbotron [class*="carousel-caption"] {
-        font-size: 1.2rem !important;
-        padding: 0 10px !important;
-        top: 65% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 90vw !important;
-        line-height: 1.2 !important;
-        text-align: center !important;
-    }
-
-    #jumbotron .shop-now-btn {
-        bottom: 60px !important;
-        right: 50% !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        font-size: 1rem !important;
-        padding: 0.5rem 1rem !important;
-        width: auto !important;
-        min-width: 140px !important;
-        text-align: center !important;
     }
 }
