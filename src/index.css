@@ -41,7 +41,9 @@ body {
 #headerNav {
 
     background-color: var(--primary-color);
-    height: var(--header-height);
+    height: var(--header-height) !important;
+    padding: 0px !important;
+    margin: 0px !important;
 
     #header-right-section {
         width: 300px;
@@ -80,6 +82,9 @@ body {
 }
 
 main {
+
+    width: 100vw !important;
+    min-height: calc(100vh - var(--header-height)) !important;
 
     .carousel-button {
         position: absolute;
@@ -399,6 +404,7 @@ footer {
     padding: 1.5rem;
     align-items: center;
     background-color: var(--primary-color);
+    width: 100% !important;
 
     a:hover {
         text-decoration: underline;

@@ -15,37 +15,24 @@ export default function Header() {
 
     return (
         <>
+            <nav className="navbar navbar-expand-md shadow-sm sticky-top bg-dark">
+                <div className="container-fluid px-2 px-sm-4">
 
-            <nav className="navbar navbar-expand-sm shadow-sm sticky-top bg-dark">
-                <div className="container-fluid px-4 d-flex justify-content-between align-items-center">
+                    {/* Logo - sempre visibile */}
+                    <Link className="navbar-brand fw-bold text-light me-2" to="/">
+                        <img src="../../public/vinylvibelogo.png" alt="VinylVibe logo"
+                            style={{ height: 'auto', maxHeight: '60px', width: 'auto', maxWidth: '100%' }} />
+                    </Link>
 
-                    {/* Logo + Searchbar */}
-                    <div className="d-flex align-items-center gap-3">
-                        <Link className="navbar-brand fw-bold text-light" to="/">
-                            <img src="../../public/vinylvibelogo.png" alt="VinylVibe logo" height={'80px'} /></Link>
-                        {!isVinylsPage && (
-                            <div className="d-none d-sm-flex align-items-center">
-                                <VinylSearch />
-                            </div>
-                        )}
-                    </div>
+                    {/* Barra di ricerca - visibile su schermi medi+ tranne nella pagina vinili */}
+                    {!isVinylsPage && (
+                        <div className="d-none d-md-flex align-items-center flex-grow-1 mx-3">
+                            <VinylSearch />
+                        </div>
+                    )}
 
-                    {/* Bottone per menu mobile */}
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    {/* Menu navigazione collapsible */}
-                    <div className="collapse navbar-collapse justify-content-end" id="navbarContent">
-                        <ul className="navbar-nav mb-2 mb-lg-0 gap-3">
-                            <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
-                            <li className="nav-item"><Link className="nav-link text-light" to="/vinyls">Vinyls</Link></li>
-                            <li className="nav-item"><Link className="nav-link text-light" to="/about">About</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Carrello - sempre visibile */}
-                    <div className="d-flex align-items-center">
+                    {/* Carrello - visibile solo su mobile fuori dal menu */}
+                    <div className="d-md-none d-flex ms-auto me-2">
                         <button className="btn btn-link nav-link position-relative p-2 d-flex" onClick={toggleModal}>
                             <i className="bi bi-cart-plus fs-5 text-light"></i>
                             {cart.length > 0 && (
@@ -56,11 +43,43 @@ export default function Header() {
                         </button>
                     </div>
 
+                    {/* Pulsante hamburger per menu mobile */}
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent" aria-controls="navbarContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+
+                    {/* Menu di navigazione collassabile */}
+                    <div className="collapse navbar-collapse mt-2 mt-md-0" id="navbarContent">
+                        <ul className="navbar-nav ms-auto mb-2 mb-md-0 gap-2 align-items-center">
+                            <li className="nav-item"><Link className="nav-link text-light" to="/">Home</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-light" to="/vinyls">Vinyls</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-light" to="/about">About</Link></li>
+                            {/* Carrello - nel menu desktop e mobile */}
+                            <li className="nav-item d-none d-md-block">
+                                <button className="btn btn-link nav-link position-relative p-2 d-flex" onClick={toggleModal}>
+                                    <i className="bi bi-cart-plus fs-5 text-light"></i>
+                                    {cart.length > 0 && (
+                                        <div id="cart-quantity" className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                            {cart.length}
+                                        </div>
+                                    )}
+                                </button>
+                            </li>
+                        </ul>
+
+                        {/* Barra di ricerca - visibile solo su mobile quando il menu è aperto */}
+                        {!isVinylsPage && (
+                            <div className="d-md-none mt-3 mb-2 w-100">
+                                <VinylSearch />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </nav>
 
-
-
+            {/* Modal del carrello */}
             {isCartOpen && (
                 <div className="side-modal-overlay" onClick={toggleModal}>
                     <div className="side-modal-content" onClick={e => e.stopPropagation()}>

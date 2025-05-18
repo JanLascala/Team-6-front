@@ -7,7 +7,7 @@ export default function DefaultLayout() {
     return (
         <>
             <Header />
-            <main style={{ minHeight: 'calc(100vh - 56px)' }}>
+            <main>
                 <Outlet />
             </main>
             <Footer />

@@ -50,7 +50,7 @@ function Jumbotron() {
 
 
     return (
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" /* style={carouselStyle} */>
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={carouselStyle}>
             <ol className="carousel-indicators">
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active"></li>
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
@@ -66,7 +66,7 @@ function Jumbotron() {
                             style={imageStyle}
                         />
                         <div style={captionStyle}>
-                            The future is digital.<br />The soul is vinyl.
+                            Discover the vinyl sound
                         </div>
                         <a
                             href="#carousels-first-title"
@@ -86,7 +86,7 @@ function Jumbotron() {
                             style={imageStyle}
                         />
                         <div style={captionStyle}>
-                            The future is digital.<br />The soul is vinyl.
+                            Collect the classics
                         </div>
                         <a
                             href="#carousels-first-title"
@@ -106,7 +106,7 @@ function Jumbotron() {
                             style={imageStyle}
                         />
                         <div style={captionStyle}>
-                            The future is digital.<br />The soul is vinyl.
+                            Spin your passion
                         </div>
                         <a
                             href="#carousels-first-title"
