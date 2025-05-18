@@ -15,8 +15,8 @@ export default function Header() {
 
     const badgeStyle = {
         position: 'absolute',
-        top: '15%',
-        right: '10%',
+        top: '17%',
+        right: '20%',
         transform: 'translateX(50%)',
         fontSize: '0.65rem',
         padding: '0.25em 0.5em'

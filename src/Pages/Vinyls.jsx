@@ -80,9 +80,9 @@ export default function Vinyls() {
 
     return (
         <div className="vinyls-page container-fluid py-4">
-            <h1 className="mb-4">Vinyl Collection</h1>
+            <h1 className="mb-5">Vinyl Collection</h1>
 
-            <div className="row align-items-center mb-4">
+            <div className="row align-items-center mb-5">
                 <div className="col-lg-5 col-md-6 mb-3 mb-md-0">
                     <div className="input-group h-100 d-flex align-items-center">
                         <input
@@ -121,7 +121,7 @@ export default function Vinyls() {
                             <label htmlFor="sort" className="mb-0">Sort by:</label>
                             <select
                                 id="sort"
-                                className="form-select"
+                                className="form-select me-3"
                                 value={sortByValue}
                                 onChange={handleSortChange}
                                 style={{ width: "auto" }}
@@ -138,7 +138,7 @@ export default function Vinyls() {
             </div>
 
             {query && (
-                <div className="mb-3">
+                <div className="mb-4">
                     <h5>Search results for: "{query}"</h5>
                     <p>{sortedVinyls.length} vinyls found</p>
                 </div>
