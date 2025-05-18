@@ -184,6 +184,7 @@ function GlobalProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 setVinyls({
                     state: "success",
                     vinyl_data: data
