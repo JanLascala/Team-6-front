@@ -56,7 +56,7 @@ function Jumbotron() {
         padding: 'clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 4vw, 2rem)',
         fontSize: 'clamp(0.9rem, 1.5vw, 1.25rem)',
         backgroundColor: 'var(--highlight-color)',
-        color: 'black',
+        color: 'white',
         border: 'none',
         borderRadius: '4px',
         textDecoration: 'none',

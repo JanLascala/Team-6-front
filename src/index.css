@@ -78,16 +78,17 @@ body {
     #cart-quantity {
         border-radius: 50%;
         color: white;
-        width: 17px;
-        height: 17px;
-        position: absolute;
-        top: 15px;
-        left: 15px;
+        width: 18px;
+        height: 18px;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-bottom: 1px;
-        transform: translate(40%, -40%);
+        font-size: 0.75rem;
+        font-weight: bold;
+        background-color: var(--highlight-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        min-width: 18px;
+        text-align: center;
     }
 }
 
@@ -422,14 +423,14 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .search-bar-mobile {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  
-  .search-bar-mobile input,
-  .search-bar-mobile .form-control {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
+    .search-bar-mobile {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .search-bar-mobile input,
+    .search-bar-mobile .form-control {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 }

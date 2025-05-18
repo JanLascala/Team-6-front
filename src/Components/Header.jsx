@@ -13,6 +13,15 @@ export default function Header() {
         setIsCartOpen(prev => !prev);
     };
 
+    const badgeStyle = {
+        position: 'absolute',
+        top: '15%',
+        right: '10%',
+        transform: 'translateX(50%)',
+        fontSize: '0.65rem',
+        padding: '0.25em 0.5em'
+    };
+
     return (
         <>
             <nav className="navbar navbar-expand-md navbar-dark shadow-sm sticky-top bg-dark">
@@ -33,7 +42,7 @@ export default function Header() {
                         <button className="btn btn-link nav-link position-relative p-2 d-flex" onClick={toggleModal}>
                             <i className="bi bi-cart-plus fs-5 text-light"></i>
                             {cart.length > 0 && (
-                                <div id="cart-quantity" className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                <div id="cart-quantity" className="badge rounded-pill bg-primary text-white" style={badgeStyle}>
                                     {cart.length}
                                 </div>
                             )}
@@ -55,7 +64,7 @@ export default function Header() {
                                 <button className="btn btn-link nav-link position-relative p-2 d-flex" onClick={toggleModal}>
                                     <i className="bi bi-cart-plus fs-5 text-light"></i>
                                     {cart.length > 0 && (
-                                        <div id="cart-quantity" className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                        <div id="cart-quantity" className="badge rounded-pill bg-primary text-white" style={badgeStyle}>
                                             {cart.length}
                                         </div>
                                     )}
