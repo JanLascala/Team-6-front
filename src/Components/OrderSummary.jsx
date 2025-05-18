@@ -15,9 +15,10 @@ export default function OrderSummary() {
             <h4 className="mb-4">Order Summary</h4>
 
             <div className="order-items overflow-auto flex-grow-1 mb-3" style={{ minHeight: "100px" }}>
-                <ul className="list-group pe-3">
+                <ul className="list-group pe-1">
                     {cart.map(item => (
-                        <li key={item.slug} className="list-group-item py-2 px-0 border-0 border-bottom">
+                        <li key={item.slug} className="list-group-item py-3 px-3 border-0 mb-2 bg-light"
+                            style={{ borderRadius: '100px' }}>
                             <div className="d-flex align-items-center">
                                 <img
                                     src={item.vinylImg || 'https://picsum.photos/300/200'}
@@ -26,18 +27,18 @@ export default function OrderSummary() {
                                         e.target.src = 'https://picsum.photos/300/200';
                                     }}
                                     alt={item.title}
-                                    className="me-2"
-                                    style={{ width: '40px', height: '40px', objectFit: 'cover' }}
+                                    className="me-3"
+                                    style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '8px' }}
                                 />
 
                                 <div className="flex-grow-1">
-                                    <div className="d-flex justify-content-between align-items-start">
-                                        <div>
-                                            <p className="mb-0  fw-bold text-truncate" style={{ maxWidth: "150px", fontSize: "0.95rem" }}>{item.title}</p>
+                                    <div className="row">
+                                        <div className="col-7">
+                                            <p className="mb-0 fw-bold text-truncate">{item.title}</p>
                                             <small className="order-summary-text" style={{ fontSize: "0.8rem" }}>{item.authorName}</small>
                                         </div>
 
-                                        <div className="text-end">
+                                        <div className="col-5 text-end">
                                             <p className="mb-0 fw-bold" style={{ fontSize: "0.95rem" }}>€{(item.price * item.quantity).toFixed(2)}</p>
                                             <small className="order-summary-text" style={{ fontSize: "0.8rem" }}>
                                                 {item.quantity} × €{item.price.toFixed(2)}

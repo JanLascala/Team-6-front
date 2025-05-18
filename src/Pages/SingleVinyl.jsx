@@ -100,9 +100,9 @@ export default function VinylSearch() {
             };
 
             return (
-                <div className="container my-5">
-                    <div className="text-center mb-4 mt-5">
-                        <h1 className="display-4 mb-4 fw-bold text-uppercase">{data.title}</h1>
+                <div className="container">
+                    <div className="text-center mt-5">
+                        <h1 className="display-4 mb-5 fw-bold text-uppercase">{data.title}</h1>
                         <img
                             src={data.vinylImg || 'http://localhost:3000/https://picsum.photos/300/200'}
                             onError={(e) => {
@@ -110,19 +110,19 @@ export default function VinylSearch() {
                                 e.target.src = 'http://localhost:3000/https://picsum.photos/300/200';
                             }}
                             alt={data.title}
-                            className="img-fluid rounded shadow-sm transition-img"
+                            className="img-fluid rounded shadow-sm transition-img mb-4"
                             style={{ maxHeight: "400px", objectFit: "cover" }}
                         />
-                        <div className="mt-3 d-flex flex-column align-items-center gap-2">
+                        <div className="mt-3 d-flex flex-column align-items-center gap-2 my-2">
                             <AddToCartButton vinyl={data} />
-                            <p className="fw-bold fs-5 mb-0">€{data.price.toFixed(2)}</p>
+                            <p className="fw-bold fs-5 my-2">€{data.price.toFixed(2)}</p>
                         </div>
                         <p>{data.nAvailable > 0 ? `${data.nAvailable} Vinyls available` : `Worn out`}</p>
                     </div>
 
                     <div className="row mb-5 details-container">
-                        <div className="col-md-6 mt-5">
-                            <h3 className="mt-5 mb-3 border-bottom pb-2">Details</h3>
+                        <div className="col-md-6 mt-3">
+                            <h3 className="mt-2 mb-3 border-bottom pb-2">Details</h3>
                             <ul className="list-group">
                                 <li className="list-group-item"><strong>Genre:</strong> {data.genreName}</li>
                                 <li className="list-group-item"><strong>Format:</strong> {data.formatName}</li>
@@ -132,8 +132,8 @@ export default function VinylSearch() {
                             </ul>
                         </div>
 
-                        <div className="col-md-6 mt-5">
-                            <h3 className="mt-5 mb-3 border-bottom pb-2">Author</h3>
+                        <div className="col-md-6 mt-3">
+                            <h3 className="mt-2 mb-3 border-bottom pb-2">Author</h3>
                             <div className="d-flex align-items-center gap-3">
                                 <img
                                     src={data.authorImg || 'https://picsum.photos/300/200'}

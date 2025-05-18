@@ -41,7 +41,7 @@ export default function AddToCartButton({ vinyl }) {
             onClick={handleAddToCart}
             disabled={updatedVinyl.nAvailable === 0 || maxQuantity || isInCart}
         >
-            {updatedVinyl.nAvailable === 0 ? 'worn out' : maxQuantity ? 'maximum quantity' : isInCart ? 'In the Cart' : isAdded ? 'Added!' : 'Add to cart'}
+            {updatedVinyl.nAvailable === 0 ? 'Worn out' : maxQuantity ? 'maximum quantity' : isInCart ? 'In the Cart' : isAdded ? 'Added!' : 'Add to cart'}
         </button>
     );
 }
