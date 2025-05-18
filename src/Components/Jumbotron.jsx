@@ -2,11 +2,9 @@ import { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-
-
 function Jumbotron() {
     const carouselStyle = {
-        height: '700px',
+        height: 'auto',
         marginBottom: '30px',
         marginTop: 0,
         marginLeft: 0,
@@ -14,13 +12,17 @@ function Jumbotron() {
         paddingLeft: 0,
         paddingRight: 0,
         width: '100%',
-        maxWidth: '100%',
+        maxWidth: '100vw',
         borderRadius: 0,
+        position: 'relative',
+        overflow: 'hidden'
     };
 
     const imageContainerStyle = {
-        height: 'calc(100vh - var(--header-height)',
+        height: '60vh',
+        minHeight: '350px',
         width: '100%',
+        maxWidth: '100%',
         overflow: 'hidden',
         position: 'relative'
     };
@@ -31,13 +33,14 @@ function Jumbotron() {
         objectFit: 'cover',
         objectPosition: 'center'
     };
+
     const captionStyle = {
         position: 'absolute',
-        top: '50%',
+        top: '40%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         color: 'white',
-        fontSize: '4rem',
+        fontSize: 'clamp(1.5rem, 5vw, 4rem)',
         fontWeight: '800',
         fontFamily: "'Arial Black', Gadget, sans-serif",
         textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
@@ -45,9 +48,35 @@ function Jumbotron() {
         padding: '0 20px',
         userSelect: 'none',
         whiteSpace: 'pre-line',
-        zIndex: 10
+        zIndex: 10,
+        width: '100%',
+        maxWidth: '90%'
     };
 
+    const buttonStyle = {
+        position: 'absolute',
+        top: '60%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        padding: 'clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 4vw, 2rem)',
+        fontSize: 'clamp(0.9rem, 1.5vw, 1.25rem)',
+        backgroundColor: 'var(--highlight-color)',
+        color: 'black',
+        border: 'none',
+        borderRadius: '4px',
+        textDecoration: 'none',
+        fontWeight: 'bold',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+        zIndex: 10,
+        transition: 'all 0.3s ease',
+        whiteSpace: 'nowrap'
+    };
+
+    const controlStyle = {
+        zIndex: 20,
+        width: '10%',
+        opacity: 0.8
+    };
 
     return (
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={carouselStyle}>
@@ -70,7 +99,7 @@ function Jumbotron() {
                         </div>
                         <a
                             href="#carousels-first-title"
-                            className="btn carousel-button shop-now-btn"
+                            style={buttonStyle}
                             onClick={(e) => e.stopPropagation()}
                         >
                             Shop Now
@@ -90,7 +119,7 @@ function Jumbotron() {
                         </div>
                         <a
                             href="#carousels-first-title"
-                            className="btn carousel-button shop-now-btn"
+                            style={buttonStyle}
                             onClick={(e) => e.stopPropagation()}
                         >
                             Shop Now
@@ -110,7 +139,7 @@ function Jumbotron() {
                         </div>
                         <a
                             href="#carousels-first-title"
-                            className="btn carousel-button shop-now-btn"
+                            style={buttonStyle}
                             onClick={(e) => e.stopPropagation()}
                         >
                             Shop Now
@@ -119,11 +148,11 @@ function Jumbotron() {
                 </div>
             </div>
 
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style={controlStyle}>
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style={controlStyle}>
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>

@@ -10,25 +10,48 @@ export default function HomePage() {
     const { vinyls } = useGlobalContext();
 
     switch (vinyls.state) {
-
         case 'loading':
             return <LoadingUi />
 
         case 'success':
-
             return (
-                <>
-                    <Jumbotron />
+                <div className="homepage d-flex flex-column">
+                    {/* Jumbotron a larghezza piena */}
+                    <div className="w-100 mb-5">
+                        <Jumbotron />
+                    </div>
 
-                    <UseVinylsRecent title={"Recent Releases"} />
+                    {/* Contenitore principale con spaziatura responsive */}
+                    <div className="container-fluid px-2 px-md-4 py-3 mt-2">
+                        {/* Sezione Nuovi Arrivi */}
+                        <div className="row mb-5">
+                            <div className="col-12">
+                                <UseVinylsRecent title={"Recent Releases"} />
+                            </div>
+                        </div>
 
-                    <UseVinylsByGenre genre={"classical"} title={"Our Classics!"} />
+                        {/* Sezione Classici */}
+                        <div className="row mb-5">
+                            <div className="col-12">
+                                <UseVinylsByGenre genre={"classical"} title={"Our Classics!"} />
+                            </div>
+                        </div>
 
-                    <UseVinylsByGenre genre={"hip hop"} title={"Hip Hop Hits!"} />
+                        {/* Sezione Hip Hop */}
+                        <div className="row mb-5">
+                            <div className="col-12">
+                                <UseVinylsByGenre genre={"hip hop"} title={"Hip Hop Hits!"} />
+                            </div>
+                        </div>
 
-                    <UseVinylsByFormat format={"gatefold"} title={"Our Gatefolds!"} />
-
-                </>
+                        {/* Sezione per formato */}
+                        <div className="row mb-3">
+                            <div className="col-12">
+                                <UseVinylsByFormat format={"gatefold"} title={"Our Gatefolds!"} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )
 
         case 'error':
@@ -36,7 +59,5 @@ export default function HomePage() {
 
         default:
             return <p>Unknown status</p>
-
     }
-
 }

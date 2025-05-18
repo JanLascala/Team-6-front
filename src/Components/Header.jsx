@@ -15,7 +15,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-md shadow-sm sticky-top bg-dark">
+            <nav className="navbar navbar-expand-md navbar-dark shadow-sm sticky-top bg-dark">
                 <div className="container-fluid px-2 px-sm-4">
 
                     {/* Logo - sempre visibile */}
