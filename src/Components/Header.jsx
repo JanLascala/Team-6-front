@@ -24,7 +24,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-md navbar-dark shadow-sm sticky-top bg-dark">
+            <nav className="navbar navbar-expand-md navbar-dark shadow-sm sticky-top bg-dark" id="main-header">
                 <div className="container-fluid px-2 px-sm-4">
 
                     <Link className="navbar-brand fw-bold text-light me-2" to="/">
@@ -84,7 +84,12 @@ export default function Header() {
             {isCartOpen && (
                 <div className="side-modal-overlay" onClick={toggleModal}>
                     <div className="side-modal-content" onClick={e => e.stopPropagation()}>
-                        <button id="close-cart-button" className="btn btn-sm btn-light text-secondary position-absolute top-0 start-0" onClick={toggleModal}>✖</button>
+                        <button id="close-cart-button" className="btn btn-outline-secondary mb-3 w-100" onClick={toggleModal}>
+                            <div className="d-flex align-items-center justify-content-center gap-2">
+                                <i className="bi bi-arrow-left"></i>
+                                <span>Close cart</span>
+                            </div>
+                        </button>
                         <Cart onClose={toggleModal} />
                     </div>
                 </div>
