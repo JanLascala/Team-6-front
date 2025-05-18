@@ -434,3 +434,19 @@ footer {
         max-width: 100% !important;
     }
 }
+
+#order-summary-container .list-group,
+#order-summary-container .list-group-item,
+#order-summary-container-mobile .list-group,
+#order-summary-container-mobile .list-group-item,
+.order-summary .list-group,
+.order-summary .list-group-item,
+.order-summary div,
+.order-items div {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.order-summary hr {
+  display: none;
+}

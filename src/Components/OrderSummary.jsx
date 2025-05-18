@@ -1,21 +1,20 @@
-import { useGlobalContext } from "../Contexts/GlobalContext";
+import { useGlobalContext } from '../Contexts/GlobalContext';
 
-export default function CartSummary() {
+export default function OrderSummary() {
     const { cart } = useGlobalContext();
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shippingCost = subtotal >= 100 || subtotal == 0 ? 0 : 12;
+    const shippingCost = subtotal >= 100 || subtotal === 0 ? 0 : 12;
     const total = subtotal + shippingCost;
 
     return (
-        <div id="order-summary" className="p-3 d-flex flex-column" style={{
+        <div className="order-summary" style={{
             height: "calc(100vh - var(--header-height) - 40px)",
             position: "sticky",
             top: "var(--header-height)",
         }}>
+            <h4 className="mb-4">Order Summary</h4>
 
-            <h4 className="mb-3">Order Summary</h4>
-
-            <div className="overflow-auto flex-grow-1 mb-3" style={{ minHeight: "100px" }}>
+            <div className="order-items overflow-auto flex-grow-1 mb-3" style={{ minHeight: "100px" }}>
                 <ul className="list-group pe-3">
                     {cart.map(item => (
                         <li key={item.slug} className="list-group-item py-2 px-0 border-0 border-bottom">
@@ -70,6 +69,12 @@ export default function CartSummary() {
                     <h5>€ {total.toFixed(2)}</h5>
                 </div>
             </div>
+
+            {subtotal < 100 && subtotal > 0 && (
+                <div className="mt-3 text-center text-muted">
+                    <small>Free shipping on orders over €100</small>
+                </div>
+            )}
         </div>
     );
 }

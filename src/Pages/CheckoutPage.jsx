@@ -189,8 +189,14 @@ export default function CheckoutForm({ clientSecret, orderId, customerData, cart
                     </form>
                 </div>
 
-                <div className="col-md-6 ps-md-4 border-start">
+                <div className="col-md-6 ps-md-4 d-none d-md-block border-start">
                     <div id='order-summary-container'>
+                        <OrderSummary />
+                    </div>
+                </div>
+
+                <div className="col-12 mt-4 pt-4 border-top d-md-none">
+                    <div id='order-summary-container-mobile'>
                         <OrderSummary />
                     </div>
                 </div>

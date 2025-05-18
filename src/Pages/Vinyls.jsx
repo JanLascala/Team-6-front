@@ -82,9 +82,9 @@ export default function Vinyls() {
         <div className="vinyls-page container-fluid py-4">
             <h1 className="mb-4">Vinyl Collection</h1>
 
-            <div className="row mb-4">
-                <div className="col-md-6">
-                    <div className="input-group">
+            <div className="row align-items-center mb-4">
+                <div className="col-lg-5 col-md-6 mb-3 mb-md-0">
+                    <div className="input-group h-100 d-flex align-items-center">
                         <input
                             id="search-bar"
                             type="search"
@@ -96,12 +96,12 @@ export default function Vinyls() {
                     </div>
                 </div>
 
-                <div className="col-md-6 my-5 mx-auto">
-                    <div className="d-flex align-items-center justify-content-end gap-3">
-                        <div className="d-flex gap-2 align-items-center">
+                <div className="col-lg-7 col-md-6">
+                    <div className="d-flex flex-wrap align-items-center justify-content-md-end gap-3">
+                        <div className="d-flex flex-wrap gap-2 align-items-center me-md-3">
                             <span>Filter: </span>
                             {["all", "title", "author"].map((value) => (
-                                <label key={value} className="form-check-label ms-2">
+                                <label key={value} className="form-check-label ms-2 mb-0">
                                     <input
                                         type="radio"
                                         className="form-check-input me-1"
@@ -118,7 +118,7 @@ export default function Vinyls() {
                         </div>
 
                         <div className="d-flex align-items-center gap-2">
-                            <label htmlFor="sort">Sort by:</label>
+                            <label htmlFor="sort" className="mb-0">Sort by:</label>
                             <select
                                 id="sort"
                                 className="form-select"
@@ -178,8 +178,8 @@ export default function Vinyls() {
                                         <p className="card-text">
                                             <small>{vinyl.genreName}</small>
                                         </p>
-                                        <div className="ard-body d-flex flex-column flex-grow-1">
-                                            <span className="fs-5 fw-bold text-center">€{vinyl.price}</span>
+                                        <div className="d-flex flex-column flex-grow-1">
+                                            <span className="fs-5 fw-bold text-center mt-auto">€{vinyl.price}</span>
                                         </div>
                                     </div>
                                 </div>
