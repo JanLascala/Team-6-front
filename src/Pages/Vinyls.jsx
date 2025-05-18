@@ -128,6 +128,7 @@ export default function Vinyls() {
                             >
                                 <option value="none">-</option>
                                 <option value="A-Z">A-Z</option>
+                                <option value="Z-A">Z-A</option>
                                 <option value="recent">Recent</option>
                                 <option value="priceAsc">Price asc</option>
                                 <option value="priceDesc">Price desc</option>

@@ -8,6 +8,8 @@ export default function sortBy(sortByValue, array) {
                 return array;
             case "A-Z":
                 return (a.title || "").localeCompare(b.title || "");
+            case "Z-A":
+                return (b.title || "").localeCompare(a.title || "");
             case "priceAsc":
                 return (a.price || 0) - (b.price || 0);
             case "priceDesc":
