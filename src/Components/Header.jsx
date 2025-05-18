@@ -27,9 +27,16 @@ export default function Header() {
             <nav className="navbar navbar-expand-md navbar-dark shadow-sm sticky-top bg-dark" id="main-header">
                 <div className="container-fluid px-2 px-sm-4">
 
-                    <Link className="navbar-brand fw-bold text-light me-2" to="/">
+                    <Link className="navbar-brand fw-bold text-light me-2 d-flex align-items-center" to="/">
                         <img src="../../public/vinylvibelogo.png" alt="VinylVibe logo"
-                            style={{ height: 'auto', maxHeight: '60px', width: 'auto', maxWidth: '100%' }} />
+                            style={{
+                                height: 'auto',
+                                maxHeight: '70px',
+                                width: 'auto',
+                                maxWidth: '100%',
+                                marginTop: '-5px',
+                                marginBottom: '-5px'
+                            }} />
                     </Link>
 
                     {!isVinylsPage && (
