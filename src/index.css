@@ -420,3 +420,16 @@ footer {
         text-decoration: underline;
     }
 }
+
+@media (max-width: 480px) {
+  .search-bar-mobile {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .search-bar-mobile input,
+  .search-bar-mobile .form-control {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

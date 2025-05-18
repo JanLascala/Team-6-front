@@ -64,7 +64,7 @@ export default function Header() {
                         </ul>
 
                         {!isVinylsPage && (
-                            <div className="d-md-none mt-3 mb-2 w-100">
+                            <div className="d-md-none mt-3 mb-2 w-100 search-bar-mobile">
                                 <VinylSearch />
                             </div>
                         )}
