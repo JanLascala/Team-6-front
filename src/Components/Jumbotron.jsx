@@ -5,12 +5,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function Jumbotron() {
     const carouselStyle = {
         height: 'auto',
-        marginBottom: '30px',
-        marginTop: 0,
-        marginLeft: 0,
-        marginRight: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
+        margin: 0,
+        padding: 0,
         width: '100%',
         maxWidth: '100vw',
         borderRadius: 0,
@@ -19,8 +15,7 @@ function Jumbotron() {
     };
 
     const imageContainerStyle = {
-        height: '60vh',
-        minHeight: '350px',
+        height: 'calc(100vh - var(--header-height))',
         width: '100%',
         maxWidth: '100%',
         overflow: 'hidden',
