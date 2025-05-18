@@ -159,31 +159,34 @@ export default function Vinyls() {
                     </div>
                 ) : sortedVinyls.length > 0 ? (
                     sortedVinyls.map((vinyl) => (
-                        <div key={vinyl.slug} className="col">
-                            <Link
-                                to={`/products/${vinyl.slug}`}
-                                className='text-decoration-none'>
-                                <div className="card vinyls-page-card h-100 text-center d-flex flex-column">
+                        <div key={vinyl.slug} className="col mb-3">
+                            <div className="vinyl-card card h-100 text-center d-flex flex-column">
+                                <Link
+                                    to={`/products/${vinyl.slug}`}
+                                    className="text-decoration-none flex-grow-1 d-flex flex-column"
+                                >
                                     <img
-                                        src={`https://picsum.photos/300/200?random=${vinyl.slug}`}
+                                        src={vinyl.vinylImg || `https://picsum.photos/300/200?random=${vinyl.slug}`}
                                         className="card-img-top img-fluid"
                                         alt={vinyl.title}
-                                        style={{ height: "200px", objectFit: "cover" }}
+                                        style={{ height: "200px", objectFit: "contain" }}
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = `https://picsum.photos/300/200?random=${vinyl.slug}`;
+                                        }}
                                     />
-                                    <div className="card-body d-flex flex-column flex-grow-1">
-                                        <h5 className="card-title">{vinyl.title}</h5>
-                                        <p className="card-text text-muted mb-1">
-                                            {vinyl.authorName}
-                                        </p>
-                                        <p className="card-text">
-                                            <small>{vinyl.genreName}</small>
-                                        </p>
-                                        <div className="d-flex flex-column flex-grow-1">
-                                            <span className="fs-5 fw-bold text-center mt-auto">€{vinyl.price}</span>
-                                        </div>
+                                    <div className="card-body d-flex flex-column flex-grow-1 align-items-center px-5 text-center">
+                                        <h5 className="card-title text-center">{vinyl.title}</h5>
+                                        <h4 className="card-text">€{vinyl.price}</h4>
+                                        <p className="card-text">{vinyl.releaseDate}</p>
+                                        <p className="card-text">{vinyl.genreName}, {vinyl.formatName}</p>
+                                        <p className="card-text">{vinyl.authorName}</p>
                                     </div>
+                                </Link>
+                                <div className="p-2 d-flex justify-content-center px-5">
+                                    <AddToCartButton vinyl={vinyl} />
                                 </div>
-                            </Link>
+                            </div>
                         </div>
                     ))
                 ) : (
@@ -194,6 +197,6 @@ export default function Vinyls() {
                     </div>
                 )}
             </div>
-        </div >
+        </div>
     );
 }
