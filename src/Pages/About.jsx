@@ -69,7 +69,7 @@ export default function About() {
                     <h2 className="mb-4">Visit Our Store</h2>
                     <p>We'd love to meet you in person! Visit our physical store in Rome, where you can browse our collection, listen to records, and talk music with our passionate staff.</p>
                     <div className="d-flex justify-content-center gap-3 mt-4">
-                        <Link to="/vinyls" className="btn btn-dark btn-lg px-4">
+                        <Link to="/vinyls" className="btn btn-dark px-3" style={{ backgroundColor: "var(--highlight-color)", borderColor: "var(--highlight-color)" }}>
                             Browse Our Collection
                         </Link>
                     </div>
