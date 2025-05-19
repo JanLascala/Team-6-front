@@ -22,7 +22,7 @@ body {
 }
 
 body {
-
+    padding-top: var(--header-height);
     background-color: var(--main-bg-color) !important;
     color: white !important;
 
@@ -54,6 +54,7 @@ body {
     height: var(--header-height) !important;
     padding: 0px !important;
     margin: 0px !important;
+
 
     #header-right-section {
         width: 300px;

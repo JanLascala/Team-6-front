@@ -24,7 +24,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-md navbar-dark shadow-sm sticky-top bg-dark" id="main-header">
+            <nav className="navbar navbar-expand-md navbar-dark shadow-sm fixed-top bg-dark" id="main-header" style={{ zIndex: 1030 }}>
                 <div className="container-fluid px-2 px-sm-4">
 
                     <Link className="navbar-brand fw-bold text-light me-2 d-flex align-items-center" to="/">
