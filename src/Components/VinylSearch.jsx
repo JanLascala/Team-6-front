@@ -163,7 +163,7 @@ export default function VinylSearch() {
                                                         {vinyl.authorName} • {vinyl.genreName}
                                                     </small>
                                                     <div className="text-primary">
-                                                        €{vinyl.price} {vinyl.releaseDate}
+                                                        €{vinyl.price}
                                                     </div>
                                                 </div>
                                             </div>

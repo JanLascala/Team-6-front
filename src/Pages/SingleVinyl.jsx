@@ -127,7 +127,7 @@ export default function VinylSearch() {
                                 <li className="list-group-item"><strong>Genre:</strong> {data.genreName}</li>
                                 <li className="list-group-item"><strong>Format:</strong> {data.formatName}</li>
                                 <li className="list-group-item"><strong>Release Date:</strong> {data.releaseDate}</li>
-                                <li className="list-group-item"><strong>Price:</strong> ${data.price}</li>
+                                <li className="list-group-item"><strong>Price:</strong> €{data.price}</li>
                                 <li className="list-group-item"><strong>Available:</strong> {data.nAvailable} in stock</li>
                             </ul>
                         </div>
